@@ -1,0 +1,26 @@
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --primary: #000058;
+  --secondary:#c89a13;
+  --black: #102530;
+  --white: #ECE9EA;
+  --lighter_blue: #2626ae;
+  --lighter_yellow: #dcb12f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--white);
+}
+
+*:focus {
+  outline: none;
+}

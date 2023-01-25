@@ -1,0 +1,114 @@
+.login-input {
+  width: 30rem;
+  height: 4rem;
+  margin: 1.5rem;
+  padding: 0.5rem;
+  border: 0.1rem solid var(--black);
+  font-size: 1.5rem;
+}
+
+.login-h1 {
+  text-align: center;
+  margin: 1.5rem;
+}
+
+.login-btn {
+  width: 8rem;
+  height: 4rem;
+  margin-left: 12.5rem;
+  margin-top: 1rem;
+  background-color: var(--primary);
+  border-radius: 1rem;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.login-btn:hover {
+  background: #010168;
+  transform: scale(1.02);
+}
+
+.login-input-div {
+  position: relative;
+}
+
+.login-p {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 3rem;
+  font-size: 1.5rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  padding: 0.2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-input:focus {
+  border: 0.2rem solid var(--primary);
+}
+
+.login-email:focus ~ .login-p-email {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.login-email:not(:placeholder-shown) {
+  border: 0.2rem solid var(--primary);
+}
+
+.login-email:not(:placeholder-shown) ~ .login-p-email {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+
+.login-password:focus ~ .login-p-password {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.login-password:not(:placeholder-shown) {
+  border: 0.2rem solid var(--primary);
+}
+
+.login-password:not(:placeholder-shown) ~ .login-p-password {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.login-confirm-password:focus ~ .login-p-confirm-password {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.login-confirm-password:not(:placeholder-shown) {
+  border: 0.2rem solid var(--primary);
+}
+
+.login-confirm-password:not(:placeholder-shown) ~ .login-p-confirm-password {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+@media (max-width: 410px) {
+  .login-input {
+    width: 26.5rem;
+  }
+
+  .login-btn {
+    margin-left: 10.5rem;
+  }
+}

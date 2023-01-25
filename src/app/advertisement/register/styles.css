@@ -1,0 +1,125 @@
+.register-container {
+  background: white;
+  padding: 3rem;
+  position: relative;
+  top: 30rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+}
+
+.register-input {
+  width: 30rem;
+  height: 4rem;
+  margin: 1.5rem;
+  padding: 0.5rem;
+  border: 0.1rem solid var(--black);
+  font-size: 1.5rem;
+}
+
+.register-h1 {
+  text-align: center;
+  margin: 1.5rem;
+}
+
+.register-btn {
+  width: 8rem;
+  height: 4rem;
+  margin-left: 12.5rem;
+  margin-top: 1rem;
+  background-color: var(--primary);
+  border-radius: 1rem;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.register-btn:hover {
+  background: #010168;
+  transform: scale(1.02);
+}
+
+.register-input-div {
+  position: relative;
+}
+
+.register-p {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 3rem;
+  font-size: 1.5rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  padding: 0.2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.register-input:focus {
+  border: 0.2rem solid var(--primary);
+}
+
+.register-name:focus ~ .register-p-name {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.register-name:not(:placeholder-shown) {
+  border: 0.2rem solid var(--primary);
+}
+
+.register-name:not(:placeholder-shown) ~ .register-p-name {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+
+.register-price:focus ~ .register-p-price {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.register-price:not(:placeholder-shown) {
+  border: 0.2rem solid var(--primary);
+}
+
+.register-price:not(:placeholder-shown) ~ .register-p-price {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.register-img-src:focus ~ .register-p-img-src {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.register-img-src:not(:placeholder-shown) {
+  border: 0.2rem solid var(--primary);
+}
+
+.register-img-src:not(:placeholder-shown) ~ .register-p-img-src {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+@media (max-width: 410px) {
+  .register-input {
+    width: 26.5rem;
+  }
+
+  .register-btn {
+    margin-left: 10.5rem;
+  }
+}
