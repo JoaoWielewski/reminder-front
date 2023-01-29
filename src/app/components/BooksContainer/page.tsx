@@ -8,7 +8,7 @@ const fetchBooks = async () => {
   const res = await fetch('http://localhost:8080/books');
   const books: BookType[] = await res.json();
   return books;
-}
+};
 
 async function BooksContainer() {
   const books = await fetchBooks();
