@@ -18,7 +18,7 @@ function Signup() {
 
     const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
 
-    fetch(backendUrl, {
+    fetch(backendUrl + '/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
