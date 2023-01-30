@@ -5,6 +5,8 @@ import LoginContainer from '../components/LoginContainer/page';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useRouter } from 'next/navigation';
+
 
 type UserRegistrationType = {
   email: string;
@@ -32,6 +34,7 @@ function registerUser(userEmail: string, userPassword: string) {
 
 
 function Signup() {
+  const router = useRouter();
 
   const schema = yup.object().shape({
     email: yup.string().email('Email must be a valid email').max(100, 'Your email is too long').required('Email is required'),
@@ -53,6 +56,8 @@ function Signup() {
 
     const { email, password } = data;
     registerUser(email, password);
+
+    router.push('/login');
 
   });
 
