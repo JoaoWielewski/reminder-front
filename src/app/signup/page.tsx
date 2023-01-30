@@ -15,10 +15,11 @@ type UserRegistrationType = {
 }
 
 
-function registerUser(userEmail: string, userPassword: string) {
+function registerUser(data: UserRegistrationType) {
   const params = {
-    email: userEmail,
-    password: userPassword,
+    email: data.email,
+    password: data.password,
+    confirmPassword: data.confirmPassword,
   };
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
@@ -54,8 +55,8 @@ function Signup() {
     const confirmPasswordInput = document.querySelector('.login-confirm-password') as HTMLInputElement;
     confirmPasswordInput.value = '';
 
-    const { email, password } = data;
-    registerUser(email, password);
+    //const { email, password } = data;
+    registerUser(data);
 
     router.push('/login');
 
