@@ -6,22 +6,30 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-// function registerUser() {
-//   const params = {
-//     name: userName,
-//     password: userPassword,
-//   };
-//
-//   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
-//
-//   fetch(backendUrl + '/users', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(params),
-//   });
-// }
+type UserRegistrationType = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+
+function registerUser(userEmail: string, userPassword: string) {
+  const params = {
+    email: userEmail,
+    password: userPassword,
+  };
+
+  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
+
+  fetch(backendUrl + '/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  });
+}
+
 
 function Signup() {
 
@@ -31,11 +39,11 @@ function Signup() {
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], "Passwords don't match").required(),
   });
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<UserRegistrationType>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = handleSubmit((data) => {
     const emailInput = document.querySelector('.login-email') as HTMLInputElement;
     emailInput.value = '';
     const passwordInput = document.querySelector('.login-password') as HTMLInputElement;
@@ -43,12 +51,14 @@ function Signup() {
     const confirmPasswordInput = document.querySelector('.login-confirm-password') as HTMLInputElement;
     confirmPasswordInput.value = '';
 
-    console.log(data);
-  };
+    const { email, password } = data;
+    registerUser(email, password);
+
+  });
 
   return (
     <LoginContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
         <h1 className="login-h1">Register your account</h1>
         <div className="login-input-div">
           <input type="text" className="login-input login-email" placeholder=" " {...register('email')}/>
