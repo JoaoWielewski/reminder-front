@@ -2,10 +2,13 @@
 
 import './styles.css';
 import LoginContainer from '../components/LoginContainer/page';
+import PopUp from '../components/PopUp/page';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 
 type UserRegistrationType = {
@@ -15,7 +18,7 @@ type UserRegistrationType = {
 }
 
 
-function registerUser(data: UserRegistrationType) {
+async function registerUser(data: UserRegistrationType) {
   const params = {
     email: data.email,
     password: data.password,
@@ -24,17 +27,20 @@ function registerUser(data: UserRegistrationType) {
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
 
-  fetch(backendUrl + '/users', {
+  const response = await fetch(backendUrl + '/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
   });
+
+  return response.status;
 }
 
 
 function Signup() {
+  const [errorPopUp, setErrorPopUp] = useState(false);
   const router = useRouter();
 
   const schema = yup.object().shape({
@@ -47,7 +53,7 @@ function Signup() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     const emailInput = document.querySelector('.login-email') as HTMLInputElement;
     emailInput.value = '';
     const passwordInput = document.querySelector('.login-password') as HTMLInputElement;
@@ -55,11 +61,11 @@ function Signup() {
     const confirmPasswordInput = document.querySelector('.login-confirm-password') as HTMLInputElement;
     confirmPasswordInput.value = '';
 
-    //const { email, password } = data;
-    registerUser(data);
-
-    router.push('/login');
-
+    if (await registerUser(data) === 201) {
+      router.push('/login');
+    } else {
+      setErrorPopUp(true);
+    }
   });
 
   return (
@@ -83,6 +89,7 @@ function Signup() {
         </div>
         <button type="submit" className="login-btn">Sign Up</button>
       </form>
+      <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
     </LoginContainer>
   );
 }
