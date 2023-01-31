@@ -38,6 +38,20 @@ async function registerUser(data: UserRegistrationType) {
   return response.status;
 }
 
+const fetchUser = async (email: string) => {
+  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
+
+  const res = await fetch(backendUrl + `/users/${email}`);
+
+  try {
+    const user = await res.json();
+    return user;
+  } catch {
+    return undefined;
+  }
+
+};
+
 
 function Signup() {
   const [errorPopUp, setErrorPopUp] = useState(false);
@@ -54,17 +68,22 @@ function Signup() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    const emailInput = document.querySelector('.login-email') as HTMLInputElement;
-    emailInput.value = '';
-    const passwordInput = document.querySelector('.login-password') as HTMLInputElement;
-    passwordInput.value = '';
-    const confirmPasswordInput = document.querySelector('.login-confirm-password') as HTMLInputElement;
-    confirmPasswordInput.value = '';
-
-    if (await registerUser(data) === 201) {
-      router.push('/login');
+    if (await fetchUser(data.email)) {
+      const emailErrorP = document.querySelector('.email-error') as HTMLElement;
+      emailErrorP.innerHTML = 'This email has already been used';
     } else {
-      setErrorPopUp(true);
+      const emailInput = document.querySelector('.login-email') as HTMLInputElement;
+      emailInput.value = '';
+      const passwordInput = document.querySelector('.login-password') as HTMLInputElement;
+      passwordInput.value = '';
+      const confirmPasswordInput = document.querySelector('.login-confirm-password') as HTMLInputElement;
+      confirmPasswordInput.value = '';
+
+      if (await registerUser(data) === 201) {
+        router.push('/login');
+      } else {
+        setErrorPopUp(true);
+      }
     }
   });
 
@@ -76,6 +95,7 @@ function Signup() {
           <input type="text" className="login-input login-email" placeholder=" " {...register('email')}/>
           <p className="login-p login-p-email">Email</p>
           <p className="error-p">{errors.email?.message?.toString()}</p>
+          <p className="error-p email-error"></p>
         </div>
         <div className="login-input-div">
           <input type="password" className="login-input login-password" placeholder=" " {...register('password')}/>

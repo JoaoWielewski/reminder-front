@@ -9,11 +9,10 @@ type PageProps = {
 }
 
 const fetchBook = async (id: string) => {
-  const res = await fetch(`http://localhost:8080/books/${id}`)
+  const res = await fetch(`http://localhost:8080/books/${id}`);
   const book: BookType = await res.json();
-  console.log(book);
   return book;
-}
+};
 
 async function BookPage({ params: { bookId }}: PageProps) {
   const book = await fetchBook(bookId);
