@@ -25,9 +25,7 @@ async function registerUser(data: UserRegistrationType) {
     confirmPassword: data.confirmPassword,
   };
 
-  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
-
-  const response = await fetch(backendUrl + '/users', {
+  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -39,9 +37,8 @@ async function registerUser(data: UserRegistrationType) {
 }
 
 const fetchUser = async (email: string) => {
-  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
 
-  const res = await fetch(backendUrl + `/users/${email}`);
+  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}`);
 
   try {
     const user = await res.json();
