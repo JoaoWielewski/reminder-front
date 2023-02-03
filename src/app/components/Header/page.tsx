@@ -1,12 +1,15 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
 
+import { signIn, signOut, useSession} from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import './styles.css';
 
 function Header() {
+  const { data: session } = useSession();
+
   function handleClick() {
     const checkbox = document.getElementById('check') as HTMLInputElement;
     if (checkbox && checkbox.checked === true) {
@@ -41,11 +44,24 @@ function Header() {
             Cart
           </Link>
         </li>
-        <li onClick={handleClick}>
-          <Link href="/login" className="header-link">
-            Log In
-          </Link>
-        </li>
+        {session?.user ? (
+        <>
+          <li onClick={handleClick}>
+            <Link href="/login" className="header-link" onClick={() => signOut()}>
+              Log Out
+            </Link>
+          </li>
+        </>
+        ) : (
+        <>
+          <li onClick={handleClick}>
+            <Link href="/login" className="header-link" onClick={() => signIn()}>
+              Log In
+            </Link>
+          </li>
+        </>
+        )
+        }
         <li onClick={handleClick}>
           <Link href="/cart" className="header-cart">
             <p className="cart-p">Cart</p>

@@ -1,6 +1,10 @@
+//'use client';
+
 import './global.css';
 import Header from "./components/Header/page";
 import { Roboto } from '@next/font/google';
+import AuthContext from './components/AuthContext/page';
+//import { SessionProvider } from 'next-auth/react';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -8,19 +12,22 @@ const roboto = Roboto({
 });
 
 export default function RootLayout({
-  children,
+  children, session
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  session: any,
 }) {
   return (
     <html lang="en">
 
       <head />
       <body>
-        <main className={roboto.className}>
-          <Header></Header>
-          {children}
-        </main>
+        <AuthContext session={session}>
+          <main className={roboto.className}>
+            <Header></Header>
+            {children}
+          </main>
+        </AuthContext>
       </body>
     </html>
   );

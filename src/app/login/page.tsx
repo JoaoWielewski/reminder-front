@@ -1,4 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
+'use client';
+
 import './styles.css';
 import Link from 'next/link';
 import LoginContainer from '../components/LoginContainer/page';
