@@ -93,6 +93,15 @@
   margin: 2rem;
 }
 
+.error-p {
+  position: absolute;
+  color: rgb(197, 4, 4);
+  font-size: 1.3rem;
+  left: 1.8rem;
+  bottom: -0.2rem;
+}
+
+
 @media (max-width: 410px) {
   .login-input {
     width: 26.5rem;

@@ -47,7 +47,7 @@ function Header() {
         {session?.user ? (
         <>
           <li onClick={handleClick}>
-            <Link href="/login" className="header-link" onClick={() => signOut()}>
+            <Link href="/login" className="header-link" onClick={() => signOut({ callbackUrl: '/', redirect: true })}>
               Log Out
             </Link>
           </li>

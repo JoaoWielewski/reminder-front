@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
 
       credentials: {},
 
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const { email, password } = credentials;
 
         const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}/${password}`);
