@@ -7,12 +7,15 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
 
-      credentials: {},
+      credentials: {
+        email: { label: 'Email' },
+        password: { label: 'Password', type: 'password' },
+      },
 
       async authorize(credentials) {
         const { email, password } = credentials;
 
-        const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}/${password}`);
+        const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/login/${email}/${password}`);
 
         try {
           const user = await res.json();

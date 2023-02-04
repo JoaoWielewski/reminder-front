@@ -57,7 +57,7 @@ function Signup() {
   const schema = yup.object().shape({
     email: yup.string().email('Email must be a valid email').max(100, 'Your email is too long').required('Email is required'),
     password: yup.string().min(6, 'Your password must have at least 6 characters').max(20, "Your password can't have more than 20 characters").required('Password is required'),
-    confirmPassword: yup.string().oneOf([yup.ref('password'), null], "Passwords don't match").required(),
+    confirmPassword: yup.string().oneOf([yup.ref('password'), null], "Passwords don't match").required('Confirm password is required'),
   });
 
   const { register, handleSubmit, formState: { errors } } = useForm<UserRegistrationType>({

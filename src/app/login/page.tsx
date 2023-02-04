@@ -44,7 +44,7 @@ function Login() {
 
   const schema = yup.object().shape({
     email: yup.string().email('Email must be a valid email').required('Email is required'),
-    password: yup.string().required('Passowrd is required'),
+    password: yup.string().required('Password is required'),
   });
 
   const { register, handleSubmit, formState: { errors }} = useForm<UserLoginType>({
