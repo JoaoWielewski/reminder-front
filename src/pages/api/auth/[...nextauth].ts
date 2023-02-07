@@ -51,28 +51,29 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    jwt: async (token: NextAuthSession, account: NextAuthSession) => {
-      const isSignIn = !!account;
+    jwt: async (token: any) => {
+      const isSignIn = !!token.user;
       console.log(isSignIn);
       const actualDateInSeconds = Math.floor(Date.now() / 1000);
       const tokenExpirationInSeconds = (1 * 24 * 60 * 60);
 
       if (isSignIn) {
-        if (!account || !account.id || !account.email || !account.jwt) {
+        const user = token.user;
+        if (!user || !user.id || !user.email || !user.jwt) {
           return Promise.resolve({});
         }
 
-        token.jwt = account.jwt;
-        token.id = account.id;
-        token.email = account.email;
+        token.jwt = user.jwt;
+        token.id = user.id;
+        token.email = user.email;
 
         token.expiration = Math.floor(actualDateInSeconds + tokenExpirationInSeconds);
+        console.log(token);
       } else {
         if (!token?.expiration) return Promise.resolve({});
 
         if (actualDateInSeconds > token.expiration) return Promise.resolve({});
 
-        console.log(token);
       }
 
       return Promise.resolve(token);
