@@ -49,19 +49,35 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: {token: NextAuthSession, user: NextAuthSession}) {
+      const actualDateInSeconds = Math.floor(Date.now() / 1000);
+      const tokenExpirationInSeconds = (1 * 24 * 60 * 60);
 
       if (user) {
         token.id = user.id;
         token.email = user.email;
         token.jwt = user.jwt;
+        token.expiration = Math.floor(actualDateInSeconds + tokenExpirationInSeconds);
+      } else {
+        if (!token?.expiration) return null;
+
+        if (actualDateInSeconds > token.expiration) return null;
       }
+
       return token;
     },
-    async session({ session, token, user }) {
+
+
+    async session({ session, token}: {session: NextAuthSession, token: NextAuthSession}) {
+      if (!token.id || !token.email || !token.expiration || !token.jwt) {
+        return null;
+      }
+
       session.jwt = token.jwt;
       session.email = token.email;
       session.id = token.id;
+      session.expiration = token.expiration;
+
       console.log('cccccccccccc', session);
       return session;
     }
