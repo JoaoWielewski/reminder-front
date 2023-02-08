@@ -26,8 +26,6 @@ export const authOptions: NextAuthOptions = {
 
       async authorize(credentials: any) {
         try {
-          //const { email, password } = credentials;
-
           const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/login/${credentials.email}/${credentials.password}`);
           const user = await res.json();
           const { id, email, jwt } = user;
@@ -51,32 +49,21 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    jwt: async (token: any) => {
-      const isSignIn = !!token.user;
-      console.log(isSignIn);
-      const actualDateInSeconds = Math.floor(Date.now() / 1000);
-      const tokenExpirationInSeconds = (1 * 24 * 60 * 60);
+    async jwt({ token, user }) {
 
-      if (isSignIn) {
-        const user = token.user;
-        if (!user || !user.id || !user.email || !user.jwt) {
-          return Promise.resolve({});
-        }
-
-        token.jwt = user.jwt;
+      if (user) {
         token.id = user.id;
         token.email = user.email;
-
-        token.expiration = Math.floor(actualDateInSeconds + tokenExpirationInSeconds);
-        console.log(token);
-      } else {
-        if (!token?.expiration) return Promise.resolve({});
-
-        if (actualDateInSeconds > token.expiration) return Promise.resolve({});
-
+        token.jwt = user.jwt;
       }
-
-      return Promise.resolve(token);
+      return token;
+    },
+    async session({ session, token, user }) {
+      session.jwt = token.jwt;
+      session.email = token.email;
+      session.id = token.id;
+      console.log('cccccccccccc', session);
+      return session;
     }
   },
 
