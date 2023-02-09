@@ -3,6 +3,7 @@ import Book from '../Book/page';
 import Link from 'next/link';
 
 import BookType from '@/types/types.d';
+import { use } from 'react';
 
 const fetchBooks = async () => {
   const res = await fetch('http://localhost:8080/books');
@@ -10,8 +11,8 @@ const fetchBooks = async () => {
   return books;
 };
 
-async function BooksContainer() {
-  const books = await fetchBooks();
+function BooksContainer() {
+  const books = use(fetchBooks());
 
   return (
     <section className="container">

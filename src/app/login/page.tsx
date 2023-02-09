@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 type UserLoginType = {
   email: string,
@@ -41,6 +42,7 @@ const fetchUser = async (data: UserLoginType) => {
 };
 
 function Login() {
+  const router = useRouter();
 
   const schema = yup.object().shape({
     email: yup.string().email('Email must be a valid email').required('Email is required'),
@@ -58,9 +60,11 @@ function Login() {
         const result = await signIn('credentials', {
           email: data.email,
           password: data.password,
-          redirect: true,
-          callbackUrl: '/',
+          redirect: false,
         });
+
+        const redirect = router.query?.callbackUrl || '/';
+        router.push(redirect as string);
       } else {
         const passwordErrorP = document.querySelector('.password-error') as HTMLElement;
         passwordErrorP.innerHTML = "Password is wrong";

@@ -49,6 +49,7 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
+    /* @ts-ignore */
     async jwt({ token, user }: {token: NextAuthSession, user: NextAuthSession}) {
       const actualDateInSeconds = Math.floor(Date.now() / 1000);
       const tokenExpirationInSeconds = (1 * 24 * 60 * 60);
@@ -67,7 +68,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
 
-
+    /* @ts-ignore */
     async session({ session, token}: {session: NextAuthSession, token: NextAuthSession}) {
       if (!token.id || !token.email || !token.expiration || !token.jwt) {
         return null;
@@ -78,7 +79,6 @@ export const authOptions: NextAuthOptions = {
       session.id = token.id;
       session.expiration = token.expiration;
 
-      console.log('cccccccccccc', session);
       return session;
     }
   },

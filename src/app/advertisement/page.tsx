@@ -1,8 +1,22 @@
+'use client';
+
 import './styles.css';
 import BooksContainer from '../components/BooksContainer/page';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { frontEndRedirect } from '@/utils/front-end-redirect';
 
 function Advertisement() {
+  const {data: session, status} = useSession();
+
+  if (!session && status !== 'loading') {
+    return frontEndRedirect();
+  }
+
+  if (typeof window !== 'undefined' && status === 'loading') return null;
+
+  if (!session) return null;
+
   return (
     <>
       <div className="advertisement-container">
