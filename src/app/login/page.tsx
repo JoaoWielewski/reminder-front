@@ -63,7 +63,8 @@ function Login() {
           redirect: false,
         });
 
-        const redirect = router.query?.callbackUrl || '/';
+        const searchParams = new URLSearchParams(document.location.search);
+        const redirect = searchParams.get('redirect') || '/';
         router.push(redirect as string);
       } else {
         const passwordErrorP = document.querySelector('.password-error') as HTMLElement;

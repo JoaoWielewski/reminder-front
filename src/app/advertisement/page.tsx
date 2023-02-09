@@ -10,7 +10,7 @@ function Advertisement() {
   const {data: session, status} = useSession();
 
   if (!session && status !== 'loading') {
-    return frontEndRedirect();
+    return frontEndRedirect('/advertisement');
   }
 
   if (typeof window !== 'undefined' && status === 'loading') return null;
