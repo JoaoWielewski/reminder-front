@@ -29,6 +29,7 @@ function BooksContainer({advertisement}: {advertisement: boolean}) {
   } else {
     books = use(fetchBooks());
   }
+  console.log(books);
 
   return (
     <section className="container">
