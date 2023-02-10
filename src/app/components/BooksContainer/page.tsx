@@ -5,38 +5,49 @@ import Book from '../Book/page';
 import Link from 'next/link';
 
 import BookType from '@/types/types.d';
-import { use, useState } from 'react';
+import { use } from 'react';
 import { useSession } from 'next-auth/react';
 
-const fetchBooks = async () => {
-  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books');
-  const books: BookType[] = await res.json();
-  return books;
+type cachedFetchesType = {
+  jwt: string
+}
+
+const fetchBooks = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books').then((res) => res.json());
+
+
+const cachedFetches = {};
+const cachedFetch = (jwt: string) => {
+  if (!cachedFetches[jwt]) {
+    cachedFetches[jwt] = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/bookuser', {
+      headers: {
+        'Authorization': `Bearer ${jwt}`
+      },
+    }).then((res) => res.json());
+  }
+  return cachedFetches[jwt];
 };
 
-const fetchBooksByUser = async (userId: number) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/books/${userId}`);
-  const books: BookType[] = await res.json();
-  return books;
-};
 
 function BooksContainer({advertisement}: {advertisement: boolean}) {
   const {data: session} = useSession();
+  const jwt = session?.jwt;
+
   let books: BookType[] = [];
 
-  if (advertisement) {
-    books = use(fetchBooksByUser(session?.id!));
-  } else {
-    books = use(fetchBooks());
+  if (jwt !== undefined) {
+    if (advertisement === false) {
+      books = use(fetchBooks);
+    } else {
+      books = use(cachedFetch(jwt));
+    }
   }
-  console.log(books);
 
   return (
     <section className="container">
       <div className="books">
         {books.map((book) => (
-          <Link key={book.id} href={`/${book.id}`}>
-            <Book id={book.id} name={book.name} price={book.price} img_src={book.img_src}></Book>
+          <Link key={book.idbook} href={`/${book.idbook}`}>
+            <Book idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src}></Book>
           </Link>
         ))}
       </div>

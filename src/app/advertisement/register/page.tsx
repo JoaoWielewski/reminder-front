@@ -6,7 +6,6 @@ import LoginContainer from '@/app/components/LoginContainer/page';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import PopUp from '@/app/components/PopUp/page';
 import { useState } from 'react';
@@ -38,7 +37,6 @@ async function registerBook(data: BookRegistrationType, jwt: string) {
 
 
 function Register() {
-  const router = useRouter();
   const [errorPopUp, setErrorPopUp] = useState(false);
   const [successPopUp, setSuccessPopUp] = useState(false);
   const { data: session } = useSession();
