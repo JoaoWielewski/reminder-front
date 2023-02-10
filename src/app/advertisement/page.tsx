@@ -25,7 +25,7 @@ function Advertisement() {
         </Link>
         <h1 className="advertisement-h">Your Advertisement</h1>
       </div>
-      <BooksContainer></BooksContainer>
+      <BooksContainer advertisement={true}></BooksContainer>
     </>
   );
 }

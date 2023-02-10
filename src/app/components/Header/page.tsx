@@ -10,7 +10,6 @@ import './styles.css';
 function Header() {
   const { data: session } = useSession();
 
-
   function handleClick() {
     const checkbox = document.getElementById('check') as HTMLInputElement;
     if (checkbox && checkbox.checked === true) {
