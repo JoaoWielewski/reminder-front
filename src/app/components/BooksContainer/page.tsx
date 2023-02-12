@@ -15,7 +15,7 @@ type cachedFetchesType = {
 const fetchBooks = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books').then((res) => res.json());
 
 
-const cachedFetches = {};
+const cachedFetches: Record<string, Promise<any>> = {};
 const cachedFetch = (jwt: string) => {
   if (!cachedFetches[jwt]) {
     cachedFetches[jwt] = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/bookuser', {
@@ -34,13 +34,18 @@ function BooksContainer({advertisement}: {advertisement: boolean}) {
 
   let books: BookType[] = [];
 
-  if (jwt !== undefined) {
-    if (advertisement === false) {
-      books = use(fetchBooks);
-    } else {
-      books = use(cachedFetch(jwt));
+  if (session) {
+    if (jwt !== undefined) {
+      if (advertisement === false) {
+        books = use(fetchBooks);
+      } else {
+        books = use(cachedFetch(jwt));
+      }
     }
+  } else {
+    books = use(fetchBooks);
   }
+
 
   return (
     <section className="container">
