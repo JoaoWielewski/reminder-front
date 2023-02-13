@@ -1,6 +1,10 @@
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
 import BookType from '@/types/types';
 import './styles.css';
+import { CartContext } from '../components/CartContext/page';
+import { useContext, useState, useEffect } from 'react';
 
 type PageProps = {
   params: {
@@ -14,8 +18,26 @@ const fetchBook = async (id: string) => {
   return book;
 };
 
-async function BookPage({ params: { bookId }}: PageProps) {
-  const book = await fetchBook(bookId);
+
+function BookPage({ params: { bookId }}: PageProps) {
+  const [book, setBook] = useState<BookType | null>(null);
+  const { addToCart } = useContext(CartContext);
+
+  useEffect(() => {
+    (async function() {
+      const book = await fetchBook(bookId);
+      setBook(book);
+    })();
+  }, [bookId]);
+
+
+  if (!book) {
+    return <div>Loading...</div>;
+  }
+
+  const handleClick = () => {
+    addToCart(book.idbook, book.name, book.price, book.img_src);
+  };
 
   return (
     <section className="book-page-container">
@@ -32,7 +54,7 @@ async function BookPage({ params: { bookId }}: PageProps) {
           <h1 className="book-page-name">{book.name}</h1>
           <h2 className="book-page-price">Price:${book.price}</h2>
         </div>
-        <button className="cart-btn">Add to Cart</button>
+        <button className="cart-btn" onClick={handleClick}>Add to Cart</button>
       </div>
     </section>
   );
@@ -40,11 +62,3 @@ async function BookPage({ params: { bookId }}: PageProps) {
 
 export default BookPage;
 
-//
-//{
-//  id: 1,
-//  name: 'The Fellowship of the Ring (The Lord of the rings)',
-//  price: 59,
-//  img: 'https://kbimages1-a.akamaihd.net/47047012-399c-4ae3-aade-cd4c2a10e8e7/1200/1200/False/the-fellowship-of-the-ring-the-lord-of-the-rings-book-1-1.jpg',
-//},
-//

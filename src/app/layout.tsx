@@ -1,10 +1,8 @@
-//'use client';
-
 import './global.css';
 import Header from "./components/Header/page";
 import { Roboto } from '@next/font/google';
 import AuthContext from './components/AuthContext/page';
-//import { SessionProvider } from 'next-auth/react';
+import CartProvider from './components/CartContext/page';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -23,10 +21,12 @@ export default function RootLayout({
       <head />
       <body>
         <AuthContext session={session}>
-          <main className={roboto.className}>
-            <Header></Header>
-            {children}
-          </main>
+          <CartProvider>
+            <main className={roboto.className}>
+              <Header></Header>
+              {children}
+            </main>
+          </CartProvider>
         </AuthContext>
       </body>
     </html>
