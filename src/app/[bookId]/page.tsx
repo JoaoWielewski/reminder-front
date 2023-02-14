@@ -20,9 +20,16 @@ const fetchBook = async (id: string) => {
   return book;
 };
 
+const fetchBookOwnerId = async (id: string) => {
+  const res = await fetch(`http://localhost:8080/bookowner/${id}`);
+  const owner: {id_user: number} = await res.json();
+  return owner;
+};
+
 
 function BookPage({ params: { bookId }}: PageProps) {
   const [book, setBook] = useState<BookType | null>(null);
+  const [bookOwnerId, setBookOwnerId] = useState<number | null>(null);
   const [errorPopUp, setErrorPopUp] = useState(false);
   const [successPopUp, setSuccessPopUp] = useState(false);
   const [notLoggedPopUp, setNotLoggedPopUp] = useState(false);
@@ -33,9 +40,11 @@ function BookPage({ params: { bookId }}: PageProps) {
     (async function() {
       const book = await fetchBook(bookId);
       setBook(book);
+
+      const ownerId = await fetchBookOwnerId(bookId);
+      setBookOwnerId(ownerId.id_user);
     })();
   }, [bookId]);
-
 
   if (!book) {
     return <div>Loading...</div>;
@@ -72,9 +81,10 @@ function BookPage({ params: { bookId }}: PageProps) {
           <h1 className="book-page-name">{book.name}</h1>
           <h2 className="book-page-price">Price:${book.price}</h2>
         </div>
-        <button className="cart-btn" onClick={handleClick}>Add to Cart</button>
+        {session?.id !== bookOwnerId && <button className="cart-btn" onClick={handleClick}>Add to Cart</button>}
+
       </div>
-      <PopUp title={'Something went wrong'} content={'This book has already been added to you cart.'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
+      <PopUp title={'Oops...'} content={'This book has already been added to you cart.'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={'The book was added to your cart.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
       <PopUp title={'Something went wrong'} content={'You must be logged in order to add a book to your cart.'} trigger={notLoggedPopUp} setTrigger={setNotLoggedPopUp}></PopUp>
     </section>

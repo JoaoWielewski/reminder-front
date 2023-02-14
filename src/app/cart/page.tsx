@@ -4,7 +4,7 @@ import './styles.css';
 import CartContainer from '../components/CartContainer/page';
 import { useSession } from 'next-auth/react';
 import { frontEndRedirect } from '@/utils/front-end-redirect';
-import { useContext } from 'react';
+import { useContext} from 'react';
 import { CartContext } from '../components/CartContext/page';
 
 function Cart() {
@@ -18,8 +18,6 @@ function Cart() {
   if (typeof window !== 'undefined' && status === 'loading') return null;
 
   if (!session) return null;
-
-  console.log(items);
 
   return <CartContainer></CartContainer>;
 }
