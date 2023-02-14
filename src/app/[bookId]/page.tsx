@@ -5,6 +5,8 @@ import BookType from '@/types/types';
 import './styles.css';
 import { CartContext } from '../components/CartContext/page';
 import { useContext, useState, useEffect } from 'react';
+import PopUp from '../components/PopUp/page';
+import { useSession } from 'next-auth/react';
 
 type PageProps = {
   params: {
@@ -21,7 +23,11 @@ const fetchBook = async (id: string) => {
 
 function BookPage({ params: { bookId }}: PageProps) {
   const [book, setBook] = useState<BookType | null>(null);
+  const [errorPopUp, setErrorPopUp] = useState(false);
+  const [successPopUp, setSuccessPopUp] = useState(false);
+  const [notLoggedPopUp, setNotLoggedPopUp] = useState(false);
   const { items, addToCart } = useContext(CartContext);
+  const { data: session } = useSession();
 
   useEffect(() => {
     (async function() {
@@ -38,9 +44,17 @@ function BookPage({ params: { bookId }}: PageProps) {
   const handleClick = () => {
     const alreadyAdded = items.some(object => object.idbook === book.idbook);
 
-    if (!alreadyAdded) {
-      addToCart(book.idbook, book.name, book.price, book.img_src);
+    if (session) {
+      if (!alreadyAdded) {
+        addToCart(book.idbook, book.name, book.price, book.img_src);
+        setSuccessPopUp(true);
+      } else {
+        setErrorPopUp(true);
+      }
+    } else {
+      setNotLoggedPopUp(true);
     }
+
   };
 
   return (
@@ -60,6 +74,9 @@ function BookPage({ params: { bookId }}: PageProps) {
         </div>
         <button className="cart-btn" onClick={handleClick}>Add to Cart</button>
       </div>
+      <PopUp title={'Something went wrong'} content={'This book has already been added to you cart.'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
+      <PopUp title={'Success!'} content={'The book was added to your cart.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
+      <PopUp title={'Something went wrong'} content={'You must be logged in order to add a book to your cart.'} trigger={notLoggedPopUp} setTrigger={setNotLoggedPopUp}></PopUp>
     </section>
   );
 }

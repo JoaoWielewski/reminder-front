@@ -8,7 +8,7 @@ import { useContext } from 'react';
 function CartContainer() {
   const { items } = useContext(CartContext);
 
-  if (!items) return;
+  if (!items) return <></>;
 
   const books = items;
 
