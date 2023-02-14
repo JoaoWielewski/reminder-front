@@ -5,15 +5,15 @@
   flex-direction: column;
 }
 
-.cart-container {
+.cart-container-container {
   border: 0.3rem solid var(--primary);
   background-color: white;
   border-radius: 1rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in-out;
   padding: 2rem;
-  position: relative;
-  top: 10rem;
+  margin-top: 11rem;
+  margin-bottom: 5rem;
 }
 
 .cart-h1 {
@@ -50,7 +50,7 @@
 }
 
 @media (max-width: 660px) {
-  .cart-container {
+  .cart-container-container {
     padding: 1.5rem;
   }
 }

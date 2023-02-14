@@ -6,7 +6,7 @@ function CartElement(params: BookType) {
   return (
     <div className="cart-div">
       <div className="cart-div-img">
-        <img src={params.img} alt="" className="cart-img" />
+        <img src={params.img_src} alt="" className="cart-img" />
       </div>
       <div className="cart-data">
         <h1 className="cart-name">{params.name}</h1>

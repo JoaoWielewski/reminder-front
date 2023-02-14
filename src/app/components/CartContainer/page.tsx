@@ -1,23 +1,17 @@
 import './styles.css';
 import CartElement from '../CartElement/page';
 import BookType from '@/types/types';
+import { CartContext } from '../CartContext/page';
+import { useContext } from 'react';
 
-const books: BookType[] = [
-  {
-    id: 1,
-    name: 'The Fellowship of the Ring (The Lord of the rings)',
-    price: 59,
-    img: 'https://kbimages1-a.akamaihd.net/47047012-399c-4ae3-aade-cd4c2a10e8e7/1200/1200/False/the-fellowship-of-the-ring-the-lord-of-the-rings-book-1-1.jpg',
-  },
-  {
-    id: 2,
-    name: 'A New Dawn (Star Wars)',
-    price: 69,
-    img: 'https://m.media-amazon.com/images/I/91hIKLn14ZL.jpg',
-  },
-];
 
 function CartContainer() {
+  const { items } = useContext(CartContext);
+
+  if (!items) return;
+
+  const books = items;
+
   function totalPrice() {
     let total = 0;
     books.map((book) => (total += book.price));
@@ -27,12 +21,12 @@ function CartContainer() {
   return (
     <section className="cart-page">
       <h1 className="cart-h1">Cart</h1>
-      <div className="cart-container">
+      <div className="cart-container-container">
         {books.map((book) => (
-          <CartElement key={book.id} id={book.id} name={book.name} price={book.price} img={book.img}></CartElement>
+          <CartElement key={book.idbook} idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src} ></CartElement>
         ))}
         <h1 className="total-h1">Total: ${totalPrice()}</h1>
-        <button className="pay-btn">Pay</button>
+        {books.length > 0 && <button className="pay-btn">Pay</button>}
       </div>
     </section>
   );

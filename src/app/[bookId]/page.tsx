@@ -21,7 +21,7 @@ const fetchBook = async (id: string) => {
 
 function BookPage({ params: { bookId }}: PageProps) {
   const [book, setBook] = useState<BookType | null>(null);
-  const { addToCart } = useContext(CartContext);
+  const { items, addToCart } = useContext(CartContext);
 
   useEffect(() => {
     (async function() {
@@ -36,7 +36,11 @@ function BookPage({ params: { bookId }}: PageProps) {
   }
 
   const handleClick = () => {
-    addToCart(book.idbook, book.name, book.price, book.img_src);
+    const alreadyAdded = items.some(object => object.idbook === book.idbook);
+
+    if (!alreadyAdded) {
+      addToCart(book.idbook, book.name, book.price, book.img_src);
+    }
   };
 
   return (
