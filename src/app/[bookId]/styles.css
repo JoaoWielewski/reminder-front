@@ -6,7 +6,6 @@
 }
 
 .book-page-div {
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
   padding: 2rem;
   position: relative;
@@ -15,6 +14,8 @@
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
 }
 
@@ -51,15 +52,12 @@
 }
 
 .book-page-price {
-  position: absolute;
-  font-size: 3rem;
+  margin-top: 3rem;
+  font-size: 3.3rem;
   color: rgb(192, 168, 31);
-  bottom: 10rem;
 }
 
 .cart-btn {
-  margin-top: 1.5rem;
-  margin-left: 15rem;
   width: 30rem;
   height: 5rem;
   font-size: 1.8rem;
@@ -76,49 +74,75 @@
 
 .cart-btn:hover {
   transform: scale(1.02);
-  background-color: #010168;
+  background-color: rgb(188, 164, 30);
+}
+
+.book-page-name-mobile {
+  padding-top: 2rem;
+  font-size: 2.5rem;
+  color: var(--black);
+  width: 100%;
+  display: none;
+  width: 33rem;
+  text-align: center;
 }
 
 
-@media (max-height: 900px) {
-  .image-div {
-    width: 30rem;
-    height: 45rem;
-  }
+@media (max-width: 850px) {
 
-  .book-page-separator {
-    width: 46rem;
-  }
-
-  .book-data {
-    max-width: 40rem;
-  }
-
-  .cart-btn {
-    margin-left: 12.5rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .book-data {
-    max-width: 30rem;
+  .book-page-div {
+    flex-direction: column;
+    top: 13rem;
   }
 
   .book-page-name {
-    padding-top: 2rem;
-    font-size: 2rem;
+    display: none;
+  }
+
+  .book-page-name-mobile {
+    display: block;
   }
 
   .book-page-price {
-    padding-top: 1rem;
-    font-size: 2rem;
+    margin-bottom: 11rem;
   }
 
   .cart-btn {
-    margin-left: 7rem;
+    right: 7rem;
   }
 
-  .book-page-separator {
-    width: 36rem;
+}
+
+@media (max-width: 550px) {
+
+  .book-page-name-mobile {
+    font-size: 2rem;
+    width: 25rem;
   }
+
+  .image-div {
+    width: 32rem;
+    height: 43rem;
+  }
+
+  .book-page-description {
+    font-size: 1.3rem;
+  }
+
+  .book-data {
+    width: 28rem;
+  }
+
+  .book-page-div {
+    padding: 1rem;
+  }
+
+  .book-page-price {
+    font-size: 2.5rem;
+  }
+
+  .cart-btn {
+    width: 20rem;
+  }
+
 }

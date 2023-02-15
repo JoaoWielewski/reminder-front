@@ -70,6 +70,7 @@ function BookPage({ params: { bookId }}: PageProps) {
   return (
     <section className="book-page-section">
       <div className="book-page-div">
+        <h1 className="book-page-name-mobile">{book.name}</h1>
         <div className="image-div">
           <img
             src={book.img_src}
