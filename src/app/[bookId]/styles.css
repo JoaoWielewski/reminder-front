@@ -1,4 +1,4 @@
-.book-page-container {
+.book-page-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,15 +6,16 @@
 }
 
 .book-page-div {
-  border: 0.3rem solid var(--primary);
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  padding: 3rem;
+  padding: 2rem;
   position: relative;
   top: 4rem;
+  background-color: white;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .book-page-img {
@@ -23,47 +24,54 @@
 }
 
 .image-div {
-  width: 45rem;
-  height: 60rem;
+  width: 40rem;
+  height: 55rem;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.book-page-separator {
-  position: absolute;
-  width: 51rem;
-  left: 0rem;
-  height: 0.3rem;
-  background-color: var(--black);
-}
-
 .book-data {
-  max-width: 45rem;
+  width: 33rem;
 }
 
 .book-page-name {
   padding-top: 2rem;
   font-size: 2.5rem;
   color: var(--black);
+  width: 100%;
+}
+
+.book-page-description {
+  font-size: 1.3rem;
+  color: var(--black);
+  margin-top: 3rem;
+  overflow-y: scroll;
+  max-height: 25rem;
+  overflow: auto;
 }
 
 .book-page-price {
-  padding-top: 1rem;
+  position: absolute;
   font-size: 3rem;
-  color: var(--black);
+  color: rgb(192, 168, 31);
+  bottom: 10rem;
 }
 
 .cart-btn {
   margin-top: 1.5rem;
   margin-left: 15rem;
-  width: 15rem;
+  width: 30rem;
   height: 5rem;
   font-size: 1.8rem;
-  background-color: var(--primary);
-  color: var(--white);
+  background-color: rgb(179, 157, 28);
+  color: white;
   border-radius: 1rem;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  border: none;
+  position: absolute;
+  bottom: 4rem;
+  right: 3rem;
 }
 
 .cart-btn:hover {

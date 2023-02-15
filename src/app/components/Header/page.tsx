@@ -44,7 +44,7 @@ function Header() {
       <ul>
         <li onClick={handleClick}>
           <Link href="/" className="header-link">
-            Home
+            Catalog
           </Link>
         </li>
         <li onClick={handleClick}>

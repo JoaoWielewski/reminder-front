@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
@@ -67,7 +68,7 @@ function BookPage({ params: { bookId }}: PageProps) {
   };
 
   return (
-    <section className="book-page-container">
+    <section className="book-page-section">
       <div className="book-page-div">
         <div className="image-div">
           <img
@@ -76,13 +77,12 @@ function BookPage({ params: { bookId }}: PageProps) {
             className="book-page-img"
           />
         </div>
-        <div className="book-page-separator"></div>
         <div className="book-data">
           <h1 className="book-page-name">{book.name}</h1>
-          <h2 className="book-page-price">Price:${book.price}</h2>
+          <h2 className="book-page-description">"A New Dawn" is a Star Wars novel written by John Jackson Miller. The book takes place in the aftermath of the Clone Wars, and follows the story of two characters, Kanan Jarrus and Hera Syndulla, as they fight against the oppressive Empire. Kanan is a former Jedi who survived Order 66, and Hera is a Twi'lek rebel who is trying to organize a resistance against the Empire. Together, they embark on a dangerous mission that will test their courage and loyalty, and set them on the path to becoming heroes of the Rebel Alliance. The novel explores themes of friendship, trust, and the struggle for freedom in a galaxy ruled by tyranny.</h2>
+          <h3 className="book-page-price">${book.price}</h3>
+          {session?.id !== bookOwnerId && <button className="cart-btn" onClick={handleClick}>Add to Cart</button>}
         </div>
-        {session?.id !== bookOwnerId && <button className="cart-btn" onClick={handleClick}>Add to Cart</button>}
-
       </div>
       <PopUp title={'Oops...'} content={'This book has already been added to you cart.'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={'The book was added to your cart.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>

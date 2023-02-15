@@ -20,10 +20,10 @@ function Advertisement() {
   return (
     <>
       <div className="advertisement-container">
+        <h1 className="advertisement-h1">Your Books</h1>
         <Link href="/advertisement/register">
           <button className="advertisement-btn">Add a book to sell</button>
         </Link>
-        <h1 className="advertisement-h">Your Advertisement</h1>
       </div>
       <BooksContainer advertisement={true}></BooksContainer>
     </>
