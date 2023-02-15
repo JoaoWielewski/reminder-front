@@ -7,7 +7,7 @@ import LoginContainer from '../components/LoginContainer/page';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 type UserLoginType = {
@@ -17,12 +17,14 @@ type UserLoginType = {
 
 const fetchUserByEmail = async (email: string) => {
 
-  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}`);
-
   try {
-    const user = await res.json();
-    return user;
-  } catch {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch user by email: ${res.statusText}`);
+    }
+    return res.json();
+  } catch (error) {
+    console.error(error);
     return undefined;
   }
 
@@ -30,19 +32,21 @@ const fetchUserByEmail = async (email: string) => {
 
 const fetchUser = async (data: UserLoginType) => {
 
-  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${data.email}/${data.password}`);
-
   try {
-    const user = await res.json();
-    return user;
-  } catch {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${data.email}/${data.password}`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch user: ${res.statusText}`);
+    }
+    return res.json();
+  } catch (error) {
+    console.error(error);
     return undefined;
   }
-
 };
 
 function Login() {
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   const schema = yup.object().shape({
     email: yup.string().email('Email must be a valid email').required('Email is required'),
@@ -85,6 +89,10 @@ function Login() {
   function resetPasswordError() {
     const passwordErrorP = document.querySelector('.password-error') as HTMLElement;
     passwordErrorP.innerHTML = '';
+  }
+
+  if (session && typeof window !== 'undefined') {
+    router.push('/');
   }
 
   return (

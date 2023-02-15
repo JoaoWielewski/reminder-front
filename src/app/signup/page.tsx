@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 
 type UserRegistrationType = {
@@ -53,6 +54,7 @@ const fetchUser = async (email: string) => {
 function Signup() {
   const [errorPopUp, setErrorPopUp] = useState(false);
   const router = useRouter();
+  const { data: session } = useSession();
 
   const schema = yup.object().shape({
     email: yup.string().email('Email must be a valid email').max(100, 'Your email is too long').required('Email is required'),
@@ -83,6 +85,10 @@ function Signup() {
       }
     }
   });
+
+  if (session) {
+    router.push('/');
+  }
 
   return (
     <LoginContainer>

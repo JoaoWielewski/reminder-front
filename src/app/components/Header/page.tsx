@@ -6,9 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import './styles.css';
+import { useState } from 'react';
+import ConfirmationPopUp from '../ConfirmationPopUp/page';
 
 function Header() {
   const { data: session } = useSession();
+  const [logoutPopUp, setLogoutPopUp] = useState(false);
 
   function handleClick() {
     const checkbox = document.getElementById('check') as HTMLInputElement;
@@ -16,6 +19,16 @@ function Header() {
       checkbox.checked = false;
     }
   }
+
+  const isSure = (sure: boolean) => {
+    if (sure) {
+      signOut({ callbackUrl: '/', redirect: true });
+    }
+  };
+
+  const handleLogout = () => {
+    setLogoutPopUp(true);
+  };
 
   return (
     <header>
@@ -47,7 +60,7 @@ function Header() {
         {session?.user ? (
         <>
           <li onClick={handleClick}>
-            <Link href="/login" className="header-link" onClick={() => signOut({ callbackUrl: '/', redirect: true })}>
+            <Link href="" className="header-link" onClick={handleLogout}>
               Log Out
             </Link>
           </li>
@@ -55,7 +68,7 @@ function Header() {
         ) : (
         <>
           <li onClick={handleClick}>
-            <Link href="/login" className="header-link" onClick={() => signIn()}>
+            <Link href="" className="header-link" onClick={() => signIn()}>
               Log In
             </Link>
           </li>
@@ -69,6 +82,13 @@ function Header() {
           </Link>
         </li>
       </ul>
+      <ConfirmationPopUp
+        title={'Sure?'}
+        content={'Are you sure you want to log out?'}
+        trigger={logoutPopUp}
+        setTrigger={setLogoutPopUp}
+        onDialog={isSure}
+      />
     </header>
   );
 }
