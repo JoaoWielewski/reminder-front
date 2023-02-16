@@ -1,7 +1,7 @@
 'use client';
 
 import './styles.css';
-import LoginContainer from '../components/LoginContainer/page';
+import FormContainer from '../components/FormContainer/page';
 import PopUp from '../components/PopUp/page';
 
 import { useForm } from 'react-hook-form';
@@ -91,7 +91,7 @@ function Signup() {
   }
 
   return (
-    <LoginContainer>
+    <FormContainer>
       <form onSubmit={onSubmit}>
         <h1 className="login-h1">Register your account</h1>
         <div className="login-input-div">
@@ -113,7 +113,7 @@ function Signup() {
         <button type="submit" className="login-btn">Sign Up</button>
       </form>
       <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
-    </LoginContainer>
+    </FormContainer>
   );
 }
 

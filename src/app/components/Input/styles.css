@@ -1,0 +1,64 @@
+.input {
+  width: 30rem;
+  height: 4rem;
+  margin: 1.5rem;
+  padding: 0.5rem;
+  border: 0.1rem solid var(--black);
+  font-size: 1.5rem;
+}
+
+.input-div {
+  position: relative;
+}
+
+.input-p {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 3rem;
+  font-size: 1.5rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  padding: 0.2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.input:focus {
+  border: 0.2rem solid var(--primary);
+}
+
+.input-title:focus ~ .p-title {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.input-title:not(:placeholder-shown) {
+  border: 0.2rem solid var(--primary);
+}
+
+.input-title:not(:placeholder-shown) ~ .p-title {
+  bottom: 4.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.error-p {
+  position: absolute;
+  color: rgb(197, 4, 4);
+  font-size: 1.3rem;
+  left: 1.8rem;
+  bottom: -0.2rem;
+}
+
+@media (max-width: 410px) {
+
+  .input {
+    width: 26.5rem;
+  }
+
+}

@@ -3,7 +3,7 @@
 
 import './styles.css';
 import Link from 'next/link';
-import LoginContainer from '../components/LoginContainer/page';
+import FormContainer from '../components/FormContainer/page';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -96,7 +96,7 @@ function Login() {
   //}
 
   return (
-    <LoginContainer>
+    <FormContainer>
       <form onSubmit={onSubmit}>
         <h1 className="login-h1">Log into your account</h1>
         <div className="login-input-div">
@@ -116,7 +116,7 @@ function Login() {
           Don't have an account? <Link href="/signup">Create an account</Link>
         </p>
       </form>
-    </LoginContainer>
+    </FormContainer>
   );
 }
 

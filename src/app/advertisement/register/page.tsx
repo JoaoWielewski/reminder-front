@@ -1,14 +1,15 @@
 'use client';
 
 import './styles.css';
-import LoginContainer from '@/app/components/LoginContainer/page';
-
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSession } from 'next-auth/react';
-import PopUp from '@/app/components/PopUp/page';
 import { useState } from 'react';
+
+import PopUp from '@/app/components/PopUp/page';
+import Input from '@/app/components/Input/page';
+import FormContainer from '@/app/components/FormContainer/page';
 
 type BookRegistrationType = {
   name: string;
@@ -52,12 +53,15 @@ function Register() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    const nameInput = document.querySelector('.register-name') as HTMLInputElement;
-    nameInput.value = '';
-    const priceInput = document.querySelector('.register-price') as HTMLInputElement;
-    priceInput.value = '';
-    const imgSrcInput = document.querySelector('.register-img-src') as HTMLInputElement;
-    imgSrcInput.value = '';
+    const inputs = document.querySelectorAll('.input-title') as unknown as HTMLInputElement[];
+
+    const filteredInputs = Array.from(inputs).filter((element): element is HTMLInputElement => {
+      return element instanceof HTMLInputElement;
+    });
+
+    filteredInputs.forEach(input => {
+      input.value = '';
+    });
 
     if (await registerBook(data, session?.jwt!) === 201) {
       setSuccessPopUp(true);
@@ -67,29 +71,16 @@ function Register() {
   });
 
   return (
-    <LoginContainer>
+    <FormContainer title="Add your book">
       <form onSubmit={onSubmit}>
-        <h1 className="register-h1">Add your book</h1>
-        <div className="register-input-div">
-          <input type="text" className="register-input register-name" placeholder=" " {...register('name')}/>
-          <p className="register-p register-p-name">Name</p>
-          <p className="error-p">{errors.name?.message?.toString()}</p>
-        </div>
-        <div className="register-input-div">
-          <input type="text" className="register-input register-price" placeholder=" " {...register('price')}/>
-          <p className="register-p register-p-price">Price</p>
-          <p className="error-p">{errors.price?.message?.toString()}</p>
-        </div>
-        <div className="register-input-div">
-          <input type="text" className="register-input register-img-src" placeholder=" " {...register('imgSrc')}/>
-          <p className="register-p register-p-img-src">Image source</p>
-          <p className="error-p">{errors.imgSrc?.message?.toString()}</p>
-        </div>
+        <Input type="text" title="Name" error={errors.name?.message?.toString()} register={register('name')}></Input>
+        <Input type="text" title="Price" error={errors.price?.message?.toString()} register={register('price')}></Input>
+        <Input type="text" title="Image source" error={errors.imgSrc?.message?.toString()} register={register('imgSrc')}></Input>
         <button type="submit" className="register-btn">Add</button>
       </form>
       <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={'Your book has been added to the store'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
-    </LoginContainer>
+    </FormContainer>
   );
 }
 

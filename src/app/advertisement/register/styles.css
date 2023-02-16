@@ -18,29 +18,6 @@
   font-size: 1.5rem;
 }
 
-.register-h1 {
-  text-align: center;
-  margin: 1.5rem;
-}
-
-.register-btn {
-  width: 8rem;
-  height: 4rem;
-  margin-left: 12.5rem;
-  margin-top: 1rem;
-  background-color: var(--primary);
-  border-radius: 1rem;
-  color: var(--white);
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.register-btn:hover {
-  background: #010168;
-  transform: scale(1.02);
-}
-
 .register-input-div {
   position: relative;
 }
