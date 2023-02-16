@@ -6,12 +6,11 @@
 }
 
 .cart-container-container {
-  border: 0.3rem solid var(--primary);
   background-color: white;
   border-radius: 1rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in-out;
-  padding: 2rem;
+  padding: 3rem;
   margin-top: 11rem;
   margin-bottom: 5rem;
 }
@@ -28,21 +27,22 @@
 .total-h1 {
   text-align: center;
   font-size: 2.5rem;
+  margin-top: 1.5rem;
   padding: 1rem;
   color: var(--black);
 }
 
 .pay-btn {
-  margin-left: 18.5rem;
+  margin-left: 16rem;
   width: 11rem;
   height: 4rem;
-  border: 0.2rem solid var(--black);
   background-color: var(--primary);
   color: var(--white);
   border-radius: 1rem;
   font-size: 2rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  border: none;
 }
 
 .pay-btn:hover {

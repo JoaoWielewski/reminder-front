@@ -1,5 +1,5 @@
 .book {
-  background-image: linear-gradient(rgb(216, 213, 213), rgb(70, 70, 70));
+  background-image: linear-gradient(rgb(226, 226, 226), rgb(103, 103, 103));
   border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -13,7 +13,7 @@
 }
 
 .img-container {
-  width: 24rem;
+  width: 23rem;
   height: 31rem;
   margin: 0 auto;
   padding: 2rem;

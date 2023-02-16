@@ -1,12 +1,12 @@
-.cart-div {
+.cart-container-div {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  border: 0.3rem solid var(--black);
   background-color: var(--white);
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
 .cart-img {
@@ -21,33 +21,44 @@
 }
 
 .cart-data {
-  width: 30rem;
+  width: 25rem;
 }
 
 .cart-name {
   padding-top: 2rem;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   color: var(--black);
+}
+
+.cart-name-container {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 7rem;
 }
 
 .cart-price {
   padding-top: 1rem;
-  font-size: 2rem;
-  color: var(--black);
+  font-size: 2.2rem;
+  color: rgb(192, 168, 31);
 }
 
 .cart-remove {
   margin-top: 2rem;
-  width: 10rem;
-  height: 3.5rem;
+  width: 8rem;
+  height: 3rem;
   border-radius: 1rem;
   background-color: rgb(109, 1, 1);
   color: var(--white);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   margin-bottom: 1.5rem;
-  border: 0.2rem solid var(--black);
+  border: none;
 }
 
 .cart-remove:hover {
@@ -70,9 +81,9 @@
   }
 
   .cart-remove {
-    width: 8rem;
-    height: 3rem;
-    font-size: 1.3rem;
+    width: 6rem;
+    height: 2.7rem;
+    font-size: 1.1rem;
   }
 
   .cart-data {

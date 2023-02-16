@@ -20,13 +20,15 @@ function CartElement(props: BookType) {
   };
 
   return (
-    <div className="cart-div">
+    <div className="cart-container-div">
       <div className="cart-div-img">
         <img src={props.img_src} alt="" className="cart-img" />
       </div>
       <div className="cart-data">
-        <h1 className="cart-name">{props.name}</h1>
-        <h2 className="cart-price">Price: ${props.price}</h2>
+        <div className="cart-name-container">
+          <h1 className="cart-name">{props.name}</h1>
+        </div>
+        <h2 className="cart-price">${props.price}</h2>
         <button className="cart-remove" onClick={handleRemove}>Remove</button>
       </div>
       <ConfirmationPopUp

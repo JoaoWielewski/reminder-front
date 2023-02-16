@@ -27,6 +27,9 @@ header li {
   padding: 1.2rem;
 }
 
+.logout-link {
+  cursor: pointer;
+}
 
 .header-link:hover, .header-link:active {
   background-color: var(--lighter_blue);
@@ -103,6 +106,9 @@ header li {
   display: none;
 }
 
+.book-icon {
+  font-size: 3.5rem;
+}
 
 @media (max-width: 1350px) {
   .header-link {

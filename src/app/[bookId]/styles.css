@@ -15,7 +15,6 @@
   border-radius: 1rem;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: row;
 }
 
@@ -87,12 +86,12 @@
   text-align: center;
 }
 
-
 @media (max-width: 850px) {
 
   .book-page-div {
     flex-direction: column;
     top: 13rem;
+    align-items: center;
   }
 
   .book-page-name {
@@ -146,3 +145,4 @@
   }
 
 }
+

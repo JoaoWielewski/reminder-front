@@ -91,9 +91,9 @@ function Login() {
     passwordErrorP.innerHTML = '';
   }
 
-  if (session && typeof window !== 'undefined') {
-    router.push('/');
-  }
+  //if (session && typeof window !== 'undefined') {
+  //  router.push('/');
+  //}
 
   return (
     <LoginContainer>

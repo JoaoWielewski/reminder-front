@@ -3,7 +3,7 @@
 
 import { signIn, signOut, useSession} from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faBars} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import './styles.css';
 import { useState } from 'react';
@@ -53,16 +53,14 @@ function Header() {
           </Link>
         </li>
         <li className="mobile-cart" onClick={handleClick}>
-          <Link href="/cart" className="header-link">
+          <Link href="" className="header-link">
             Cart
           </Link>
         </li>
         {session?.user ? (
         <>
-          <li onClick={handleClick}>
-            <Link href="" className="header-link" onClick={handleLogout}>
-              Log Out
-            </Link>
+          <li onClick={handleLogout}>
+            <a className="header-link logout-link" >Log Out</a>
           </li>
         </>
         ) : (
