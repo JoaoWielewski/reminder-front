@@ -10,7 +10,7 @@
   border-radius: 1rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in-out;
-  padding: 3rem;
+  padding: 2rem;
   margin-top: 11rem;
   margin-bottom: 5rem;
 }
@@ -26,14 +26,14 @@
 
 .total-h1 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   margin-top: 1.5rem;
   padding: 1rem;
   color: var(--black);
 }
 
 .pay-btn {
-  margin-left: 16rem;
+  margin-left: 13.8rem;
   width: 11rem;
   height: 4rem;
   background-color: var(--primary);

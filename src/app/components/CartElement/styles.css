@@ -15,9 +15,9 @@
 }
 
 .cart-div-img {
-  width: 17rem;
-  height: 22rem;
-  padding: 2rem;
+  width: 13rem;
+  height: 17rem;
+  padding: 1rem;
 }
 
 .cart-data {
@@ -48,7 +48,7 @@
 }
 
 .cart-remove {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   width: 8rem;
   height: 3rem;
   border-radius: 1rem;

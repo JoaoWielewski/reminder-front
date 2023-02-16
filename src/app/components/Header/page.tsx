@@ -53,7 +53,7 @@ function Header() {
           </Link>
         </li>
         <li className="mobile-cart" onClick={handleClick}>
-          <Link href="" className="header-link">
+          <Link href="/cart" className="header-link">
             Cart
           </Link>
         </li>

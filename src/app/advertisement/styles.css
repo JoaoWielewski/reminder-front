@@ -31,3 +31,17 @@
   background-color: #01016c;
   transform: scale(1.05);
 }
+
+@media (max-width: 450px) {
+
+  .advertisement-h1 {
+    font-size: 3rem;
+  }
+
+  .advertisement-btn {
+    width: 25rem;
+    height: 5rem;
+    font-size: 1.8rem;
+  }
+
+}
