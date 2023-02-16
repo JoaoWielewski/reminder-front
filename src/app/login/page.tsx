@@ -3,12 +3,14 @@
 
 import './styles.css';
 import Link from 'next/link';
-import FormContainer from '../components/FormContainer/page';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+
+import FormContainer from '../components/FormContainer/page';
+import Input from '../components/Input/page';
 
 type UserLoginType = {
   email: string,
@@ -22,9 +24,9 @@ const fetchUserByEmail = async (email: string) => {
     if (!res.ok) {
       throw new Error(`Failed to fetch user by email: ${res.statusText}`);
     }
+
     return res.json();
   } catch (error) {
-    console.error(error);
     return undefined;
   }
 
@@ -39,7 +41,6 @@ const fetchUser = async (data: UserLoginType) => {
     }
     return res.json();
   } catch (error) {
-    console.error(error);
     return undefined;
   }
 };
@@ -91,26 +92,11 @@ function Login() {
     passwordErrorP.innerHTML = '';
   }
 
-  //if (session && typeof window !== 'undefined') {
-  //  router.push('/');
-  //}
-
   return (
-    <FormContainer>
+    <FormContainer title="Log into your account">
       <form onSubmit={onSubmit}>
-        <h1 className="login-h1">Log into your account</h1>
-        <div className="login-input-div">
-          <input type="text" className="login-input login-email" placeholder=" " {...register('email')} onChange={() => resetEmailError()}/>
-          <p className="login-p login-p-email">Email</p>
-          <p className="error-p">{errors.email?.message?.toString()}</p>
-          <p className="error-p email-error"></p>
-        </div>
-        <div className="login-input-div">
-          <input type="password" className="login-input login-password" placeholder=" "  {...register('password')} onChange={() => resetPasswordError()}/>
-          <p className="login-p login-p-password">Password</p>
-          <p className="error-p">{errors.password?.message?.toString()}</p>
-          <p className="error-p password-error"></p>
-        </div>
+        <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
+        <Input type="password" title="Password" error={errors.password?.message?.toString()} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
         <button type="submit" className="login-btn">Log In</button>
         <p className="create-account">
           Don't have an account? <Link href="/signup">Create an account</Link>

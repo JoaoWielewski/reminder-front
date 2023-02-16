@@ -1,9 +1,6 @@
 'use client';
 
 import './styles.css';
-import FormContainer from '../components/FormContainer/page';
-import PopUp from '../components/PopUp/page';
-
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -11,6 +8,9 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 
+import PopUp from '../components/PopUp/page';
+import FormContainer from '../components/FormContainer/page';
+import Input from '../components/Input/page';
 
 type UserRegistrationType = {
   email: string;
@@ -39,12 +39,14 @@ async function registerUser(data: UserRegistrationType) {
 
 const fetchUser = async (email: string) => {
 
-  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}`);
-
   try {
-    const user = await res.json();
-    return user;
-  } catch {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch user by email: ${res.statusText}`);
+    }
+
+    return res.json();
+  } catch (error) {
     return undefined;
   }
 
@@ -71,12 +73,15 @@ function Signup() {
       const emailErrorP = document.querySelector('.email-error') as HTMLElement;
       emailErrorP.innerHTML = 'This email has already been used';
     } else {
-      const emailInput = document.querySelector('.login-email') as HTMLInputElement;
-      emailInput.value = '';
-      const passwordInput = document.querySelector('.login-password') as HTMLInputElement;
-      passwordInput.value = '';
-      const confirmPasswordInput = document.querySelector('.login-confirm-password') as HTMLInputElement;
-      confirmPasswordInput.value = '';
+      const inputs = document.querySelectorAll('.input-title') as unknown as HTMLInputElement[];
+
+      const filteredInputs = Array.from(inputs).filter((element): element is HTMLInputElement => {
+        return element instanceof HTMLInputElement;
+      });
+
+      filteredInputs.forEach(input => {
+        input.value = '';
+      });
 
       if (await registerUser(data) === 201) {
         router.push('/login');
@@ -86,30 +91,17 @@ function Signup() {
     }
   });
 
-  if (session) {
-    router.push('/');
+  function resetEmailError() {
+    const emailErrorP = document.querySelector('.email-error') as HTMLElement;
+    emailErrorP.innerHTML = '';
   }
 
   return (
-    <FormContainer>
+    <FormContainer title="Register your account">
       <form onSubmit={onSubmit}>
-        <h1 className="login-h1">Register your account</h1>
-        <div className="login-input-div">
-          <input type="text" className="login-input login-email" placeholder=" " {...register('email')}/>
-          <p className="login-p login-p-email">Email</p>
-          <p className="error-p">{errors.email?.message?.toString()}</p>
-          <p className="error-p email-error"></p>
-        </div>
-        <div className="login-input-div">
-          <input type="password" className="login-input login-password" placeholder=" " {...register('password')}/>
-          <p className="login-p login-p-password">Password</p>
-          <p className="error-p">{errors.password?.message?.toString()}</p>
-        </div>
-        <div className="login-input-div">
-          <input type="password" className="login-input login-confirm-password" placeholder=" " {...register('confirmPassword')}/>
-          <p className="login-p login-p-confirm-password">Confirm password</p>
-          <p className="error-p">{errors.confirmPassword?.message?.toString()}</p>
-        </div>
+        <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
+        <Input type="password" title="Password" error={errors.password?.message?.toString()} register={register('password')}></Input>
+        <Input type="password" title="Confirm password" error={errors.confirmPassword?.message?.toString()} register={register('confirmPassword')}></Input>
         <button type="submit" className="login-btn">Sign Up</button>
       </form>
       <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
