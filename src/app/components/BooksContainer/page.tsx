@@ -8,12 +8,7 @@ import BookType from '@/types/types.d';
 import { use } from 'react';
 import { useSession } from 'next-auth/react';
 
-type cachedFetchesType = {
-  jwt: string
-}
-
 const fetchBooks = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books').then((res) => res.json());
-
 
 const cachedFetches: Record<string, Promise<any>> = {};
 const cachedFetch = (jwt: string) => {
@@ -50,11 +45,11 @@ function BooksContainer({advertisement}: {advertisement: boolean}) {
   return (
     <section className="container">
       <div className="books">
-        {books.map((book) => (
+        {(books.length > 0) ? books.map((book) => (
           <Link key={book.idbook} href={`/${book.idbook}`}>
-            <Book idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src}></Book>
+            <Book idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src} description={book.description}></Book>
           </Link>
-        ))}
+        )) : <div className="empty-div">No books found</div>}
       </div>
     </section>
   );

@@ -38,13 +38,12 @@ function CartContainer() {
       <h1 className="cart-h1">Cart</h1>
       <div className="cart-container-container">
         {books.map((book) => (
-          <CartElement key={book.idbook} idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src} ></CartElement>
+          <CartElement key={book.idbook} idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src} description={book.description} ></CartElement>
         ))}
-        {books.length > 0 && <>
+        {(books.length > 0) ? <>
           <h1 className="total-h1">Total: ${totalPrice()}</h1>
           <button className="pay-btn" onClick={handlePay}>Pay</button>
-        </>}
-        {!books.length && <h1 className="total-h1">Your cart is empty</h1>}
+        </> : <h1 className="total-h1">Your cart is empty</h1>}
       </div>
       <ConfirmationPopUp
         title={'Sure?'}

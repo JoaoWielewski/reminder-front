@@ -76,6 +76,46 @@
   background-color: rgb(188, 164, 30);
 }
 
+.book-edit-btn {
+  width: 15rem;
+  height: 4.5rem;
+  font-size: 1.7rem;
+  background-color: rgb(179, 157, 28);
+  color: white;
+  border-radius: 1rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  bottom: 4rem;
+  right: 20rem;
+}
+
+.book-edit-btn:hover {
+  transform: scale(1.02);
+  background-color: rgb(186, 162, 31);
+}
+
+.book-delete-btn {
+  width: 15rem;
+  height: 4.5rem;
+  font-size: 1.7rem;
+  background-color: rgb(109, 1, 1);
+  color: white;
+  border-radius: 1rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  bottom: 4rem;
+  right: 3rem;
+}
+
+.book-delete-btn:hover {
+  transform: scale(1.02);
+  background-color: rgb(118, 1, 1);
+}
+
 .book-page-name-mobile {
   padding-top: 2rem;
   font-size: 2.5rem;

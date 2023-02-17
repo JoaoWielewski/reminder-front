@@ -33,6 +33,7 @@
 .popup-content {
   font-size: 1.5rem;
   margin-bottom: 3rem;
+  padding: 1rem
 }
 
 .popup-btn {
@@ -40,11 +41,30 @@
   color: var(--white);
   padding: 0.8rem;
   font-size: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  border: none;
 }
 
 .popup-btn:hover {
   background: #010168;
+}
+
+@media (max-width: 450px) {
+
+  .popup-title {
+    font-size: 1.7rem;
+  }
+
+  .popup-content {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    padding: 1rem
+  }
+
+  .popup-btn {
+    font-size: 1.4rem;
+  }
+
 }
