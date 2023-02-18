@@ -5,6 +5,7 @@
 import BookType from '@/types/types';
 import './styles.css';
 import { CartContext } from '../components/CartContext/page';
+import { EditContext } from '../components/EditContext/page';
 import { useContext, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -54,6 +55,7 @@ function BookPage({ params: { bookId }}: PageProps) {
   const [deleted, setDeleted] = useState(false);
   const router = useRouter();
   const { items, addToCart } = useContext(CartContext);
+  const { item, addToItem } = useContext(EditContext);
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -81,7 +83,7 @@ function BookPage({ params: { bookId }}: PageProps) {
 
     if (session) {
       if (!alreadyAdded) {
-        addToCart(book.idbook, book.name, book.price, book.img_src);
+        addToCart(book.idbook, book.name, book.price, book.img_src, book.description);
         setSuccessPopUp(true);
       } else {
         setErrorPopUp(true);
@@ -93,7 +95,8 @@ function BookPage({ params: { bookId }}: PageProps) {
   };
 
   const handleEdit = () => {
-    
+    addToItem(book);
+    router.push('/advertisement/register');
   };
 
   const handleDelete = async () => {

@@ -5,6 +5,7 @@ type InputType = {
   title: string;
   error: any;
   register: any;
+  value?: string | number;
   optionalErrorReference?: string;
   onChangeFunction?: Function;
 }
@@ -18,7 +19,7 @@ function Input(props: InputType) {
 
   return (
       <div className="input-div">
-        <input type={props.type} className="input input-title" placeholder=" " {...props.register} onChange={handleChange}/>
+        <input type={props.type} className="input input-title" placeholder=" " {...props.register} onChange={handleChange} value={props.value}/>
         <p className="input-p p-title">{props.title}</p>
         <p className="error-p">{props.error}</p>
         <p className={`error-p ${props.optionalErrorReference}-error`}></p>

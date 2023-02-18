@@ -5,7 +5,7 @@ import BookType from '@/types/types';
 
 type CartContextType = {
   items: BookType[];
-  addToCart: (idbook: number, name: string, price: number, img_src: string) => void;
+  addToCart: (idbook: number, name: string, price: number, img_src: string, description: string) => void;
   removeFromCart: (idbook: number) => void;
   removeAllFromCart: () => void;
  };
@@ -17,11 +17,11 @@ export const CartContext = createContext<CartContextType>({
   removeAllFromCart: () => {},
 });
 
-export function CartProvider({children}: {children: React.ReactNode}) {
+function CartProvider({children}: {children: React.ReactNode}) {
   const [items, setItems] = useState<BookType[]>([]);
 
-  const addToCart = (idbook: number, name: string, price: number, img_src: string) => {
-    setItems((prevState) => [...prevState, { idbook, name, price, img_src }]);
+  const addToCart = (idbook: number, name: string, price: number, img_src: string, description: string) => {
+    setItems((prevState) => [...prevState, { idbook, name, price, img_src, description }]);
   };
 
   const removeFromCart = (idbook: number) => {

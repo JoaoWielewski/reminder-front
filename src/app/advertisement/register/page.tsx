@@ -5,12 +5,14 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import BookType from '@/types/types';
 
 import PopUp from '@/app/components/PopUp/page';
 import Input from '@/app/components/Input/page';
 import FormContainer from '@/app/components/FormContainer/page';
 import FormButton from '@/app/components/FormButton/page';
+import { EditContext } from '@/app/components/EditContext/page';
 
 type BookRegistrationType = {
   name: string;
@@ -45,7 +47,17 @@ function Register() {
   const [errorPopUp, setErrorPopUp] = useState(false);
   const [successPopUp, setSuccessPopUp] = useState(false);
   const [explanationPopUp, setExplanationPopUp] = useState(false);
+  const [bookToEdit, setBookToEdit] = useState<BookType | undefined>(undefined);
   const { data: session } = useSession();
+  const { item, clearItem } = useContext(EditContext);
+
+  useEffect(() => {
+    console.log('a');
+    if (item) {
+      setBookToEdit(item);
+      clearItem();
+    }
+  }, [item, clearItem]);
 
   const schema = yup.object().shape({
     name: yup.string().max(100, 'Name is too long').required('Name is required'),
@@ -81,14 +93,14 @@ function Register() {
   };
 
   return (
-    <FormContainer title="Add your book">
+    <FormContainer title={!bookToEdit ? 'Add your book' : 'Edit your book'}>
       <form onSubmit={onSubmit}>
-        <Input type="text" title="Name" error={errors.name?.message?.toString()} register={register('name')}></Input>
-        <Input type="text" title="Price" error={errors.price?.message?.toString()} register={register('price')}></Input>
-        <Input type="text" title="Image source" error={errors.imgSrc?.message?.toString()} register={register('imgSrc')}></Input>
-        <Input type="text" title="Description" error={errors.description?.message?.toString()} register={register('description')}></Input>
+        <Input type="text" title="Name" error={errors.name?.message?.toString()} register={register('name')} value={bookToEdit?.name ? bookToEdit?.name : ''}></Input>
+        <Input type="text" title="Price" error={errors.price?.message?.toString()} register={register('price')} value={bookToEdit?.price ? bookToEdit?.price : ''}></Input>
+        <Input type="text" title="Image source" error={errors.imgSrc?.message?.toString()} register={register('imgSrc')} value={bookToEdit?.img_src ? bookToEdit?.img_src : ''}></Input>
+        <Input type="text" title="Description" error={errors.description?.message?.toString()} register={register('description')} value={bookToEdit?.description ? bookToEdit?.description : ''}></Input>
         <p className="image-source-explanation" onClick={handleClick}>?</p>
-        <FormButton title="Add"></FormButton>
+        <FormButton title={!bookToEdit ? 'Add' : 'Edit'}></FormButton>
       </form>
       <PopUp title={'Something went wrong'} content={'An error ocurred while adding your book, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={'Your book has been added to the store. You may refresh the page to see it.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
