@@ -150,6 +150,18 @@
     right: 7rem;
   }
 
+  .book-delete-btn {
+    right: 5rem;
+  }
+
+  .book-edit-btn {
+    width: 15rem;
+    height: 4.5rem;
+    font-size: 1.7rem;
+    bottom: 4rem;
+    left: 5rem;
+  }
+
 }
 
 @media (max-width: 550px) {
@@ -182,6 +194,18 @@
 
   .cart-btn {
     width: 20rem;
+  }
+
+  .book-edit-btn {
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.6rem;
+  }
+
+  .book-delete-btn {
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.6rem;
   }
 
 }
