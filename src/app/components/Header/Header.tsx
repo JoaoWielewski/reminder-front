@@ -7,7 +7,7 @@ import { faCartShopping, faBars} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import './styles.css';
 import { useState } from 'react';
-import ConfirmationPopUp from '../ConfirmationPopUp/page';
+import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
 
 function Header() {
   const { data: session } = useSession();

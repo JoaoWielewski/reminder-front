@@ -1,9 +1,9 @@
 import './global.css';
-import Header from "./components/Header/page";
+import Header from "./components/Header/Header";
 import { Roboto } from '@next/font/google';
-import AuthContext from './components/AuthContext/page';
-import CartProvider from './components/CartContext/page';
-import EditProvider from './components/EditContext/page';
+import AuthContext from './components/AuthContext/AuthContext';
+import CartProvider from './components/CartContext/CartContext';
+import EditProvider from './components/EditContext/EditContext';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -11,17 +11,16 @@ const roboto = Roboto({
 });
 
 export default function RootLayout({
-  children, session
+  children
 }: {
-  children: React.ReactNode,
-  session: any,
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
 
       <head />
       <body>
-        <AuthContext session={session}>
+        <AuthContext>
           <CartProvider>
           <EditProvider>
             <main className={roboto.className}>

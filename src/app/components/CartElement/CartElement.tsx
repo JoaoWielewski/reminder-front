@@ -1,9 +1,10 @@
+'use client';
 /* eslint-disable @next/next/no-img-element */
 import './styles.css';
 import BookType from '@/types/types';
-import { CartContext } from '../CartContext/page';
+import { CartContext } from '../CartContext/CartContext';
 import { useContext, useState } from 'react';
-import ConfirmationPopUp from '../ConfirmationPopUp/page';
+import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
 
 function CartElement(props: BookType) {
   const [surePopUp, setSurePopUp] = useState(false);

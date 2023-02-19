@@ -1,7 +1,7 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
 import './styles.css';
-import CartContainer from '../components/CartContainer/page';
+import CartContainer from '../components/CartContainer/CartContainer';
 import { useSession } from 'next-auth/react';
 import { frontEndRedirect } from '@/utils/front-end-redirect';
 

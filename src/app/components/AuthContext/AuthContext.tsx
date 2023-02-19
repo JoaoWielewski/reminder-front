@@ -1,10 +1,15 @@
 'use client';
 
 import { SessionProvider } from 'next-auth/react';
+import { ReactNode } from 'react';
 
-function AuthContext({ children, session }: { children: React.ReactNode, session: any}) {
+interface IProps {
+  children: ReactNode
+}
+
+function AuthContext({ children}: IProps) {
   return (
-      <SessionProvider session={session}>
+      <SessionProvider>
         {children}
       </SessionProvider>
   );

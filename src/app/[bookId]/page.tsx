@@ -4,16 +4,16 @@
 /* eslint-disable @next/next/no-img-element */
 import BookType from '@/types/types';
 import './styles.css';
-import { CartContext } from '../components/CartContext/page';
-import { EditContext } from '../components/EditContext/page';
+import { CartContext } from '../components/CartContext/CartContext';
+import { EditContext } from '../components/EditContext/EditContext';
 import { useContext, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-import PopUp from '../components/PopUp/page';
-import ConfirmationPopUp from '../components/ConfirmationPopUp/page';
+import PopUp from '../components/PopUp/PopUp';
+import ConfirmationPopUp from '../components/ConfirmationPopUp/ConfirmationPopUp';
 
-type PageProps = {
+type Page2Props = {
   params: {
     bookId: string;
   }
@@ -43,7 +43,7 @@ const deleteBook = async (jwt: string, bookId: number) => {
 };
 
 
-function BookPage({ params: { bookId }}: PageProps) {
+function BookPage({ params: { bookId }}: Page2Props) {
   const [book, setBook] = useState<BookType | null>(null);
   const [bookOwnerId, setBookOwnerId] = useState<number | null>(null);
   const [errorPopUp, setErrorPopUp] = useState(false);

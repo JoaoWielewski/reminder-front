@@ -8,11 +8,12 @@ import { useSession } from 'next-auth/react';
 import { useState, useEffect, useContext } from 'react';
 import BookType from '@/types/types';
 
-import PopUp from '@/app/components/PopUp/page';
-import Input from '@/app/components/Input/page';
-import FormContainer from '@/app/components/FormContainer/page';
-import FormButton from '@/app/components/FormButton/page';
-import { EditContext } from '@/app/components/EditContext/page';
+import PopUp from '@/app/components/PopUp/PopUp';
+import Input from '@/app/components/Input/Input';
+import FormContainer from '@/app/components/FormContainer/FormContainer';
+import FormButton from '@/app/components/FormButton/FormButton';
+import { EditContext } from '@/app/components/EditContext/EditContext';
+import { useRouter } from 'next/navigation';
 
 type BookRegistrationType = {
   name: string;
@@ -69,8 +70,10 @@ function Register() {
   const [successPopUp, setSuccessPopUp] = useState(false);
   const [explanationPopUp, setExplanationPopUp] = useState(false);
   const [bookToEdit, setBookToEdit] = useState<BookType | undefined>(undefined);
+  const [edited, setEdited] = useState(false);
   const { data: session } = useSession();
   const { item, clearItem } = useContext(EditContext);
+  const router = useRouter();
 
   const schema = yup.object().shape({
     name: yup.string().max(100, 'Name is too long').required('Name is required'),
@@ -98,6 +101,12 @@ function Register() {
 
   }, [item, clearItem, bookToEdit, setValue]);
 
+  useEffect(() => {
+    if (!successPopUp && edited) {
+      router.push('/advertisement');
+    }
+  }, [edited, router, successPopUp]);
+
   const onSubmit = handleSubmit(async (data) => {
     const inputs = document.querySelectorAll('.input-title') as unknown as HTMLInputElement[];
 
@@ -118,6 +127,7 @@ function Register() {
     } else {
       if (await editBook(data, bookToEdit.idbook, session?.jwt!) === 204) {
         setSuccessPopUp(true);
+        setEdited(true);
       } else {
         setErrorPopUp(true);
       }

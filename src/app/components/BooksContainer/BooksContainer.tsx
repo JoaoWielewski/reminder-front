@@ -1,12 +1,13 @@
 'use client';
 
 import './styles.css';
-import Book from '../Book/page';
+import Book from '../Book/Book';
 import Link from 'next/link';
 
 import BookType from '@/types/types.d';
 import { use } from 'react';
 import { useSession } from 'next-auth/react';
+
 
 const fetchBooks = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books').then((res) => res.json());
 

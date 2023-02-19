@@ -1,10 +1,12 @@
+'use client';
+
 import './styles.css';
-import CartElement from '../CartElement/page';
+import CartElement from '../CartElement/CartElement';
 import BookType from '@/types/types';
-import { CartContext } from '../CartContext/page';
+import { CartContext } from '../CartContext/CartContext';
 import { useContext, useState } from 'react';
-import ConfirmationPopUp from '../ConfirmationPopUp/page';
-import PopUp from '../PopUp/page';
+import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
+import PopUp from '../PopUp/PopUp';
 
 
 function CartContainer() {

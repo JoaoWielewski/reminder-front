@@ -9,8 +9,8 @@ import * as yup from 'yup';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-import FormContainer from '../components/FormContainer/page';
-import Input from '../components/Input/page';
+import FormContainer from '../components/FormContainer/FormContainer';
+import Input from '../components/Input/Input';
 
 type UserLoginType = {
   email: string,
