@@ -5,42 +5,50 @@ import Book from '../Book/Book';
 import Link from 'next/link';
 
 import BookType from '@/types/types.d';
-import { use } from 'react';
+import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
 
-const fetchBooks = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books').then((res) => res.json());
+const fetchBooks = async () => {
+  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books');
+  const books: BookType[] = await res.json();
+  return books;
+};
 
-const cachedFetches: Record<string, Promise<any>> = {};
-const cachedFetch = (jwt: string) => {
-  if (!cachedFetches[jwt]) {
-    cachedFetches[jwt] = fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/bookuser', {
-      headers: {
-        'Authorization': `Bearer ${jwt}`
-      },
-    }).then((res) => res.json());
-  }
-  return cachedFetches[jwt];
+const fetchBooksByUser = async (jwt: string) => {
+  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/bookuser', {
+    headers: {
+      'Authorization': `Bearer ${jwt}`
+    },
+    });
+  const books: BookType[] = await res.json();
+  return books;
 };
 
 
 function BooksContainer({advertisement}: {advertisement: boolean}) {
+  const [books, setBooks] = useState<BookType[]>([]);
   const {data: session} = useSession();
   const jwt = session?.jwt;
 
-  let books: BookType[] = [];
-
-  if (session) {
-    if (jwt !== undefined) {
-      if (advertisement === false) {
-        books = use(fetchBooks);
+useEffect(() => {
+  (async function() {
+    if (session) {
+        if (jwt !== undefined) {
+          if (advertisement === false) {
+            const books = await fetchBooks();
+            setBooks(books);
+          } else {
+            const books = await fetchBooksByUser(jwt);
+            setBooks(books);
+          }
+        }
       } else {
-        books = use(cachedFetch(jwt));
+        const books = await fetchBooks();
+        setBooks(books);
       }
-    }
-  } else {
-    books = use(fetchBooks);
-  }
+  })();
+}, [advertisement, jwt, session]);
 
 
   return (

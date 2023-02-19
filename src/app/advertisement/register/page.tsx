@@ -70,7 +70,7 @@ function Register() {
   const [successPopUp, setSuccessPopUp] = useState(false);
   const [explanationPopUp, setExplanationPopUp] = useState(false);
   const [bookToEdit, setBookToEdit] = useState<BookType | undefined>(undefined);
-  const [edited, setEdited] = useState(false);
+  const [executed, setExecuted] = useState(false);
   const { data: session } = useSession();
   const { item, clearItem } = useContext(EditContext);
   const router = useRouter();
@@ -102,10 +102,10 @@ function Register() {
   }, [item, clearItem, bookToEdit, setValue]);
 
   useEffect(() => {
-    if (!successPopUp && edited) {
+    if (!successPopUp && executed) {
       router.push('/advertisement');
     }
-  }, [edited, router, successPopUp]);
+  }, [executed, router, successPopUp]);
 
   const onSubmit = handleSubmit(async (data) => {
     const inputs = document.querySelectorAll('.input-title') as unknown as HTMLInputElement[];
@@ -121,13 +121,14 @@ function Register() {
     if (!bookToEdit) {
       if (await registerBook(data, session?.jwt!) === 201) {
         setSuccessPopUp(true);
+        setExecuted(true);
       } else {
         setErrorPopUp(true);
       }
     } else {
       if (await editBook(data, bookToEdit.idbook, session?.jwt!) === 204) {
         setSuccessPopUp(true);
-        setEdited(true);
+        setExecuted(true);
       } else {
         setErrorPopUp(true);
       }
@@ -149,7 +150,7 @@ function Register() {
         <FormButton title={!bookToEdit ? 'Add' : 'Edit'}></FormButton>
       </form>
       <PopUp title={'Something went wrong'} content={!bookToEdit ? 'An error ocurred while adding your book, please try again soon...' : 'An error ocurred while editing your book, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
-      <PopUp title={'Success!'} content={!bookToEdit ? 'Your book has been added to the store. You may refresh the page to see it.' : 'Your book has been edited. You may refresh the page to see the changes.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
+      <PopUp title={'Success!'} content={!bookToEdit ? 'Your book has been added to the store.' : 'Your book has been edited.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
       <PopUp title={'How to get image source?'} content={"Look for your book cover image on google. On a computer, right-click on the image to bring up a context menu. On a mobile device, tap and hold on the image until a context menu appears. In the context menu, you should see an option labeled \"Copy image address\" or \"Copy image URL.\" Click on this option to copy the URL to your clipboard. Once you have the URL copied to your clipboard, you can paste it into the image source input."} trigger={explanationPopUp} setTrigger={setExplanationPopUp}></PopUp>
     </FormContainer>
   );

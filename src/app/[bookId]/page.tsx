@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import PopUp from '../components/PopUp/PopUp';
 import ConfirmationPopUp from '../components/ConfirmationPopUp/ConfirmationPopUp';
 
-type Page2Props = {
+type PageProps = {
   params: {
     bookId: string;
   }
@@ -43,7 +43,7 @@ const deleteBook = async (jwt: string, bookId: number) => {
 };
 
 
-function BookPage({ params: { bookId }}: Page2Props) {
+function BookPage({ params: { bookId }}: PageProps) {
   const [book, setBook] = useState<BookType | null>(null);
   const [bookOwnerId, setBookOwnerId] = useState<number | null>(null);
   const [errorPopUp, setErrorPopUp] = useState(false);
@@ -144,7 +144,7 @@ function BookPage({ params: { bookId }}: Page2Props) {
       <PopUp title={'Oops...'} content={'This book has already been added to you cart.'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={'The book was added to your cart.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
       <PopUp title={'Something went wrong'} content={'You must be logged in order to add a book to your cart.'} trigger={notLoggedPopUp} setTrigger={setNotLoggedPopUp}></PopUp>
-      <PopUp title={'Success!'} content={'The book has been successfully deleted. You may refresh the page to see the changes.'} trigger={successDeletePopUp} setTrigger={setSuccessDeletePopUp}></PopUp>
+      <PopUp title={'Success!'} content={'The book has been successfully deleted.'} trigger={successDeletePopUp} setTrigger={setSuccessDeletePopUp}></PopUp>
       <PopUp title={'Something went wrong'} content={'You book couldn\'t be deleted, please try again soon...'} trigger={failDeletePopUp} setTrigger={setFailDeletePopUp}></PopUp>
       <ConfirmationPopUp
         title={'Sure?'}
