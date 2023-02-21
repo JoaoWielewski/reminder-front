@@ -186,6 +186,7 @@
 
   .book-page-div {
     padding: 1rem;
+    top: 11rem;
   }
 
   .book-page-price {
@@ -210,3 +211,8 @@
 
 }
 
+.loading-test {
+  width: 100%;
+  height: 100vh;
+  background-color: red;
+}

@@ -28,11 +28,13 @@ const fetchBooksByUser = async (jwt: string) => {
 
 function BooksContainer({advertisement}: {advertisement: boolean}) {
   const [books, setBooks] = useState<BookType[]>([]);
+  const [loading, setLoading] = useState(false);
   const {data: session} = useSession();
   const jwt = session?.jwt;
 
 useEffect(() => {
   (async function() {
+    setLoading(true);
     if (session) {
         if (jwt !== undefined) {
           if (advertisement === false) {
@@ -47,6 +49,7 @@ useEffect(() => {
         const books = await fetchBooks();
         setBooks(books);
       }
+    setLoading(false);
   })();
 }, [advertisement, jwt, session]);
 
@@ -54,11 +57,12 @@ useEffect(() => {
   return (
     <section className="container">
       <div className="books">
-        {(books.length > 0) ? books.map((book) => (
+        {!loading ?
+        (books.length > 0) ? books.map((book) => (
           <Link key={book.idbook} href={`/${book.idbook}`}>
             <Book idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src} description={book.description}></Book>
           </Link>
-        )) : <div className="empty-div">No books found</div>}
+        )) : <div className="empty-div">No books found</div> : <div className="loading-div">Loading</div>}
       </div>
     </section>
   );

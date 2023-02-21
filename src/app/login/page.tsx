@@ -47,7 +47,7 @@ const fetchUser = async (data: UserLoginType) => {
 
 function Login() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { data: session, status} = useSession();
 
   const schema = yup.object().shape({
     email: yup.string().email('Email must be a valid email').required('Email is required'),
@@ -67,6 +67,7 @@ function Login() {
           password: data.password,
           redirect: false,
         });
+
 
         const searchParams = new URLSearchParams(document.location.search);
         const redirect = searchParams.get('redirect') || '/';
@@ -92,7 +93,10 @@ function Login() {
     passwordErrorP.innerHTML = '';
   }
 
+
   return (
+    <>
+    {!session ?
     <FormContainer title="Log into your account">
       <form onSubmit={onSubmit}>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
@@ -102,7 +106,8 @@ function Login() {
           Don't have an account? <Link href="/signup">Create an account</Link>
         </p>
       </form>
-    </FormContainer>
+    </FormContainer> : <div></div>}
+    </>
   );
 }
 

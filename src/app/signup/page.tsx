@@ -96,7 +96,10 @@ function Signup() {
     emailErrorP.innerHTML = '';
   }
 
+
   return (
+    <>
+    {!session ?
     <FormContainer title="Register your account">
       <form onSubmit={onSubmit}>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
@@ -105,7 +108,8 @@ function Signup() {
         <button type="submit" className="login-btn">Sign Up</button>
       </form>
       <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
-    </FormContainer>
+    </FormContainer> : <FormContainer title="You can't register an account while logged in"><div></div></FormContainer>}
+    </>
   );
 }
 
