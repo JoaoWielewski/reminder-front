@@ -2,17 +2,19 @@
 
 import './styles.css';
 import CartElement from '../CartElement/CartElement';
-import BookType from '@/types/types';
 import { CartContext } from '../CartContext/CartContext';
 import { useContext, useState } from 'react';
 import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
 import PopUp from '../PopUp/PopUp';
+import { sendEmailOnPayment } from '@/utils/send-email';
+import { useSession } from 'next-auth/react';
 
 
 function CartContainer() {
   const [successPopUp, setSuccessPopUp] = useState(false);
   const [surePopUp, setSurePopUp] = useState(false);
   const { items, removeAllFromCart } = useContext(CartContext);
+  const { data: session } = useSession();
 
   if (!items) return <></>;
 
@@ -31,6 +33,9 @@ function CartContainer() {
   const isSure = (sure: boolean) => {
     if (sure) {
       setSuccessPopUp(true);
+      if (session?.user?.email) {
+        sendEmailOnPayment(session?.user?.email, books);
+      }
       removeAllFromCart();
     }
   };
