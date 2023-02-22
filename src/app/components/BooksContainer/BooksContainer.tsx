@@ -2,6 +2,7 @@
 
 import './styles.css';
 import Book from '../Book/Book';
+import SearchBar from '../SearchBar/SearchBar';
 import Link from 'next/link';
 
 import BookType from '@/types/types.d';
@@ -10,52 +11,91 @@ import { useSession } from 'next-auth/react';
 
 
 const fetchBooks = async () => {
-  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books');
-  const books: BookType[] = await res.json();
-  return books;
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/books');
+    const books: BookType[] = await res.json();
+    return books;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+const fetchBooksBySearch = async (searchValue: string) => {
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/books/search/${searchValue}`);
+    const books: BookType[] = await res.json();
+    return books;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 };
 
 const fetchBooksByUser = async (jwt: string) => {
-  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/bookuser', {
-    headers: {
-      'Authorization': `Bearer ${jwt}`
-    },
-    });
-  const books: BookType[] = await res.json();
-  return books;
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/booksuser', {
+      headers: {
+        'Authorization': `Bearer ${jwt}`
+      },
+      });
+    const books: BookType[] = await res.json();
+    return books;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+const fetchBooksByUserBySearch = async (jwt: string, searchValue: string) => {
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/booksuser/search/${searchValue}`, {
+      headers: {
+        'Authorization': `Bearer ${jwt}`
+      },
+      });
+    const books: BookType[] = await res.json();
+    return books;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 };
 
 
 function BooksContainer({advertisement}: {advertisement: boolean}) {
   const [books, setBooks] = useState<BookType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
+  const [justSearched, setJustSearched] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const {data: session} = useSession();
   const jwt = session?.jwt;
 
 useEffect(() => {
+  setLoading(true);
   (async function() {
-    setLoading(true);
-    if (session) {
-        if (jwt !== undefined) {
-          if (advertisement === false) {
-            const books = await fetchBooks();
-            setBooks(books);
-          } else {
-            const books = await fetchBooksByUser(jwt);
-            setBooks(books);
-          }
-        }
-      } else {
-        const books = await fetchBooks();
-        setBooks(books);
-      }
+    let fetchedBooks = [];
+    if (!searched || searchValue === '') {
+      fetchedBooks = session && jwt !== undefined && advertisement ? await fetchBooksByUser(jwt) : await fetchBooks();
+    } else {
+      fetchedBooks = session && jwt !== undefined && advertisement ? await fetchBooksByUserBySearch(jwt, searchValue) : await fetchBooksBySearch(searchValue);
+    }
+    setBooks(fetchedBooks);
+    setJustSearched(false);
     setLoading(false);
   })();
-}, [advertisement, jwt, session]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [advertisement, jwt, session, searched, justSearched]);
 
+const handleSearch = () => {
+  setSearched(true);
+  setJustSearched(true);
+};
 
   return (
     <section className="container">
+      <SearchBar disabled={loading} onChangeFunction={setSearchValue} onClickFunction={handleSearch}></SearchBar>
       <div className="books">
         {!loading ?
         (books.length > 0) ? books.map((book) => (
