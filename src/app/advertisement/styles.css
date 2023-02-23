@@ -47,13 +47,13 @@
 @media (max-width: 450px) {
 
   .advertisement-h1 {
-    font-size: 3rem;
+    font-size: 3.3rem;
   }
 
   .advertisement-btn {
     width: 20rem;
     height: 5rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
 }

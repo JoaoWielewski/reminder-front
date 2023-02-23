@@ -6,7 +6,7 @@
 }
 
 .advertisement-search-div {
-  top: 29rem;
+  top: 28.5rem;
 }
 
 .search-input {
@@ -47,8 +47,12 @@
 @media (max-width: 800px) {
 
   .search-div {
-    top: 28.5rem;
+    top: 21rem;
     left: calc(50vw - 12rem);
+  }
+
+  .advertisement-search-div {
+    top: 28rem;
   }
 
   .search-input {

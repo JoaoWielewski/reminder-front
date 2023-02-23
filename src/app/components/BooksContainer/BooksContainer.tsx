@@ -8,6 +8,7 @@ import Link from 'next/link';
 import BookType from '@/types/types.d';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import Loading from '../Loading/Loading';
 
 
 const fetchBooks = async () => {
@@ -96,16 +97,18 @@ const handleSearch = () => {
   return (
     <section className="container">
       <SearchBar disabled={loading} onChangeFunction={setSearchValue} onClickFunction={handleSearch} advertisement={advertisement}></SearchBar>
-      <div className={`books ${advertisement && 'advertisement-books'}`}>
+      <div className={!advertisement ? 'books' : 'books advertisement-books'}>
         {!loading ?
         (books.length > 0) ? books.map((book) => (
           <Link key={book.idbook} href={`/${book.idbook}`}>
             <Book idbook={book.idbook} name={book.name} price={book.price} img_src={book.img_src} description={book.description}></Book>
           </Link>
-        )) : <div className="empty-div">No books found</div> : <div className="loading-div">Loading</div>}
+        )) : <div className="empty-div">No books found</div> : <Loading></Loading>}
       </div>
     </section>
   );
 }
 
 export default BooksContainer;
+
+//<div className="loading-div">Loading</div>

@@ -1,0 +1,28 @@
+.loading {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  left: calc(50vw - 4.5rem);
+  top: 45rem;
+}
+
+.loading::after {
+  content: '';
+  width: 8rem;
+  height: 8rem;
+  box-shadow: 0rem 0.4rem 0.1rem var(--primary);
+  border-radius: 50%;
+  animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
