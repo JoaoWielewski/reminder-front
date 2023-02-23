@@ -65,7 +65,7 @@ const fetchBooksByUserBySearch = async (jwt: string, searchValue: string) => {
 
 function BooksContainer({advertisement}: {advertisement: boolean}) {
   const [books, setBooks] = useState<BookType[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searched, setSearched] = useState(false);
   const [justSearched, setJustSearched] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -95,8 +95,8 @@ const handleSearch = () => {
 
   return (
     <section className="container">
-      <SearchBar disabled={loading} onChangeFunction={setSearchValue} onClickFunction={handleSearch}></SearchBar>
-      <div className="books">
+      <SearchBar disabled={loading} onChangeFunction={setSearchValue} onClickFunction={handleSearch} advertisement={advertisement}></SearchBar>
+      <div className={`books ${advertisement && 'advertisement-books'}`}>
         {!loading ?
         (books.length > 0) ? books.map((book) => (
           <Link key={book.idbook} href={`/${book.idbook}`}>
