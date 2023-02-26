@@ -7,6 +7,7 @@ type NextAuthSession = {
   email: string;
   jwt: string;
   expiration: number;
+  role: string;
 }
 
 export const authOptions: NextAuthOptions = {
@@ -25,8 +26,19 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials: any) {
+        const params = {
+          email: credentials.email,
+          password: credentials.password,
+        };
+
         try {
-          const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/login/${credentials.email}/${credentials.password}`);
+          const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params),
+          });
           const user = await res.json();
           const { id, email, jwt } = user;
 
@@ -58,6 +70,7 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.email = user.email;
         token.jwt = user.jwt;
+        token.role = user.role;
         token.expiration = Math.floor(actualDateInSeconds + tokenExpirationInSeconds);
       } else {
         if (!token?.expiration) return null;
@@ -70,13 +83,14 @@ export const authOptions: NextAuthOptions = {
 
     /* @ts-ignore */
     async session({ session, token}: {session: NextAuthSession, token: NextAuthSession}) {
-      if (!token.id || !token.email || !token.expiration || !token.jwt) {
+      if (!token.id || !token.email || !token.expiration || !token.jwt || !token.role) {
         return null;
       }
 
       session.jwt = token.jwt;
       session.email = token.email;
       session.id = token.id;
+      session.role = token.role;
       session.expiration = token.expiration;
 
       return session;

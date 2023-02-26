@@ -5,5 +5,6 @@ declare module "next-auth" {
     id: number;
     jwt: string;
     expiration: number;
+    role: string;
   }
 }

@@ -55,7 +55,7 @@ function BookPage({ params: { bookId }}: PageProps) {
   const [deleted, setDeleted] = useState(false);
   const router = useRouter();
   const { items, addToCart } = useContext(CartContext);
-  const { item, addToItem } = useContext(EditContext);
+  const { addToItem } = useContext(EditContext);
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -103,7 +103,7 @@ function BookPage({ params: { bookId }}: PageProps) {
     setDeletePopUp(true);
   };
 
-  const isSure = async (sure: boolean) => {
+  const isSureDelete = async (sure: boolean) => {
     if (sure) {
       if (session && session.jwt) {
         const result = await deleteBook(session.jwt, book.idbook);
@@ -117,6 +117,7 @@ function BookPage({ params: { bookId }}: PageProps) {
       }
     }
   };
+
 
   return (
     <section className="book-page-section">
@@ -133,6 +134,7 @@ function BookPage({ params: { bookId }}: PageProps) {
           <h1 className="book-page-name">{book.name}</h1>
           <h2 className="book-page-description">{book.description}</h2>
           <h3 className="book-page-price">${book.price}</h3>
+          {session?.role === 'admin' && <button className="admin-delete-btn" onClick={handleDelete}>Admin delete</button>}
           {(session?.id !== bookOwnerId) ?
             <button className="cart-btn" onClick={handleAdd}>Add to Cart</button>
           : <>
@@ -151,7 +153,7 @@ function BookPage({ params: { bookId }}: PageProps) {
         content={`Are you sure you want to delete your book ${book.name}?`}
         trigger={deletePopUp}
         setTrigger={setDeletePopUp}
-        onDialog={isSure}
+        onDialog={isSureDelete}
       />
     </section>
   );

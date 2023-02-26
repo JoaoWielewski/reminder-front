@@ -33,12 +33,23 @@ const fetchUserByEmail = async (email: string) => {
 };
 
 const fetchUser = async (data: UserLoginType) => {
+  const params = {
+    email: data.email,
+    password: data.password,
+  };
 
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${data.email}/${data.password}`);
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    });
     if (!res.ok) {
       throw new Error(`Failed to fetch user: ${res.statusText}`);
     }
+
     return res.json();
   } catch (error) {
     return undefined;
@@ -67,7 +78,6 @@ function Login() {
           password: data.password,
           redirect: false,
         });
-
 
         const searchParams = new URLSearchParams(document.location.search);
         const redirect = searchParams.get('redirect') || '/';
