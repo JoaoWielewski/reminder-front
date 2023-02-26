@@ -210,7 +210,7 @@ header li {
   }
 
   .header-link {
-    font-size: 2rem;
+    font-size: 2.3rem;
     margin-top: 10rem;
   }
 
@@ -225,6 +225,16 @@ header li {
   .header-link:hover, .header-link:active{
     background-color: transparent;
     color:rgb(1, 1, 159)
+  }
+
+  .logout-link {
+    color: rgb(193, 9, 9);
+    font-size: 2.5rem;
+  }
+
+  .login-link {
+    color: rgb(147, 147, 255);
+    font-size: 2.5rem;
   }
 
 }

@@ -66,7 +66,7 @@ function Header() {
         ) : (
         <>
           <li onClick={handleClick}>
-            <Link href="" className="header-link" onClick={() => signIn()}>
+            <Link href="" className="header-link login-link" onClick={() => signIn()}>
               Log In
             </Link>
           </li>
