@@ -1,2 +1,3 @@
-# BookStore front end
-The Front-end of a website made with Next.js and React that simulates a platform in which you would be able to sell and buy books.
+# BookStore Front-end
+BookStore is a website I'm developing that simulates buying and selling books. 
+This repository is for the front-end of the website, in which the main technologies used are: React, Next.js, TypeScript, NextAuth.js, React Hook Form and Yup.
