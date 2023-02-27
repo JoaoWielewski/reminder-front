@@ -182,6 +182,10 @@
     left: 5rem;
   }
 
+  .admin-delete-btn {
+    right: 7rem;
+  }
+
 }
 
 @media (max-width: 550px) {

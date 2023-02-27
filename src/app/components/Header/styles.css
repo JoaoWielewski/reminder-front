@@ -229,12 +229,10 @@ header li {
 
   .logout-link {
     color: rgb(193, 9, 9);
-    font-size: 2.5rem;
   }
 
   .login-link {
-    color: rgb(147, 147, 255);
-    font-size: 2.5rem;
+    color: rgb(90, 167, 249);
   }
 
 }
