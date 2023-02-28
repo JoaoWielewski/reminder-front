@@ -8,9 +8,9 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 
-import PopUp from '../components/PopUp/PopUp';
-import FormContainer from '../components/FormContainer/FormContainer';
-import Input from '../components/Input/Input';
+import PopUp from '@/components/PopUp/PopUp';
+import FormContainer from '@/components/FormContainer/FormContainer';
+import Input from '@/components/Input/Input';
 import { sendEmailOnRegister } from '@/utils/send-email';
 
 type UserRegistrationType = {

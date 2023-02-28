@@ -1,9 +1,9 @@
 import './global.css';
-import Header from "./components/Header/Header";
+import Header from "@/components/Header/Header";
 import { Roboto } from '@next/font/google';
-import AuthContext from './components/AuthContext/AuthContext';
-import CartProvider from './components/CartContext/CartContext';
-import EditProvider from './components/EditContext/EditContext';
+import AuthContext from '@/components/AuthContext/AuthContext';
+import CartProvider from '@/components/CartContext/CartContext';
+import EditProvider from '@/components/EditContext/EditContext';
 
 const roboto = Roboto({
   subsets: ['latin'],

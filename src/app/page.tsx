@@ -1,5 +1,5 @@
 import './styles.css';
-import BooksContainer from './components/BooksContainer/BooksContainer';
+import BooksContainer from '@/components/BooksContainer/BooksContainer';
 
 function Home() {
   return (

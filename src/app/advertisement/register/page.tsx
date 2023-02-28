@@ -8,11 +8,11 @@ import { useSession } from 'next-auth/react';
 import { useState, useEffect, useContext } from 'react';
 import BookType from '@/types/types';
 
-import PopUp from '@/app/components/PopUp/PopUp';
-import Input from '@/app/components/Input/Input';
-import FormContainer from '@/app/components/FormContainer/FormContainer';
-import FormButton from '@/app/components/FormButton/FormButton';
-import { EditContext } from '@/app/components/EditContext/EditContext';
+import PopUp from '@/components/PopUp/PopUp';
+import Input from '@/components/Input/Input';
+import FormContainer from '@/components/FormContainer/FormContainer';
+import FormButton from '@/components/FormButton/FormButton';
+import { EditContext } from '@/components/EditContext/EditContext';
 import { useRouter } from 'next/navigation';
 
 type BookRegistrationType = {

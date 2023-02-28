@@ -1,7 +1,7 @@
 'use client';
 
 import './styles.css';
-import BooksContainer from '../components/BooksContainer/BooksContainer';
+import BooksContainer from '@/components/BooksContainer/BooksContainer';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { frontEndRedirect } from '@/utils/front-end-redirect';

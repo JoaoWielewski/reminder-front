@@ -4,14 +4,14 @@
 /* eslint-disable @next/next/no-img-element */
 import BookType from '@/types/types';
 import './styles.css';
-import { CartContext } from '../components/CartContext/CartContext';
-import { EditContext } from '../components/EditContext/EditContext';
+import { CartContext } from '@/components/CartContext/CartContext';
+import { EditContext } from '@/components/EditContext/EditContext';
 import { useContext, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-import PopUp from '../components/PopUp/PopUp';
-import ConfirmationPopUp from '../components/ConfirmationPopUp/ConfirmationPopUp';
+import PopUp from '@/components/PopUp/PopUp';
+import ConfirmationPopUp from '@/components/ConfirmationPopUp/ConfirmationPopUp';
 
 type PageProps = {
   params: {
