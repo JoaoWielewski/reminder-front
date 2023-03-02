@@ -1,15 +1,8 @@
 import { render } from '@testing-library/react';
 import Book from './Book';
+import book from './mock';
 
 describe('<Book />', () => {
-
-  const book = {
-    idbook: 1,
-    name: 'Test Book',
-    price: 20,
-    img_src: 'test-book.jpg',
-    description: 'This is a test book'
-  };
 
   it('should render book', () => {
     const { getByRole } = render(<Book {...book} />);

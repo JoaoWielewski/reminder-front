@@ -110,5 +110,3 @@ const handleSearch = () => {
 }
 
 export default BooksContainer;
-
-//<div className="loading-div">Loading</div>
