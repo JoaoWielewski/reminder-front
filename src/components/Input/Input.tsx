@@ -3,7 +3,7 @@ import './styles.css';
 type InputType = {
   type: string;
   title: string;
-  error: any;
+  error: string | undefined;
   register: any;
   defaultValue?: string | number;
   optionalErrorReference?: string;
@@ -14,7 +14,7 @@ function Input(props: InputType) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (props.onChangeFunction) {
-      props.onChangeFunction(event);
+      props.onChangeFunction(event.target.value);
     }
   };
 
