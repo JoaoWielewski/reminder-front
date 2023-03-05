@@ -1,5 +1,6 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
+
 import './styles.css';
 import BookType from '@/types/types';
 import { CartContext } from '../CartContext/CartContext';

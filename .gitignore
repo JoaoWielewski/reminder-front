@@ -39,3 +39,5 @@ next-env.d.ts
 .vscode
 .gitignore
 package-lock.json
+
+__snapshots__
