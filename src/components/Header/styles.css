@@ -24,7 +24,7 @@ header li {
   color: white;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
-  padding: 1.2rem;
+  padding: 1rem;
 }
 
 .logout-link {
@@ -111,6 +111,7 @@ header li {
 @media (max-width: 1350px) {
   .header-link {
     font-size: 1.5rem;
+    padding: 0.9rem;
   }
 
   .header-logo {
@@ -150,6 +151,7 @@ header li {
 @media (max-width: 1100px) {
   .header-link {
     font-size: 1.2rem;
+    padding: 0.7rem;
   }
 
   .header-logo {
