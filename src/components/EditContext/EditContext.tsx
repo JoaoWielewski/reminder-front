@@ -3,7 +3,7 @@
 import { createContext, useState } from 'react';
 import BookType from '@/types/types';
 
-type EditContextType = {
+export type EditContextType = {
   item: BookType | undefined,
   addToItem: (book: BookType) => void,
   clearItem: () => void,
