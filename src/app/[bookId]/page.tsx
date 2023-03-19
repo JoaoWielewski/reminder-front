@@ -20,13 +20,13 @@ type PageProps = {
 }
 
 const fetchBook = async (id: string) => {
-  const res = await fetch(`http://localhost:8080/books/${id}`);
+  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/books/${id}`);
   const book: BookType = await res.json();
   return book;
 };
 
 const fetchBookOwnerId = async (id: string) => {
-  const res = await fetch(`http://localhost:8080/bookowner/${id}`);
+  const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/bookowner/${id}`);
   const owner: {id_user: number} = await res.json();
   return owner;
 };
