@@ -80,7 +80,7 @@ function Header() {
         )
         }
         <li onClick={handleClick}>
-          <Link href="/cart" className="header-cart">
+          <Link href="/cart" className="header-cart" passHref prefetch>
             <p className="cart-p">Cart</p>
             <FontAwesomeIcon icon={faCartShopping} className="cart" />
           </Link>
