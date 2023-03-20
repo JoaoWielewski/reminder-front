@@ -79,9 +79,10 @@ function Header() {
         </>
         )
         }
-        <li onClick={handleClick}>
-          <Link key={5} href="/cart">
+        <li>
+          <Link key={5} href="/cart" className="header-cart">
             <p className="cart-p">Cart</p>
+            <FontAwesomeIcon icon={faCartShopping} className="cart" />
           </Link>
         </li>
       </ul>
