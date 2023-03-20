@@ -9,13 +9,15 @@ import './styles.css';
 import { useState } from 'react';
 import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
 import Book from '../Book/Book';
+import { useRouter } from 'next/navigation';
 
 function Header() {
   const { data: session } = useSession();
   const [logoutPopUp, setLogoutPopUp] = useState(false);
+  const router = useRouter();
 
-  function handleClick(e: any) {
-    e.preventDefault();
+
+  function handleClick() {
     const checkbox = document.getElementById('check') as HTMLInputElement;
     if (checkbox && checkbox.checked === true) {
       checkbox.checked = false;
@@ -37,6 +39,14 @@ function Header() {
     signIn();
   };
 
+  const handleClickTest1 = () => {
+    router.push('/1');
+  };
+
+  const handleClickTest2 = () => {
+    router.push('/cart');
+  };
+
   return (
     <header>
       <input type="checkbox" id="check" />
@@ -54,10 +64,8 @@ function Header() {
             Catalog
           </Link>
         </li>
-        <li onClick={handleClick}>
-          <Link href="/advertisement" className="header-link">
+        <li onClick={handleClickTest1}>
             Your Advertisement
-          </Link>
         </li>
         <li className="mobile-cart" onClick={handleClick}>
           <Link href="/cart" className="header-link">
@@ -80,10 +88,9 @@ function Header() {
         </>
         )
         }
-        <li>
-          <Link key={5} href={`/1`}>
-            <Book idbook={1} name={'book.name'} price={30} img_src={'book.img_src'} description={'book.description'}></Book>
-          </Link>
+        <li onClick={handleClickTest2}>
+          <p className="cart-p">Cart</p>
+          <FontAwesomeIcon icon={faCartShopping} className="cart" />
         </li>
       </ul>
       <ConfirmationPopUp
@@ -100,8 +107,17 @@ function Header() {
 export default Header;
 
 //<li onClick={handleClick}>
-//  <Link key={5} href="/cart" className="header-cart">
-//    <p className="cart-p">Cart</p>
-//    <FontAwesomeIcon icon={faCartShopping} className="cart" />
-//  </Link>
-//</li>
+//          <Link key={5} href="/cart" className="header-cart">
+//            <p className="cart-p">Cart</p>
+//            <FontAwesomeIcon icon={faCartShopping} className="cart" />
+//          </Link>
+//        </li>
+
+
+//<li onClick={handleClick}>
+//          <Link href="/advertisement" className="header-link">
+//            Your Advertisement
+//          </Link>
+//        </li>
+
+
