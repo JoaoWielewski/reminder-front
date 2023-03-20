@@ -8,10 +8,13 @@ import Link from 'next/link';
 import './styles.css';
 import { useState } from 'react';
 import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
+import { useRouter } from 'next/navigation';
 
 function Header() {
   const { data: session } = useSession();
   const [logoutPopUp, setLogoutPopUp] = useState(false);
+  const router = useRouter();
+
 
   function handleClick() {
     const checkbox = document.getElementById('check') as HTMLInputElement;
@@ -27,7 +30,6 @@ function Header() {
   };
 
   const handleLogout = () => {
-    console.log('a');
     setLogoutPopUp(true);
   };
 
@@ -80,7 +82,7 @@ function Header() {
         )
         }
         <li onClick={handleClick}>
-          <Link href="/cart" className="header-cart">
+          <Link key={5} href="/cart" className="header-cart">
             <p className="cart-p">Cart</p>
             <FontAwesomeIcon icon={faCartShopping} className="cart" />
           </Link>
@@ -98,3 +100,10 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
+
+
+

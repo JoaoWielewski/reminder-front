@@ -18,6 +18,8 @@ function CartContainer() {
 
   if (!items) return <></>;
 
+  console.log(items);
+
   const books = items;
 
   function totalPrice() {
