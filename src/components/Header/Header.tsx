@@ -31,6 +31,11 @@ function Header() {
     setLogoutPopUp(true);
   };
 
+  const handleLogin = (e: any) => {
+    e.preventDefault();
+    signIn();
+  };
+
   return (
     <header>
       <input type="checkbox" id="check" />
@@ -67,7 +72,7 @@ function Header() {
         ) : (
         <>
           <li onClick={handleClick}>
-            <Link href="" className="header-link login-link" onClick={() => signIn()}>
+            <Link href="" className="header-link login-link" onClick={handleLogin}>
               Log In
             </Link>
           </li>

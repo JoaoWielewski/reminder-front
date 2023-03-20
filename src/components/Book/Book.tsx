@@ -22,5 +22,3 @@ function Book(params: BookType) {
 }
 
 export default Book;
-
-//<div className="book-separator"></div>
