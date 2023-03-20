@@ -81,7 +81,7 @@ function Header() {
         )
         }
         <li>
-          <Link key={5} href="/cart">
+          <Link key={5} href={`/1`}>
             <Book idbook={1} name={'book.name'} price={30} img_src={'book.img_src'} description={'book.description'}></Book>
           </Link>
         </li>
