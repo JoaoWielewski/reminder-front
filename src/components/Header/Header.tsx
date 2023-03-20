@@ -80,9 +80,8 @@ function Header() {
         )
         }
         <li onClick={handleClick}>
-          <Link href="/cart" className="header-cart" passHref prefetch>
+          <Link key={5} href="/cart">
             <p className="cart-p">Cart</p>
-            <FontAwesomeIcon icon={faCartShopping} className="cart" />
           </Link>
         </li>
       </ul>
@@ -98,3 +97,10 @@ function Header() {
 }
 
 export default Header;
+
+//<li onClick={handleClick}>
+//  <Link key={5} href="/cart" className="header-cart">
+//    <p className="cart-p">Cart</p>
+//    <FontAwesomeIcon icon={faCartShopping} className="cart" />
+//  </Link>
+//</li>
