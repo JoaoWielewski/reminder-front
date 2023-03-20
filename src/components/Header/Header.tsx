@@ -13,7 +13,8 @@ function Header() {
   const { data: session } = useSession();
   const [logoutPopUp, setLogoutPopUp] = useState(false);
 
-  function handleClick() {
+  function handleClick(e: any) {
+    e.preventDefault();
     const checkbox = document.getElementById('check') as HTMLInputElement;
     if (checkbox && checkbox.checked === true) {
       checkbox.checked = false;
