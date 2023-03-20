@@ -8,6 +8,7 @@ import Link from 'next/link';
 import './styles.css';
 import { useState } from 'react';
 import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
+import Book from '../Book/Book';
 
 function Header() {
   const { data: session } = useSession();
@@ -80,9 +81,8 @@ function Header() {
         )
         }
         <li>
-          <Link key={5} href="/cart" className="header-cart">
-            <p className="cart-p">Cart</p>
-            <FontAwesomeIcon icon={faCartShopping} className="cart" />
+          <Link key={5} href="/cart">
+            <Book idbook={1} name={'book.name'} price={30} img_src={'book.img_src'} description={'book.description'}></Book>
           </Link>
         </li>
       </ul>
