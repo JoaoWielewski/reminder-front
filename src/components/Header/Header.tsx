@@ -27,7 +27,6 @@ function Header() {
   };
 
   const handleLogout = () => {
-    console.log('a');
     setLogoutPopUp(true);
   };
 

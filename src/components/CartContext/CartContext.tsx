@@ -21,6 +21,7 @@ function CartProvider({children}: {children: React.ReactNode}) {
   const [items, setItems] = useState<BookType[]>([]);
 
   const addToCart = (idbook: number, name: string, price: number, img_src: string, description: string) => {
+    console.log('add');
     setItems((prevState) => [...prevState, { idbook, name, price, img_src, description }]);
   };
 
@@ -31,6 +32,8 @@ function CartProvider({children}: {children: React.ReactNode}) {
   const removeAllFromCart = () => {
     setItems([]);
   };
+
+  console.log('cartcontext');
 
   return (
     <CartContext.Provider value={{ items, addToCart, removeFromCart, removeAllFromCart }}>
