@@ -144,7 +144,7 @@ function Register() {
       <form onSubmit={onSubmit}>
         <Input type="text" title="Name" error={errors.name?.message?.toString()} register={register('name')} defaultValue={bookToEdit?.name || ''}></Input>
         <Input type="text" title="Price" error={errors.price?.message?.toString()} register={register('price')} defaultValue={bookToEdit?.price || ''}></Input>
-        <Input type="text" title="Image source" error={errors.imgSrc?.message?.toString()} register={register('imgSrc')} defaultValue={bookToEdit?.img_src || ''}></Input>
+        <Input type="text" title="Image URL" error={errors.imgSrc?.message?.toString()} register={register('imgSrc')} defaultValue={bookToEdit?.img_src || ''}></Input>
         <Input type="text" title="Description" error={errors.description?.message?.toString()} register={register('description')} defaultValue={bookToEdit?.description || ''}></Input>
         <p className="image-source-explanation" onClick={handleClick}>?</p>
         <FormButton title={!bookToEdit ? 'Add' : 'Edit'}></FormButton>
