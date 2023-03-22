@@ -151,7 +151,7 @@ function Register() {
       </form>
       <PopUp title={'Something went wrong'} content={!bookToEdit ? 'An error ocurred while adding your book, please try again soon...' : 'An error ocurred while editing your book, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={!bookToEdit ? 'Your book has been added to the store.' : 'Your book has been edited.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
-      <PopUp title={'How to get image source?'} content={"Look for your book cover image on google. On a computer, right-click on the image to bring up a context menu. On a mobile device, tap and hold on the image until a context menu appears. In the context menu, you should see an option labeled \"Copy image address\" or \"Copy image URL.\" Click on this option to copy the URL to your clipboard. Once you have the URL copied to your clipboard, you can paste it into the image source input."} trigger={explanationPopUp} setTrigger={setExplanationPopUp}></PopUp>
+      <PopUp title={'How to get image URL?'} content={"Search for your book cover image on google. On a computer, right-click on the image to bring up a context menu. On a mobile device, tap and hold on the image until a context menu appears. In the context menu, you should see an option labeled \"Copy image address\" or \"Copy image URL.\" Click on this option to copy the URL to your clipboard. Once you have the URL copied to your clipboard, you can paste it into the image URL input."} trigger={explanationPopUp} setTrigger={setExplanationPopUp}></PopUp>
     </FormContainer>
   );
 }
