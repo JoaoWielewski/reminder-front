@@ -77,7 +77,19 @@ function Register() {
 
   const schema = yup.object().shape({
     name: yup.string().max(100, 'Name is too long').required('Name is required'),
-    price: yup.number().typeError('Price must be a number').required('Price is required'),
+    price: yup.string().transform((value, originalValue) => {
+      const formattedValue = String(originalValue).replace(',', '.');
+      const roundedValue = parseFloat(formattedValue).toFixed(2);
+      return roundedValue;
+    })
+    .test('is-number', 'Price must be a number', (value) => {
+      if (value === undefined) {
+        return false;
+      }
+      const floatValue = parseFloat(value);
+      return !isNaN(floatValue);
+    })
+    .required('Price is required'),
     imgSrc: yup.string().max(300, 'Image source is too long').required('Image source is required'),
     description: yup.string().max(1000, 'Description is too long').required('Description is required'),
   });
