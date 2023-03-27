@@ -35,7 +35,6 @@ async function registerUser(data: UserRegistrationType) {
     body: JSON.stringify(params),
   });
 
-  console.log(response.status);
   return response.status;
 }
 

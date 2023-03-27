@@ -8,13 +8,10 @@ import Link from 'next/link';
 import './styles.css';
 import { useState } from 'react';
 import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
-import { useRouter } from 'next/navigation';
 
 function Header() {
   const { data: session } = useSession();
   const [logoutPopUp, setLogoutPopUp] = useState(false);
-  const router = useRouter();
-
 
   function handleClick() {
     const checkbox = document.getElementById('check') as HTMLInputElement;

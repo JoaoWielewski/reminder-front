@@ -21,7 +21,6 @@ function CartProvider({children}: {children: React.ReactNode}) {
   const [items, setItems2] = useState<BookType[]>([]);
 
   const addToCart = (idbook: number, name: string, price: number, img_src: string, description: string) => {
-    console.log('add');
     setItems2((prevState) => [...prevState, { idbook, name, price, img_src, description }]);
   };
 

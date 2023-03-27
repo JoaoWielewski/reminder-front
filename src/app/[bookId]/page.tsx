@@ -79,7 +79,6 @@ function BookPage({ params: { bookId }}: PageProps) {
   }
 
   const handleAdd = () => {
-    console.log(items);
     const alreadyAdded = items.some(object => object.idbook === book.idbook);
 
     if (session) {
