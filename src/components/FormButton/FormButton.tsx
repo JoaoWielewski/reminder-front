@@ -1,8 +1,8 @@
 import './styles.css';
 
-function FormButton({title}: {title: string}) {
+function FormButton({title, disabled}: {title: string, disabled: boolean}) {
   return (
-    <button type="submit" className="form-btn">{title}</button>
+    <button type="submit" className="form-btn" disabled={disabled}>{title}</button>
   );
 }
 

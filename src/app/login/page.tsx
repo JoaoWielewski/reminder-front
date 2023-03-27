@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation';
 
 import FormContainer from '@/components/FormContainer/FormContainer';
 import Input from '@/components/Input/Input';
+import FormButton from '@/components/FormButton/FormButton';
+import { useState } from 'react';
 
 type UserLoginType = {
   email: string,
@@ -57,6 +59,7 @@ const fetchUser = async (data: UserLoginType) => {
 };
 
 function Login() {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { data: session, status} = useSession();
 
@@ -70,6 +73,7 @@ function Login() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    setLoading(true);
     if (await fetchUserByEmail(data.email)) {
 
       if (await fetchUser(data)) {
@@ -91,6 +95,7 @@ function Login() {
       const emailErrorP = document.querySelector('.email-error') as HTMLElement;
       emailErrorP.innerHTML = "This email doesn't have an account";
     }
+    setLoading(false);
   });
 
   function resetEmailError() {
@@ -111,7 +116,7 @@ function Login() {
       <form onSubmit={onSubmit}>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
         <Input type="password" title="Password" error={errors.password?.message?.toString()} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
-        <button type="submit" className="login-btn">Log In</button>
+        <FormButton title="Log In" disabled={loading}></FormButton>
         <p className="create-account">
           Don't have an account? <Link href="/signup">Create an account</Link>
         </p>

@@ -17,6 +17,11 @@
   transform: scale(1.02);
 }
 
+.form-btn:disabled {
+  background-color: gray;
+  cursor: default;
+}
+
 @media (max-width: 410px) {
 
   .form-btn {

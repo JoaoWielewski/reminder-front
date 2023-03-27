@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/react';
 import PopUp from '@/components/PopUp/PopUp';
 import FormContainer from '@/components/FormContainer/FormContainer';
 import Input from '@/components/Input/Input';
+import FormButton from '@/components/FormButton/FormButton';
 
 type UserRegistrationType = {
   email: string;
@@ -57,6 +58,7 @@ const fetchUser = async (email: string) => {
 function Signup() {
   const [verifyAccountPopUp, setVerifyAccountPopUp] = useState(false);
   const [errorPopUp, setErrorPopUp] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -71,6 +73,7 @@ function Signup() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    setLoading(true);
     if (await fetchUser(data.email)) {
       const emailErrorP = document.querySelector('.email-error') as HTMLElement;
       emailErrorP.innerHTML = 'This email has already been used';
@@ -87,12 +90,11 @@ function Signup() {
 
       if (await registerUser(data) === 201) {
         setVerifyAccountPopUp(true);
-        //sendEmailOnRegister(data.email);
-        //router.push('/login');
       } else {
         setErrorPopUp(true);
       }
     }
+    setLoading(false);
   });
 
   function resetEmailError() {
@@ -109,7 +111,7 @@ function Signup() {
         <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
         <Input type="password" title="Password" error={errors.password?.message?.toString()} register={register('password')}></Input>
         <Input type="password" title="Confirm password" error={errors.confirmPassword?.message?.toString()} register={register('confirmPassword')}></Input>
-        <button type="submit" className="login-btn">Sign Up</button>
+        <FormButton title="Sign Up" disabled={loading}></FormButton>
       </form>
       <PopUp title={'A link has been sent to your email.'} content={'Now you need to verify your email in order to complete your account registration. It might take a while for you to recieve the email, also check your spam box.'} trigger={verifyAccountPopUp} setTrigger={setVerifyAccountPopUp}></PopUp>
       <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
@@ -119,3 +121,5 @@ function Signup() {
 }
 
 export default Signup;
+
+// <button type="submit" className="login-btn">Sign Up</button>

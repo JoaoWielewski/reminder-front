@@ -71,6 +71,7 @@ function Register() {
   const [explanationPopUp, setExplanationPopUp] = useState(false);
   const [bookToEdit, setBookToEdit] = useState<BookType | undefined>(undefined);
   const [executed, setExecuted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
   const { item, clearItem } = useContext(EditContext);
   const router = useRouter();
@@ -120,6 +121,7 @@ function Register() {
   }, [executed, router, successPopUp]);
 
   const onSubmit = handleSubmit(async (data) => {
+    setLoading(true);
     const inputs = document.querySelectorAll('.input-title') as unknown as HTMLInputElement[];
 
     const filteredInputs = Array.from(inputs).filter((element): element is HTMLInputElement => {
@@ -145,6 +147,7 @@ function Register() {
         setErrorPopUp(true);
       }
     }
+    setLoading(false);
   });
 
   const handleClick = () => {
@@ -159,7 +162,7 @@ function Register() {
         <Input type="text" title="Image URL" error={errors.imgSrc?.message?.toString()} register={register('imgSrc')} defaultValue={bookToEdit?.img_src || ''}></Input>
         <Input type="text" title="Description" error={errors.description?.message?.toString()} register={register('description')} defaultValue={bookToEdit?.description || ''}></Input>
         <p className="image-source-explanation" onClick={handleClick}>?</p>
-        <FormButton title={!bookToEdit ? 'Add' : 'Edit'}></FormButton>
+        <FormButton title={!bookToEdit ? 'Add' : 'Edit'} disabled={loading}></FormButton>
       </form>
       <PopUp title={'Something went wrong'} content={!bookToEdit ? 'An error ocurred while adding your book, please try again soon...' : 'An error ocurred while editing your book, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={!bookToEdit ? 'Your book has been added to the store.' : 'Your book has been edited.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
