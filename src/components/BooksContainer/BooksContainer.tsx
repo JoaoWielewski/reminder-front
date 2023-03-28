@@ -82,9 +82,12 @@ useEffect(() => {
     } else {
       fetchedBooks = session && jwt !== undefined && advertisement ? await fetchBooksByUserBySearch(jwt, searchValue) : await fetchBooksBySearch(searchValue);
     }
+    console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', fetchedBooks);
     setBooks(fetchedBooks);
+    console.log('setBooks', books);
     setJustSearched(false);
     setLoading(false);
+    console.log(books);
   })();
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [advertisement, jwt, session, searched, justSearched]);
@@ -93,6 +96,8 @@ const handleSearch = () => {
   setSearched(true);
   setJustSearched(true);
 };
+
+console.log('books', books);
 
   return (
     <section className="container">
