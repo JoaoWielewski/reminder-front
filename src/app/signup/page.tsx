@@ -12,6 +12,7 @@ import PopUp from '@/components/PopUp/PopUp';
 import FormContainer from '@/components/FormContainer/FormContainer';
 import Input from '@/components/Input/Input';
 import FormButton from '@/components/FormButton/FormButton';
+import FormLoading from '@/components/FormLoading/FormLoading';
 
 type UserRegistrationType = {
   email: string;
@@ -107,10 +108,13 @@ function Signup() {
     {!session ?
     <FormContainer title="Register your account">
       <form onSubmit={onSubmit}>
-        <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
-        <Input type="password" title="Password" error={errors.password?.message?.toString()} register={register('password')}></Input>
-        <Input type="password" title="Confirm password" error={errors.confirmPassword?.message?.toString()} register={register('confirmPassword')}></Input>
-        <FormButton title="Sign Up" disabled={loading}></FormButton>
+        <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
+        <Input type="password" title="Password" error={errors.password?.message?.toString()} disabled={loading} register={register('password')}></Input>
+        <Input type="password" title="Confirm password" error={errors.confirmPassword?.message?.toString()} disabled={loading} register={register('confirmPassword')}></Input>
+        {!loading ?
+         <FormButton title="Sign Up" disabled={loading}></FormButton> :
+         <FormLoading></FormLoading>
+         }
       </form>
       <PopUp title={'A link has been sent to your email.'} content={'Now you need to verify your email in order to complete your account registration. It might take a while for you to recieve the email, also check your spam box.'} trigger={verifyAccountPopUp} setTrigger={setVerifyAccountPopUp}></PopUp>
       <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>

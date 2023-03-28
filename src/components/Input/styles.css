@@ -7,6 +7,10 @@
   font-size: 1.5rem;
 }
 
+.input:disabled {
+  border: 0.1rem solid gray;
+}
+
 .input-div {
   position: relative;
 }
@@ -35,6 +39,10 @@
   bottom: 4.5rem;
   background-color: var(--primary);
   color: var(--white);
+}
+
+.input:disabled ~ .p-title {
+  color: gray;
 }
 
 .input-title:not(:placeholder-shown) {

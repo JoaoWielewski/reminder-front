@@ -13,6 +13,7 @@ import FormContainer from '@/components/FormContainer/FormContainer';
 import Input from '@/components/Input/Input';
 import FormButton from '@/components/FormButton/FormButton';
 import { useState } from 'react';
+import FormLoading from '@/components/FormLoading/FormLoading';
 
 type UserLoginType = {
   email: string,
@@ -114,9 +115,12 @@ function Login() {
     {!session ?
     <FormContainer title="Log into your account">
       <form onSubmit={onSubmit}>
-        <Input type="text" title="Email" error={errors.email?.message?.toString()} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
-        <Input type="password" title="Password" error={errors.password?.message?.toString()} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
-        <FormButton title="Log In" disabled={loading}></FormButton>
+        <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
+        <Input type="password" title="Password" error={errors.password?.message?.toString()} disabled={loading} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
+        {!loading ?
+         <FormButton title="Log In" disabled={loading}></FormButton> :
+         <FormLoading></FormLoading>
+        }
         <p className="create-account">
           Don't have an account? <Link href="/signup">Create an account</Link>
         </p>

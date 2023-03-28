@@ -14,6 +14,7 @@ import FormContainer from '@/components/FormContainer/FormContainer';
 import FormButton from '@/components/FormButton/FormButton';
 import { EditContext } from '@/components/EditContext/EditContext';
 import { useRouter } from 'next/navigation';
+import FormLoading from '@/components/FormLoading/FormLoading';
 
 type BookRegistrationType = {
   name: string;
@@ -157,12 +158,16 @@ function Register() {
   return (
     <FormContainer title={!bookToEdit ? 'Add your book' : 'Edit your book'}>
       <form onSubmit={onSubmit}>
-        <Input type="text" title="Name" error={errors.name?.message?.toString()} register={register('name')} defaultValue={bookToEdit?.name || ''}></Input>
-        <Input type="text" title="Price" error={errors.price?.message?.toString()} register={register('price')} defaultValue={bookToEdit?.price || ''}></Input>
-        <Input type="text" title="Image URL" error={errors.imgSrc?.message?.toString()} register={register('imgSrc')} defaultValue={bookToEdit?.img_src || ''}></Input>
-        <Input type="text" title="Description" error={errors.description?.message?.toString()} register={register('description')} defaultValue={bookToEdit?.description || ''}></Input>
+        <Input type="text" title="Name" error={errors.name?.message?.toString()} disabled={loading} register={register('name')} defaultValue={bookToEdit?.name || ''}></Input>
+        <Input type="text" title="Price" error={errors.price?.message?.toString()} disabled={loading} register={register('price')} defaultValue={bookToEdit?.price || ''}></Input>
+        <Input type="text" title="Image URL" error={errors.imgSrc?.message?.toString()} disabled={loading} register={register('imgSrc')} defaultValue={bookToEdit?.img_src || ''}></Input>
+        <Input type="text" title="Description" error={errors.description?.message?.toString()} disabled={loading} register={register('description')} defaultValue={bookToEdit?.description || ''}></Input>
         <p className="image-source-explanation" onClick={handleClick}>?</p>
-        <FormButton title={!bookToEdit ? 'Add' : 'Edit'} disabled={loading}></FormButton>
+        {!loading ?
+         <FormButton title={!bookToEdit ? 'Add' : 'Edit'} disabled={loading}></FormButton> :
+         <FormLoading></FormLoading>
+        }
+
       </form>
       <PopUp title={'Something went wrong'} content={!bookToEdit ? 'An error ocurred while adding your book, please try again soon...' : 'An error ocurred while editing your book, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Success!'} content={!bookToEdit ? 'Your book has been added to the store.' : 'Your book has been edited.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
