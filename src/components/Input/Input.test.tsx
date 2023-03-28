@@ -8,7 +8,8 @@ describe('<Input />', () => {
       const title = 'Name';
       const error = undefined;
       const register = undefined;
-      render(<Input type={type} title={title} error={error} register={register}></Input>);
+      const disabled = false;
+      render(<Input type={type} title={title} error={error} disabled={disabled} register={register}></Input>);
 
       expect(document.querySelector('.input-div')).toBeInTheDocument();
       expect(screen.getByText(title)).toBeInTheDocument();
@@ -21,8 +22,9 @@ describe('<Input />', () => {
       const title = 'Name';
       const error = undefined;
       const register = undefined;
+      const disabled = false;
       const onChangeFunction = jest.fn();
-      render(<Input type={type} title={title} error={error} register={register} onChangeFunction={onChangeFunction}></Input>);
+      render(<Input type={type} title={title} error={error} disabled={disabled} register={register} onChangeFunction={onChangeFunction}></Input>);
 
       const inputElement = screen.getByRole('textbox');
       const inputValue = 'test';
@@ -36,12 +38,24 @@ describe('<Input />', () => {
       const type = 'text';
       const title = 'Name';
       const error = 'error';
+      const disabled = false;
       const register = undefined;
       const onChangeFunction = jest.fn();
-      render(<Input type={type} title={title} error={error} register={register} onChangeFunction={onChangeFunction}></Input>);
+      render(<Input type={type} title={title} error={error} disabled={disabled} register={register} onChangeFunction={onChangeFunction}></Input>);
 
       expect(document.querySelector('.error-p')).toHaveTextContent('error');
     });
 
+    it('should render Input disabled when disabled is true', () => {
+      const type = 'text';
+      const title = 'Name';
+      const error = undefined;
+      const register = undefined;
+      const disabled = true;
+      render(<Input type={type} title={title} error={error} disabled={disabled} register={register}></Input>);
+
+      expect(document.querySelector('.input')).toBeDisabled();
+      expect(screen.getByText(title)).toBeInTheDocument();
+    });
 
 });
