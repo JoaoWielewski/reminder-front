@@ -124,5 +124,3 @@ function Signup() {
 }
 
 export default Signup;
-
-// <button type="submit" className="login-btn">Sign Up</button>

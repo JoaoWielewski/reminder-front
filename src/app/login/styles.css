@@ -91,7 +91,11 @@
 .create-account {
   font-size: 1.5rem;
   text-align: center;
-  margin: 2rem;
+  margin-top: 2rem;
+}
+
+.create-account-link {
+  text-decoration: none;
 }
 
 .error-p {
