@@ -11,6 +11,7 @@ import FormContainer from '@/components/FormContainer/FormContainer';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import PopUp from '@/components/PopUp/PopUp';
+import { sendEmailOnForgotPassword } from '@/utils/send-email';
 
 type ForgotPasswordType = {
   email: string,
@@ -32,7 +33,7 @@ const fetchUserByEmail = async (email: string) => {
 };
 
 
-function ConfirmPassword() {
+function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [forgotPasswordPopUp, setForgotPasswordPopUp] = useState(false);
 
@@ -47,8 +48,11 @@ function ConfirmPassword() {
   const onSubmit = handleSubmit(async (data) => {
     setLoading(true);
     if (await fetchUserByEmail(data.email)) {
+      const input = document.querySelector('.input-title') as HTMLInputElement;
+      input.value = '';
 
-      //
+      sendEmailOnForgotPassword(data.email);
+      setForgotPasswordPopUp(true);
 
     } else {
       const emailErrorP = document.querySelector('.email-error') as HTMLElement;
@@ -79,4 +83,4 @@ function ConfirmPassword() {
   );
 }
 
-export default ConfirmPassword;
+export default ForgotPassword;

@@ -54,3 +54,28 @@ export const sendEmailOnPayment = async (email: string, books: BookType[]) => {
     console.log(error);
   }
 };
+
+
+export const sendEmailOnForgotPassword = async (email: string) => {
+  const params = {
+    recipientEmail: email,
+  };
+
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/forgotpassword', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to send email. Server responded with ${response.status}.`);
+    }
+
+    return response.status;
+  } catch (error) {
+    console.log(error);
+  }
+};

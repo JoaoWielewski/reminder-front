@@ -125,7 +125,7 @@ function Login() {
           Don't have an account? <Link href="/signup" className="create-account-link">Create an account</Link>
         </p>
         <p className="create-account">
-          <Link href="/confirm_password" className="create-account-link">Forgot password?</Link>
+          <Link href="/forgot_password" className="create-account-link">Forgot password?</Link>
         </p>
       </form>
     </FormContainer> : <div></div>}
