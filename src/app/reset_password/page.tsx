@@ -11,6 +11,7 @@ import FormContainer from '@/components/FormContainer/FormContainer';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import PopUp from '@/components/PopUp/PopUp';
+import { useRouter } from 'next/navigation';
 
 type ForgotPasswordType = {
   newPassword: string,
@@ -19,14 +20,13 @@ type ForgotPasswordType = {
 
 const fetchVerifyResetKey = async (key: string) => {
   try {
-    console.log(key);
     const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/verify_reset_key/${key}`, {
       method: 'POST',
     });
 
     if (res.status === 200) {
-      const email = await res.json();
-      return email;
+      const responseObject = await res.json();
+      return responseObject.email;
     } else {
       return false;
     }
@@ -37,12 +37,34 @@ const fetchVerifyResetKey = async (key: string) => {
   }
 };
 
+async function resetPassword(email: string, newPassword: string) {
+
+  const params = {
+    email,
+    newPassword,
+  };
+
+  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/resetpassword`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params),
+  });
+
+  return response.status;
+}
 
 function ResetPassword() {
   const [accessGranted, setAccessGranted] = useState(false);
   const [failedVerification, setFailedVerification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successReset, setSuccessReset] = useState(false);
+  const [failedReset, setFailedReset] = useState(false);
+  const [executed, setExecuted] = useState(false);
+  const [failedVerificationClosed, setFailedVerificationClosed] = useState(false);
+  const [email, setEmail] = useState('');
+  const router = useRouter();
 
   const schema = yup.object().shape({
     newPassword: yup.string().min(6, 'Your password must have at least 6 characters').max(20, "Your password can't have more than 20 characters").required('Password is required'),
@@ -66,6 +88,13 @@ function ResetPassword() {
         input.value = '';
       });
 
+      if (await resetPassword(email, data.newPassword) === 204) {
+        setSuccessReset(true);
+        setExecuted(true);
+      } else {
+        setFailedReset(true);
+      }
+
     setLoading(false);
   });
 
@@ -79,8 +108,10 @@ function ResetPassword() {
           const result = await fetchVerifyResetKey(key);
           if (result) {
             setAccessGranted(true);
+            setEmail(result);
           } else {
             setFailedVerification(true);
+            setFailedVerificationClosed(true);
           }
         })();
       } else {
@@ -89,6 +120,13 @@ function ResetPassword() {
     }
   }, []);
 
+  useEffect(() => {
+    if (executed && !successReset) {
+      router.push('/login');
+    } else if (failedVerificationClosed && !failedVerification) {
+      router.push('forgot_password');
+    }
+  }, [executed, failedVerification, failedVerificationClosed, router, successReset]);
 
   return (
     <div>
@@ -102,7 +140,8 @@ function ResetPassword() {
            <FormLoading></FormLoading>
           }
         </form>
-        <PopUp title={'Success!'} content={'Your password has been reset. You can now login.'} trigger={successReset} setTrigger={setSuccessReset}></PopUp>
+        <PopUp title={'Success!'} content={'Your password has been reset. You can now login with your new password.'} trigger={successReset} setTrigger={setSuccessReset}></PopUp>
+        <PopUp title={'Oops!'} content={'Something went wrong while reseting your password, please try again soon...'} trigger={failedReset} setTrigger={setFailedReset}></PopUp>
         </FormContainer>)
          : <PopUp title={'Oops!'} content={'You don\'t have access to this page. If you are trying to reset your password generate a new link.'} trigger={failedVerification} setTrigger={setFailedVerification}></PopUp>}
     </div>

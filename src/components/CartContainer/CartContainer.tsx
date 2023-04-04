@@ -61,7 +61,7 @@ function CartContainer() {
       />
       <PopUp
         title={'Success!'}
-        content={'The purchase has been successfully completed.'}
+        content={'The purchase has been successfully completed. A confirmation email has been sent to you.'}
         trigger={successPopUp}
         setTrigger={setSuccessPopUp}
       />
