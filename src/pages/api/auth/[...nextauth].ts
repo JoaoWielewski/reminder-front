@@ -1,6 +1,6 @@
-import CredentialsProvider from "next-auth/providers/credentials";
-import NextAuth from "next-auth/next";
 import type { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth/next";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 type NextAuthSession = {
   id: number;
@@ -48,6 +48,7 @@ export const authOptions: NextAuthOptions = {
 
           return user;
 
+
         } catch {
           return null;
         }
@@ -70,7 +71,6 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.email = user.email;
         token.jwt = user.jwt;
-        token.role = user.role;
         token.expiration = Math.floor(actualDateInSeconds + tokenExpirationInSeconds);
       } else {
         if (!token?.expiration) return null;
@@ -83,14 +83,13 @@ export const authOptions: NextAuthOptions = {
 
     /* @ts-ignore */
     async session({ session, token}: {session: NextAuthSession, token: NextAuthSession}) {
-      if (!token.id || !token.email || !token.expiration || !token.jwt || !token.role) {
+      if (!token.id || !token.email || !token.expiration || !token.jwt) {
         return null;
       }
 
       session.jwt = token.jwt;
       session.email = token.email;
       session.id = token.id;
-      session.role = token.role;
       session.expiration = token.expiration;
 
       return session;

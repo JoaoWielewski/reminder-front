@@ -7,3 +7,60 @@
   top: 12rem;
 }
 
+.advertisement-container {
+  position: relative;
+  top: 9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.advertisement-h1 {
+  text-align: center;
+  font-size: 3.7rem;
+  padding: 2rem;
+  color: #010175;
+  position: relative;
+  top: 3rem;
+}
+
+.advertisement-btn {
+  width: 20rem;
+  height: 5rem;
+  font-size: 2rem;
+  border-radius: 1rem;
+  background-color: #131386;
+  color: var(--white);
+  cursor: pointer;
+  position: absolute;
+  left: calc(50vw - 10rem);
+  top: 12rem;
+  border: none;
+}
+
+.advertisement-btn:hover {
+  background-color: #060696;
+}
+
+@media (max-width: 800px) {
+
+  .advertisement-btn {
+    top: 11.5rem;
+  }
+
+}
+
+@media (max-width: 450px) {
+
+  .advertisement-h1 {
+    font-size: 3.3rem;
+  }
+
+  .advertisement-btn {
+    width: 20rem;
+    height: 5rem;
+    font-size: 1.8rem;
+  }
+
+}

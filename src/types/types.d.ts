@@ -1,11 +1,15 @@
-type BookType = {
-  idbook: number;
-  name: string;
-  price: number;
-  img_src: string;
-  description: string;
+export type ReminderType = {
+  id: string
+  doctorId: string
+  pacientName: string
+  pacientPhone: string
+  periodType: string
+  periodQuantity: string
+  expectedReturnDate: Date
+  status: string
+  createdAt: Date
+  updatedAt: Date
 };
 
-export default BookType;
 
 

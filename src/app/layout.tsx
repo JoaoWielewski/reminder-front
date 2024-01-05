@@ -1,11 +1,11 @@
 import './global.css';
 import Header from "@/components/Header/Header";
-import { Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import AuthContext from '@/components/AuthContext/AuthContext';
 import CartProvider from '@/components/CartContext/CartContext';
 import EditProvider from '@/components/EditContext/EditContext';
 
-const roboto = Roboto({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '700'],
 });
@@ -23,8 +23,7 @@ export default function RootLayout({
         <AuthContext>
           <CartProvider>
           <EditProvider>
-            <main className={roboto.className}>
-              <Header></Header>
+            <main className={inter.className}>
               {children}
             </main>
           </EditProvider>

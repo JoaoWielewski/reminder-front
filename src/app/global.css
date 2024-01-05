@@ -3,13 +3,18 @@ html {
 }
 
 :root {
-  --primary: #000058;
+  --primary: #02026e;
   --secondary:#c89a13;
   --black: #102530;
   --white: #ECE9EA;
   --lighter_blue: #2626ae;
   --lighter_yellow: #cda429;
-  --primary_hover: #010168;
+  --primary_hover: #01018a;
+  --light_gray: rgb(248, 249, 250)
+  --gray: rgb(160, 174, 192)
+  --green: rgb(104, 211, 145)
+  --dark_gray: rgb(45, 55, 72)
+  --lighter_gray: rgb(226, 232, 240)
 }
 
 * {
@@ -19,7 +24,7 @@ html {
 }
 
 body {
-  background-color: var(--white);
+  background-color: #d2d8e9;
 }
 
 *:focus {

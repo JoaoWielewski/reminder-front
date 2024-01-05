@@ -3,7 +3,7 @@
 
 import { signIn, signOut, useSession} from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faBars} from '@fortawesome/free-solid-svg-icons';
+import { faBars} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import './styles.css';
 import { useState } from 'react';
@@ -43,51 +43,35 @@ function Header() {
       </label>
       <label onClick={handleClick}>
         <Link href="/" className="header-logo">
-          BookStore
+          Lembretes
         </Link>
       </label>
       <ul>
         <li onClick={handleClick}>
-          <Link href="/" className="header-link">
-            Catalog
-          </Link>
-        </li>
-        <li onClick={handleClick}>
-          <Link href="/advertisement" className="header-link">
-            Your Advertisement
-          </Link>
-        </li>
-        <li className="mobile-cart" onClick={handleClick}>
-          <Link href="/cart" className="header-link">
-            Cart
+          <Link href="/meus-dados" className="header-link">
+            Meus dados
           </Link>
         </li>
         {session?.user ? (
         <>
           <li onClick={handleLogout}>
-            <a className="header-link logout-link" >Log Out</a>
+            <a className="header-link logout-link" >Sair</a>
           </li>
         </>
         ) : (
         <>
           <li onClick={handleClick}>
             <Link href="" className="header-link login-link" onClick={handleLogin}>
-              Log In
+              Logar
             </Link>
           </li>
         </>
         )
         }
-        <li onClick={handleClick}>
-          <Link key={5} href="/cart" className="header-cart">
-            <p className="cart-p">Cart</p>
-            <FontAwesomeIcon icon={faCartShopping} className="cart" />
-          </Link>
-        </li>
       </ul>
       <ConfirmationPopUp
-        title={'Sure?'}
-        content={'Are you sure you want to log out?'}
+        title={'Certeza?'}
+        content={'Deseja mesmo sair de sua conta?'}
         trigger={logoutPopUp}
         setTrigger={setLogoutPopUp}
         onDialog={isSure}

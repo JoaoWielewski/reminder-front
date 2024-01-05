@@ -13,7 +13,7 @@ function PopUp(props: PopUpType) {
         <div className="popup-inner">
           <h1 className="popup-title">{props.title}</h1>
           <h2 className="popup-content">{props.content}</h2>
-          <button className="popup-btn" onClick={() => props.setTrigger(false)}>Close</button>
+          <button className="popup-btn" onClick={() => props.setTrigger(false)}>Fechar</button>
         </div>
       </section>
   ) : <section></section>;

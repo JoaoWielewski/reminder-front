@@ -23,7 +23,7 @@ type UserLoginType = {
 const fetchUserByEmail = async (email: string) => {
 
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}`);
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/doctor-email/${email}`);
     if (!res.ok) {
       throw new Error(`Failed to fetch user by email: ${res.statusText}`);
     }
@@ -42,7 +42,7 @@ const fetchUser = async (data: UserLoginType) => {
   };
 
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/user', {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,15 +65,16 @@ function Login() {
   const { data: session, status} = useSession();
 
   const schema = yup.object().shape({
-    email: yup.string().email('Email must be a valid email').required('Email is required'),
-    password: yup.string().required('Password is required'),
+    email: yup.string().email('Este email não é válido').required('Insira o email, por favor'),
+    password: yup.string().required('Insira a senha, por favor'),
   });
 
   const { register, handleSubmit, formState: { errors }} = useForm<UserLoginType>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (data, e) => {
+    e?.preventDefault();
     setLoading(true);
     if (await fetchUserByEmail(data.email)) {
 
@@ -89,12 +90,12 @@ function Login() {
         router.push(redirect as string);
       } else {
         const passwordErrorP = document.querySelector('.password-error') as HTMLElement;
-        passwordErrorP.innerHTML = "Password is wrong";
+        passwordErrorP.innerHTML = "A senha está incorreta";
       }
 
     } else {
       const emailErrorP = document.querySelector('.email-error') as HTMLElement;
-      emailErrorP.innerHTML = "This email doesn't have an account";
+      emailErrorP.innerHTML = "Este email não possui uma conta";
     }
     setLoading(false);
   });
@@ -113,19 +114,16 @@ function Login() {
   return (
     <>
     {!session ?
-    <FormContainer title="Log into your account">
+    <FormContainer title="Entrar na conta">
       <form onSubmit={onSubmit}>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
         <Input type="password" title="Password" error={errors.password?.message?.toString()} disabled={loading} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
         {!loading ?
-         <FormButton title="Log In" disabled={loading}></FormButton> :
+         <FormButton title="Entrar" disabled={loading}></FormButton> :
          <FormLoading></FormLoading>
         }
         <p className="create-account">
-          Don't have an account? <Link href="/signup" className="create-account-link">Create an account</Link>
-        </p>
-        <p className="create-account">
-          <Link href="/forgot_password" className="create-account-link">Forgot password?</Link>
+          Não tem uma conta? <Link href="/criar-conta" className="create-account-link">Criar uma conta</Link>
         </p>
       </form>
     </FormContainer> : <div></div>}

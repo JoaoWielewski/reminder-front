@@ -32,8 +32,7 @@ header li {
 }
 
 .header-link:hover {
-  background-color: var(--lighter_blue);
-  border-radius: 2rem;
+  text-decoration: dotted;
 }
 
 .header-logo {
@@ -140,11 +139,6 @@ header li {
     left: 2rem
   }
 
-  .header-cart:hover, .header-cart:active {
-    border: 0.1rem solid var(--lighter_yellow);
-    transition: all 0.2s ease-in-out;
-  }
-
 }
 
 
@@ -231,10 +225,6 @@ header li {
 
   .logout-link {
     color: rgb(193, 9, 9);
-  }
-
-  .login-link {
-    color: rgb(90, 167, 249);
   }
 
 }

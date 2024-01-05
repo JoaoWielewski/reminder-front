@@ -21,7 +21,7 @@ type UserRegistrationType = {
 }
 
 
-async function registerUser(data: UserRegistrationType) {
+async function updateUser(data: UserRegistrationType) {
   const params = {
     email: data.email,
     password: data.password,
@@ -88,7 +88,7 @@ function Signup() {
         input.value = '';
       });
 
-      if (await registerUser(data) === 201) {
+      if (await updateUser(data) === 200) {
         setVerifyAccountPopUp(true);
       } else {
         setErrorPopUp(true);

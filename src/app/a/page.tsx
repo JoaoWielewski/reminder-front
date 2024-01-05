@@ -2,10 +2,10 @@
 
 import RemindersContainer from '@/components/RemindersContainer/RemindersContainer';
 import './styles.css';
-import BooksContainer from '@/components/RemindersContainer/RemindersContainer';
 import { frontEndRedirect } from '@/utils/front-end-redirect';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import LogIn from '@/components/LogIn/LogIn';
 
 function Home() {
   const {data: session, status} = useSession();
@@ -20,13 +20,7 @@ function Home() {
 
   return (
     <>
-      <div className="advertisement-container">
-        <h1 className="advertisement-h1">Lembretes</h1>
-        <Link href="/agendar">
-          <button className="advertisement-btn">Agendar lembrete</button>
-        </Link>
-      </div>
-      <RemindersContainer></RemindersContainer>
+      <LogIn></LogIn>
     </>
   );
 }

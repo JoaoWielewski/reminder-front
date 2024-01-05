@@ -42,10 +42,13 @@
   font-size: 1.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
   width: 5rem;
   margin-left: 1rem;
   border: none;
+}
+
+.confirmation-popup-btn:hover {
+  background-color: var(--primary_hover);
 }
 
 .popup-btn:hover {

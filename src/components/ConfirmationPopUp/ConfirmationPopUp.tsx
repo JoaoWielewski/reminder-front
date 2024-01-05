@@ -5,7 +5,7 @@ type PopUpType = {
   content: string,
   trigger: boolean,
   setTrigger: Function,
-  onDialog: Function,
+  onDialog: Function
 }
 
 function ConfirmationPopUp(props: PopUpType) {
@@ -25,8 +25,8 @@ function ConfirmationPopUp(props: PopUpType) {
         <div className="popup-inner">
           <h1 className="popup-title">{props.title}</h1>
           <h2 className="popup-content">{props.content}</h2>
-          <button className="confirmation-popup-btn" onClick={handleYes}>Yes</button>
-          <button className="confirmation-popup-btn" onClick={handleNo}>No</button>
+          <button className="confirmation-popup-btn" onClick={handleYes}>Sim</button>
+          <button className="confirmation-popup-btn" onClick={handleNo}>Não</button>
         </div>
       </section>
   ) : <section></section>;
