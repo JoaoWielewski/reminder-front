@@ -11,5 +11,10 @@ export type ReminderType = {
   updatedAt: Date
 };
 
+export type UserType = {
+  id: string
+  name: string
+  
+}
 
 

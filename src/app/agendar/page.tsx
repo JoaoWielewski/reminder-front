@@ -2,18 +2,20 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSession } from 'next-auth/react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import './styles.css';
 
-import { EditContext } from '@/components/EditContext/EditContext';
 import FormButton from '@/components/FormButton/FormButton';
 import FormContainer from '@/components/FormContainer/FormContainer';
 import FormLoading from '@/components/FormLoading/FormLoading';
 import Input from '@/components/Input/Input';
 import InputSelect from '@/components/InputSelect/InputSelect';
+import LogIn from '@/components/LogIn/LogIn';
 import PopUp from '@/components/PopUp/PopUp';
+import SideBar from '@/components/SideBar/SideBar';
+import { frontEndRedirect } from '@/utils/front-end-redirect';
 import { useRouter } from 'next/navigation';
 
 type ReminderCreationType = {
@@ -55,10 +57,17 @@ function Register() {
   const router = useRouter();
   const {data: session, status} = useSession();
 
+  useEffect(() => {
+    if (!successPopUp && executed) {
+      router.push('/');
+    }
+  }, [executed, router, successPopUp]);
+
+
   const schema = yup.object().shape({
     name: yup.string().max(100, 'Nome muito longo').required('Insira o nome, por favor.'),
     quantity: yup.string()
-    .test('is-number', 'Selecione a unidade de tempo e insira sua quantidade', (value) => {
+    .test('is-number', 'Insira a quantidade', (value) => {
       if (value === undefined) {
         return false;
       }
@@ -73,11 +82,13 @@ function Register() {
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    if (!successPopUp && executed) {
-      router.push('/');
-    }
-  }, [executed, router, successPopUp]);
+  if (!session && status !== 'loading') {
+    return frontEndRedirect('/agendar');
+  }
+
+  if (typeof window !== 'undefined' && status === 'loading') return null;
+
+  if (!session) return null;
 
   const onSubmit = handleSubmit(async (data) => {
     setLoading(true);
@@ -139,6 +150,8 @@ function Register() {
 
   return (
     <>
+    <SideBar active='schedule'></SideBar>
+    <LogIn></LogIn>
     {session ?
     <FormContainer title={'Agendar lembrete'}>
       <form onSubmit={onSubmit}>
@@ -147,7 +160,7 @@ function Register() {
         <InputSelect title="a" error={errors.unit?.message?.toString()} disabled={loading} register={register('unit')} onChangeFunction={getUnit}></InputSelect>
         <Input type="text" title={unitTitle} error={errors.quantity?.message?.toString()} disabled={loading || selectDisabled} register={register('quantity')}></Input>
         {!loading ?
-         <FormButton title={'Agendar'} disabled={loading}></FormButton> :
+         <FormButton title={'AGENDAR'} disabled={loading}></FormButton> :
          <FormLoading></FormLoading>
         }
 

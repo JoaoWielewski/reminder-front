@@ -4,11 +4,11 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Header() {
+function LogIn() {
   const { data: session } = useSession();
   const [logoutPopUp, setLogoutPopUp] = useState(false);
 
@@ -32,16 +32,17 @@ function Header() {
         {session?.user ? (
         <>
           <div onClick={handleLogout}>
-            <FontAwesomeIcon icon={faUser} className="user-icon" />
+            <FontAwesomeIcon icon={faRightFromBracket} className="bracket-icon" />
             <a className="login-link" >Sair</a>
           </div>
         </>
         ) : (
         <>
           <div>
-            <Link href="" className="login-link" onClick={handleLogin}>
-              Entrar
-            </Link>
+            <div onClick={handleLogin}>
+              <FontAwesomeIcon icon={faUser} className="user-icon" />
+              <a className="login-link" >Entrar</a>
+            </div>
           </div>
         </>
         )
@@ -57,7 +58,7 @@ function Header() {
   );
 }
 
-export default Header;
+export default LogIn;
 
 
 

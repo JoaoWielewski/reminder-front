@@ -1,18 +1,19 @@
 .form-btn {
-  width: 8rem;
-  height: 4rem;
-  margin-left: 12.5rem;
+  width: 20rem;
+  height: 4.5rem;
+  margin-left: 6.5rem;
   margin-top: 1rem;
-  background-color: var(--primary);
-  border-radius: 1rem;
-  color: var(--white);
-  font-size: 1.5rem;
+  background-color: #4f4fdb;
+  border-radius: 1.2rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
   border: none;
 }
 
 .form-btn:hover {
-  background: var(--primary_hover);
+  background: #5656dd;
 }
 
 .form-btn:disabled {

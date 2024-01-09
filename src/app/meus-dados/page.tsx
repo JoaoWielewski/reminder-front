@@ -13,6 +13,7 @@ import FormContainer from '@/components/FormContainer/FormContainer';
 import FormLoading from '@/components/FormLoading/FormLoading';
 import Input from '@/components/Input/Input';
 import PopUp from '@/components/PopUp/PopUp';
+import { frontEndRedirect } from '@/utils/front-end-redirect';
 
 type UserRegistrationType = {
   phone: string;
@@ -143,6 +144,14 @@ function Dados() {
     fetchData();
   }, [session, setValue]);
 
+  if (!session && status !== 'loading') {
+    return frontEndRedirect('/agendar');
+  }
+
+  if (typeof window !== 'undefined' && status === 'loading') return null;
+
+  if (!session) return null;
+
   return (
     <>
     {session ?
@@ -154,7 +163,7 @@ function Dados() {
         <Input type="schedulePhone" title="Número de celular para agendamento" defaultValue={user?.schedulePhone} error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
         <Input type="daysToSchedule" title="Média de dias para consulta" defaultValue={user?.daysToSchedule} error={errors.daysToSchedule?.message?.toString()} disabled={loading} register={register('daysToSchedule')}></Input>
         {!loading ?
-         <FormButton title="Editar" disabled={loading}></FormButton> :
+         <FormButton title="EDITAR" disabled={loading}></FormButton> :
          <FormLoading></FormLoading>
          }
       </form>

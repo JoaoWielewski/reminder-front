@@ -20,6 +20,7 @@ function InputSelect(props: InputSelectType) {
 
   return (
     <>
+    <div className='input-select-title'>Selecione uma das opções</div>
       <nav>
         <input type="radio" className='radio-input' id="x1" name="x" value="day" onChange={handleChange}/>
         <label htmlFor="x1">Dias</label>

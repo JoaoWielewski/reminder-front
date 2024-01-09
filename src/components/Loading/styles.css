@@ -4,15 +4,15 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  left: calc(50vw - 4.5rem);
-  top: 45rem;
+  left: 52rem;
+  top: 27rem;
 }
 
 .loading::after {
   content: '';
-  width: 8rem;
-  height: 8rem;
-  box-shadow: 0rem 0.4rem 0.1rem var(--primary);
+  width: 6rem;
+  height: 6rem;
+  box-shadow: 0rem 0.4rem 0.1rem #5e5edd;
   border-radius: 50%;
   animation: loading 1s linear infinite;
 }

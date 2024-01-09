@@ -21,8 +21,8 @@ function Input(props: InputType) {
 
   return (
       <div className="input-div">
-        <input type={props.type} className="input input-title" placeholder=" " disabled={props.disabled} autoComplete="off" {...props.register} defaultValue={props.defaultValue}/>
-        <p className="input-p p-title">{props.title}</p>
+        <p className='input-title-p'>{props.title}</p>
+        <input type={props.type} className="input input-title" placeholder={props.title} disabled={props.disabled} autoComplete="off" {...props.register} defaultValue={props.defaultValue}/>
         <p className="error-p">{props.error}</p>
         <p className={`error-p ${props.optionalErrorReference}-error`}></p>
       </div>

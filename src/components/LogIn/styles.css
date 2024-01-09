@@ -3,8 +3,13 @@
   font-size: 1.4rem;
   color: #718096;
   position: absolute;
-  right: 3rem;
-  top: 2.5rem
+  right: 3.1rem;
+  top: 1.8rem;
+  cursor: pointer;
+  padding: 0.7rem;
+  padding-left: 3rem;
+  padding-right: 0.9rem;
+  border-radius: 1rem;
 }
 
 .user-icon {
@@ -12,6 +17,21 @@
   font-size: 1.4rem;
   color: #718096;
   position: absolute;
-  right: 6.2rem;
-  top: 2.6rem
+  right: 8.7rem;
+  top: 2.6rem;
+  cursor: pointer;
+}
+
+.bracket-icon {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #718096;
+  position: absolute;
+  right: 7.2rem;
+  top: 2.66rem;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  background-color: rgba(201, 201, 201, 0.13);
 }

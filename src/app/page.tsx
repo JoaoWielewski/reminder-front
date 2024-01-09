@@ -1,11 +1,11 @@
 'use client';
 
-import RemindersContainer from '@/components/RemindersContainer/RemindersContainer';
+import LogIn from '@/components/LogIn/LogIn';
 import './styles.css';
-import BooksContainer from '@/components/RemindersContainer/RemindersContainer';
-import { frontEndRedirect } from '@/utils/front-end-redirect';
+import SideBar from '@/components/SideBar/SideBar';
+import Dashboard from '@/components/Dashboard/Dashboard';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
+import { frontEndRedirect } from '@/utils/front-end-redirect';
 
 function Home() {
   const {data: session, status} = useSession();
@@ -18,15 +18,12 @@ function Home() {
 
   if (!session) return null;
 
+
   return (
     <>
-      <div className="advertisement-container">
-        <h1 className="advertisement-h1">Lembretes</h1>
-        <Link href="/agendar">
-          <button className="advertisement-btn">Agendar lembrete</button>
-        </Link>
-      </div>
-      <RemindersContainer></RemindersContainer>
+      <SideBar active='dashboard'></SideBar>
+      <LogIn></LogIn>
+      <Dashboard></Dashboard>
     </>
   );
 }

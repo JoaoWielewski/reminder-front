@@ -119,7 +119,7 @@ function Login() {
         <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
         <Input type="password" title="Password" error={errors.password?.message?.toString()} disabled={loading} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
         {!loading ?
-         <FormButton title="Entrar" disabled={loading}></FormButton> :
+         <FormButton title="ENTRAR" disabled={loading}></FormButton> :
          <FormLoading></FormLoading>
         }
         <p className="create-account">
