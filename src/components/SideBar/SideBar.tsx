@@ -1,6 +1,6 @@
 'use client';
 
-import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { faHouse, faUser, faCirclePlus, faFileLines } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import './styles.css';
@@ -14,9 +14,9 @@ function SideBar(props: SideBarType) {
   return (
     <div>
       <div>
-        <FontAwesomeIcon icon={faClock} className="clock-icon" />
+        <FontAwesomeIcon icon={faCalendar} className="clock-icon" />
         <Link href="/" className="sidebar-header">
-          ZAP LEMBRETES
+          LEMBRA+
         </Link>
       </div>
       <div className="sidebar-divider"></div>
@@ -41,7 +41,7 @@ function SideBar(props: SideBarType) {
         <div className='inactive-sidebar-text'>Agendar lembrete</div>
       </Link>}
 
-      {props.active === 'buy' ?
+      {props.active === 'plans' ?
       <div className='sidebar-item sidebar-item3 active-item'>
         <FontAwesomeIcon icon={faFileLines} className="active-icon active-icon-plus" />
         <div className='active-sidebar-text'>Adquirir lembretes</div>

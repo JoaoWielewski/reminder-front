@@ -9,6 +9,7 @@
   border-radius: 1.5rem;
   background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(0deg, #E2E8F0, #E2E8F0);
   padding-left: 2rem;
+  color:#2D3748;
 }
 
 .input:disabled {

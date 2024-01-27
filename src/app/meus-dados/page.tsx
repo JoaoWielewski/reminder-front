@@ -12,7 +12,9 @@ import FormButton from '@/components/FormButton/FormButton';
 import FormContainer from '@/components/FormContainer/FormContainer';
 import FormLoading from '@/components/FormLoading/FormLoading';
 import Input from '@/components/Input/Input';
+import LogIn from '@/components/LogIn/LogIn';
 import PopUp from '@/components/PopUp/PopUp';
+import SideBar from '@/components/SideBar/SideBar';
 import { frontEndRedirect } from '@/utils/front-end-redirect';
 
 type UserRegistrationType = {
@@ -145,7 +147,7 @@ function Dados() {
   }, [session, setValue]);
 
   if (!session && status !== 'loading') {
-    return frontEndRedirect('/agendar');
+    return frontEndRedirect('/meus-dados');
   }
 
   if (typeof window !== 'undefined' && status === 'loading') return null;
@@ -155,21 +157,25 @@ function Dados() {
   return (
     <>
     {session ?
-    <FormContainer title="Meus dados">
-      <form onSubmit={onSubmit}>
-        <Input type="phone" title="Meu número de celular" defaultValue={user?.phone} error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')}></Input>
-        <Input type="email" title="Meu email" defaultValue={user?.email} error={errors.email?.message?.toString()} disabled={loading} register={register('email')}></Input>
-        <Input type="specialty" title="Minha especialidade" defaultValue={user?.specialty} error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
-        <Input type="schedulePhone" title="Número de celular para agendamento" defaultValue={user?.schedulePhone} error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
-        <Input type="daysToSchedule" title="Média de dias para consulta" defaultValue={user?.daysToSchedule} error={errors.daysToSchedule?.message?.toString()} disabled={loading} register={register('daysToSchedule')}></Input>
-        {!loading ?
-         <FormButton title="EDITAR" disabled={loading}></FormButton> :
-         <FormLoading></FormLoading>
-         }
-      </form>
-      <PopUp title={'Successo!'} content={'Os seus dados foram alterados'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
-      <PopUp title={'Algo deu errado'} content={'Um erro ocorreu ao atualizar os seus dados, tente novamente mais tarde...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
-    </FormContainer> : <FormContainer title="Você não pode mudar seus dados antes de entrar em sua conta."><div></div></FormContainer>}
+    <>
+      <SideBar active='profile'></SideBar>
+      <LogIn></LogIn>
+      <FormContainer title="Meus dados">
+        <form onSubmit={onSubmit}>
+          <Input type="phone" title="Meu número de celular" defaultValue={user?.phone} error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')}></Input>
+          <Input type="email" title="Meu email" defaultValue={user?.email} error={errors.email?.message?.toString()} disabled={loading} register={register('email')}></Input>
+          <Input type="specialty" title="Minha especialidade" defaultValue={user?.specialty} error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
+          <Input type="schedulePhone" title="Número de celular para agendamento" defaultValue={user?.schedulePhone} error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
+          <Input type="daysToSchedule" title="Média de dias para consulta" defaultValue={user?.daysToSchedule} error={errors.daysToSchedule?.message?.toString()} disabled={loading} register={register('daysToSchedule')}></Input>
+          {!loading ?
+           <FormButton title="EDITAR" disabled={loading}></FormButton> :
+           <FormLoading></FormLoading>
+           }
+        </form>
+        <PopUp title={'Successo!'} content={'Os seus dados foram alterados'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
+        <PopUp title={'Algo deu errado'} content={'Um erro ocorreu ao atualizar os seus dados, tente novamente mais tarde...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
+      </FormContainer>
+      </> : <FormContainer title="Você não pode mudar seus dados antes de entrar em sua conta."><div></div></FormContainer>}
     </>
   );
 }

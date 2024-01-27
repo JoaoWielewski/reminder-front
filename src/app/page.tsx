@@ -6,6 +6,7 @@ import SideBar from '@/components/SideBar/SideBar';
 import Dashboard from '@/components/Dashboard/Dashboard';
 import { useSession } from 'next-auth/react';
 import { frontEndRedirect } from '@/utils/front-end-redirect';
+import Head from './head';
 
 function Home() {
   const {data: session, status} = useSession();

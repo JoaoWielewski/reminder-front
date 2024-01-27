@@ -29,6 +29,7 @@
 .popup-title {
   font-size: 2rem;
   margin-bottom: 4rem;
+  color: #2D3748;
 }
 
 .popup-content {
@@ -39,8 +40,8 @@
 .confirmation-popup-btn {
   background-color: var(--primary);
   color: var(--white);
-  padding: 0.8rem;
-  font-size: 1.5rem;
+  padding: 0.7rem;
+  font-size: 1.4rem;
   border-radius: 0.5rem;
   cursor: pointer;
   width: 5rem;
@@ -50,8 +51,4 @@
 
 .confirmation-popup-btn:hover {
   background-color: var(--primary_hover);
-}
-
-.popup-btn:hover {
-  background: #010168;
 }

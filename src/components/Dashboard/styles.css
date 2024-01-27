@@ -47,7 +47,7 @@
   padding: 1.2rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  background-color: #4f4fdb;
+  background-color: var(--primary);
   border-radius: 1.2rem;
   color: white;
   top: 1.7rem;
@@ -139,7 +139,7 @@ th {
 .table-btn {
   padding: 0px, 8px, 0px, 8px;
   border-radius: 1.2rem;
-  background-color: #4f4fdb;
+  background-color: var(--primary);
   font-size: 1rem;
   color: white;
   font-weight: 700;
@@ -153,12 +153,12 @@ th {
 }
 
 .table-btn:hover {
-  background-color: #5e5edd;
+  background-color: var(--primary_hover);
 }
 
 .plus-icon {
   font-size: 2rem;
-  color: #4f4fdb;
+  color: var(--primary);
   position: absolute;
   text-decoration: none;
   top: 3.1rem;
@@ -166,7 +166,7 @@ th {
 }
 
 .plus-icon:hover {
-  color: #5656dd;
+  color: var(--primary_hover);
 }
 
 .empty-div {

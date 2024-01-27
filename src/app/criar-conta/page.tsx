@@ -1,34 +1,46 @@
 'use client';
 
-import './styles.css';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import './styles.css';
 
-import PopUp from '@/components/PopUp/PopUp';
-import FormContainer from '@/components/FormContainer/FormContainer';
-import Input from '@/components/Input/Input';
 import FormButton from '@/components/FormButton/FormButton';
+import FormContainer from '@/components/FormContainer/FormContainer';
 import FormLoading from '@/components/FormLoading/FormLoading';
+import Input from '@/components/Input/Input';
+import InputSelectPronoun from '@/components/InputSelectPronoun/InputSelect';
+import PopUp from '@/components/PopUp/PopUp';
 
 type UserRegistrationType = {
+  name: string;
+  phone: string;
+  specialty: string;
   email: string;
+  pronoun: string;
+  daysToSchedule: number;
+  schedulePhone: string;
   password: string;
   confirmPassword: string;
 }
 
 
-async function updateUser(data: UserRegistrationType) {
+async function createUser(data: UserRegistrationType) {
   const params = {
     email: data.email,
     password: data.password,
-    confirmPassword: data.confirmPassword,
+    name: data.name,
+    specialty: data.specialty,
+    phone: data.phone,
+    pronoun: data.pronoun,
+    daysToSchedule: data.daysToSchedule,
+    schedulePhone: data.schedulePhone,
   };
 
-  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/users', {
+  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/doctor', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -39,10 +51,10 @@ async function updateUser(data: UserRegistrationType) {
   return response.status;
 }
 
-const fetchUser = async (email: string) => {
+const fetchUserByEmail = async (email: string) => {
 
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/users/${email}`);
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + `/doctor-email/${email}`);
     if (!res.ok) {
       throw new Error(`Failed to fetch user by email: ${res.statusText}`);
     }
@@ -56,16 +68,20 @@ const fetchUser = async (email: string) => {
 
 
 function Signup() {
-  const [verifyAccountPopUp, setVerifyAccountPopUp] = useState(false);
+  const [successPopUp, setSuccessPopUp] = useState(false);
   const [errorPopUp, setErrorPopUp] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
   const { data: session } = useSession();
 
   const schema = yup.object().shape({
-    email: yup.string().email('Email must be a valid email').max(100, 'Your email is too long').required('Email is required'),
-    password: yup.string().min(6, 'Your password must have at least 6 characters').max(20, "Your password can't have more than 20 characters").required('Password is required'),
-    confirmPassword: yup.string().oneOf([yup.ref('password'), null], "Passwords don't match").required('Confirm password is required'),
+    name: yup.string().required('Insira seu nome, por favor'),
+    phone: yup.string().required('Insira seu número de celular, por favor'),
+    specialty: yup.string().required('Insira sua especialidade, por favor'),
+    schedulePhone: yup.string().required('Insira o número de celular para agendamento'),
+    daysToSchedule: yup.string().required('Insira a quantidade de dias, por favor'),
+    email: yup.string().email('Insira um email válido, por favor').max(100, 'O seu email está muito longo').required('Insira um email, por favor'),
+    password: yup.string().required('Insira a senha, por favor'),
+    confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não estão iguais").required('Insira a senha novamente, por favor'),
   });
 
   const { register, handleSubmit, formState: { errors } } = useForm<UserRegistrationType>({
@@ -74,9 +90,9 @@ function Signup() {
 
   const onSubmit = handleSubmit(async (data) => {
     setLoading(true);
-    if (await fetchUser(data.email)) {
+    if (await fetchUserByEmail(data.email)) {
       const emailErrorP = document.querySelector('.email-error') as HTMLElement;
-      emailErrorP.innerHTML = 'This email has already been used';
+      emailErrorP.innerHTML = 'Este email já foi usado em uma conta existente';
     } else {
       const inputs = document.querySelectorAll('.input-title') as unknown as HTMLInputElement[];
 
@@ -88,8 +104,8 @@ function Signup() {
         input.value = '';
       });
 
-      if (await updateUser(data) === 200) {
-        setVerifyAccountPopUp(true);
+      if (await createUser(data) === 201) {
+        setSuccessPopUp(true);
       } else {
         setErrorPopUp(true);
       }
@@ -102,23 +118,28 @@ function Signup() {
     emailErrorP.innerHTML = '';
   }
 
-
   return (
     <>
     {!session ?
-    <FormContainer title="Register your account">
+    <FormContainer title="Criar conta">
       <form onSubmit={onSubmit}>
+        <Input type="text" title="Nome completo" error={errors.name?.message?.toString()} disabled={loading} register={register('name')}></Input>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
-        <Input type="password" title="Password" error={errors.password?.message?.toString()} disabled={loading} register={register('password')}></Input>
-        <Input type="password" title="Confirm password" error={errors.confirmPassword?.message?.toString()} disabled={loading} register={register('confirmPassword')}></Input>
+        <Input type="text" title="Celular" description='exemplo: 41997549270' error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')}></Input>
+        <Input type="text" title="Especialidade" description='exemplo: Oftalmologista' error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
+        <Input type="text" title="Celular para realizar o agendamento" description='exemplo: 41997549270' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
+        <Input type="text" title="Quantidade de dias para agendar com você" description='média de dias para marcar um horário' error={errors.daysToSchedule?.message?.toString()} disabled={loading} register={register('daysToSchedule')}></Input>
+        <InputSelectPronoun title="a" error={errors.pronoun?.message?.toString()} disabled={loading} register={register('pronoun')}></InputSelectPronoun>
+        <Input type="password" title="Senha" error={errors.password?.message?.toString()} disabled={loading} register={register('password')}></Input>
+        <Input type="password" title="Confirmar senha" error={errors.confirmPassword?.message?.toString()} disabled={loading} register={register('confirmPassword')}></Input>
         {!loading ?
-         <FormButton title="Sign Up" disabled={loading}></FormButton> :
+         <FormButton title="CRIAR" disabled={loading}></FormButton> :
          <FormLoading></FormLoading>
          }
       </form>
-      <PopUp title={'A link has been sent to your email.'} content={'Now you need to verify your email in order to complete your account registration. It might take a while for you to recieve the email, also check your spam box.'} trigger={verifyAccountPopUp} setTrigger={setVerifyAccountPopUp}></PopUp>
-      <PopUp title={'Something went wrong'} content={'An error ocurred while registering your account, please try again soon...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
-    </FormContainer> : <FormContainer title="You can't register an account while logged in"><div></div></FormContainer>}
+      <PopUp title={'Sucesso!'} content={'A sua conta foi criada.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
+      <PopUp title={'Algo deu errado'} content={'Ocorreu um erro ao tentar criar sua conta, tente novamente mais tarde...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
+    </FormContainer> : <FormContainer title="Você não pode criar uma conta enquanto estiver logado."><div></div></FormContainer>}
     </>
   );
 }

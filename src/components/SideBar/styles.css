@@ -11,7 +11,7 @@
 .clock-icon {
   font-weight: 700;
   font-size: 2rem;
-  color: #2D3748;
+  color: var(--primary);
   position: absolute;
   top: 4.5rem;
   left: 3rem;
@@ -100,7 +100,7 @@
   background: white;
   padding: 0.8rem;
   font-size: 1.5rem;
-  color: #4f4fdb;
+  color: var(--primary);
   border-radius: 1.2rem;
   position: absolute;
   top: 1.1rem;

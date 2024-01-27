@@ -28,12 +28,14 @@
 .popup-title {
   font-size: 2rem;
   margin-bottom: 4rem;
+  color: var(--black)
 }
 
 .popup-content {
   font-size: 1.5rem;
   margin-bottom: 3rem;
-  padding: 1rem
+  padding: 1rem;
+  color: var(--black)
 }
 
 .popup-btn {
@@ -43,12 +45,11 @@
   font-size: 1.5rem;
   border-radius: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
   border: none;
 }
 
 .popup-btn:hover {
-  background: #010168;
+  background: var(--primary_hover);
 }
 
 @media (max-width: 450px) {

@@ -2,8 +2,10 @@ html {
   font-size: 62.5%;
 }
 
+
+
 :root {
-  --primary: #4f4fdb;
+  --primary: rgb(36, 111, 172);
   --secondary:#c89a13;
   --black: #102530;
   --white: #ECE9EA;

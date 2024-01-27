@@ -14,7 +14,16 @@ export type ReminderType = {
 export type UserType = {
   id: string
   name: string
-  
+  phone: string
+  specialty: string
+  daysToSchedule: string
+  email: string
+  pronoun: string
+  monthlyReminders: number
+  remainingReminders: number
+  isActive: boolean
+  schedulePhone: string
+  createdAt: string
 }
 
 

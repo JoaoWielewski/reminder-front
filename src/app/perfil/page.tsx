@@ -4,14 +4,11 @@
 import { useSession } from 'next-auth/react';
 import './styles.css';
 
+import LogIn from '@/components/LogIn/LogIn';
 import SideBar from '@/components/SideBar/SideBar';
-import { frontEndRedirect } from '@/utils/front-end-redirect';
+import { UserType } from '@/types/types';
 import { useEffect, useState } from 'react';
-
-type UserLoginType = {
-  email: string,
-  password: string,
-}
+import Link from 'next/link';
 
 const fetchUser = async (jwt: String) => {
   try {
@@ -30,7 +27,7 @@ const fetchUser = async (jwt: String) => {
 
 function Profile() {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<UserType>();
   const { data: session, status} = useSession();
 
   useEffect(() => {
@@ -42,21 +39,41 @@ function Profile() {
 
       setLoading(false);
     })();
-  });
+  }, [session?.jwt]);
 
-  if (!session && status !== 'loading') {
-    return frontEndRedirect('/');
-  }
-
-  if (typeof window !== 'undefined' && status === 'loading') return null;
-
-  if (!session) return null;
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString(
+      'pt-BR',
+      {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }
+    );
+  };
 
   return (
     <>
       <SideBar active='profile'></SideBar>
+      <LogIn></LogIn>
+      <div className='profile-name'>Meu perfil</div>
+      <div className='data-div'>
+        <div className='data-name'>Meus dados</div>
+        <div className='data-topic'>
+          <div className='data-topic-name'>Quantidade de lembretes mensais: <a className='data-topic-info'>{user?.monthlyReminders}</a></div>
+          <div className='data-topic-name'>Nome: <a className='data-topic-info'>{user?.name}</a></div>
+          <div className='data-topic-name'>Email: <a className='data-topic-info'>{user?.email}</a></div>
+          <div className='data-topic-name'>Celular: <a className='data-topic-info'>{user?.phone}</a></div>
+          <div className='data-topic-name'>Especialidade: <a className='data-topic-info'>{user?.specialty}</a></div>
+          <div className='data-topic-name'>Dias para agendar: <a className='data-topic-info'>{user?.daysToSchedule}</a></div>
+          <div className='data-topic-name'>Celular para agendamento: <a className='data-topic-info'>{user?.schedulePhone}</a></div>
+          <div className='data-topic-name'>Conta criada em: <a className='data-topic-info'>{formatDate(user?.createdAt!)}</a></div>
+        </div>
+        <Link href="/meus-dados">
+          <div className='modify-data'>ALTERAR DADOS</div>
+        </Link>
+      </div>
     </>
   );
 }
-
 export default Profile;

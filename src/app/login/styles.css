@@ -27,7 +27,7 @@
 }
 
 .login-btn:hover {
-  background: #010168;
+  background: var(--primary);
   transform: scale(1.02);
 }
 

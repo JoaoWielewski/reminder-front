@@ -31,7 +31,7 @@ function LogIn() {
     <>
         {session?.user ? (
         <>
-          <div onClick={handleLogout}>
+          <div onClick={handleLogout} className='z-index-5'>
             <FontAwesomeIcon icon={faRightFromBracket} className="bracket-icon" />
             <a className="login-link" >Sair</a>
           </div>
@@ -39,7 +39,7 @@ function LogIn() {
         ) : (
         <>
           <div>
-            <div onClick={handleLogin}>
+            <div onClick={handleLogin} className='z-index-5'>
               <FontAwesomeIcon icon={faUser} className="user-icon" />
               <a className="login-link" >Entrar</a>
             </div>

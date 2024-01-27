@@ -1,7 +1,7 @@
-import './global.css';
-import Header from "@/components/Header/Header";
-import { Inter } from 'next/font/google';
 import AuthContext from '@/components/AuthContext/AuthContext';
+import { Inter } from 'next/font/google';
+import './global.css';
+import Head from './head';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,6 +18,7 @@ export default function RootLayout({
 
       <head />
       <body>
+      <Head></Head>
         <AuthContext>
             <main className={inter.className}>
               {children}
