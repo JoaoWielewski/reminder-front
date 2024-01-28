@@ -86,6 +86,7 @@ function Dados() {
   const [errorPopUp, setErrorPopUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successPopUp, setSuccessPopUp] = useState(false);
+  const [updated, setUpdated] = useState(false);
   const [user, setUser] = useState<UserType | null>(null);
   const router = useRouter();
   const {data: session, status} = useSession();
@@ -122,6 +123,7 @@ function Dados() {
     if (session && session.jwt) {
       if (await updateUser(data, session.jwt) === 204) {
         setSuccessPopUp(true);
+        setUpdated(true);
       } else {
         setErrorPopUp(true);
       }
@@ -129,6 +131,12 @@ function Dados() {
 
     setLoading(false);
   });
+
+  useEffect(() => {
+    if (updated && !successPopUp) {
+      router.push('/perfil');
+    }
+  }, [successPopUp]);
 
   useEffect(() => {
     async function fetchData() {

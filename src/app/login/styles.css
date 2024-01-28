@@ -96,7 +96,7 @@
 
 .create-account-link {
   text-decoration: none;
-  color: rgb(75, 21, 137)
+  color: var(--primary)
 }
 
 .error-p {

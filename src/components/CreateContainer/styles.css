@@ -1,11 +1,11 @@
-.login-flex {
+.create-flex {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
-.login-container {
+.create-container {
   background: white;
   padding: 3rem;
   position: relative;
@@ -13,7 +13,8 @@
   box-shadow: 0px 7px 23px 0px #0000000D;
   border-radius: 1.5rem;
   position: relative;
-  max-height: 80%;
+  max-height: 85%;
+  width: 73rem;
 }
 
 .register-h1 {
@@ -23,10 +24,5 @@
   margin: 1.5rem;
 }
 
-@media (max-width: 410px) {
-  .login-container {
-    max-width: 35rem;
-  }
-}
 
 

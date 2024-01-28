@@ -54,14 +54,22 @@ function Register() {
   const [selectDisabled, setSelectDisabled] = useState(true);
   const [unitTitle, setUnitTitle] = useState('');
   const [outOfRemindersPopUp, setOutOfRemindersPopUp] = useState(false);
+  const [noneRemindersPopUp, setNoneRemindersPopUp] = useState(false);
+  const [noneWarning, setNoneWarning] = useState(false);
   const router = useRouter();
   const {data: session, status} = useSession();
 
   useEffect(() => {
-    if (!successPopUp && executed) {
+    if (!successPopUp && executed && !noneWarning) {
       router.push('/');
     }
   }, [executed, router, successPopUp]);
+
+  useEffect(() => {
+    if (!noneRemindersPopUp && noneWarning) {
+      router.push('/planos');
+    }
+  }, [noneRemindersPopUp]);
 
 
   const schema = yup.object().shape({
@@ -125,6 +133,9 @@ function Register() {
       const responseJson = await createReminderResponse.json();
       if (responseJson.code === 'PLUGIN_SERVICE_OUT_OF_REMINDERS') {
         setOutOfRemindersPopUp(true);
+      } else if (responseJson.code === 'PLUGIN_SERVICE_NONE_REMINDERS') {
+        setNoneRemindersPopUp(true);
+        setNoneWarning(true);
       } else {
         setErrorPopUp(true);
       }
@@ -168,6 +179,7 @@ function Register() {
       <PopUp title={'Algo deu errado'} content={'Ocorreu um erro com a criação do lembrete, tente novamente mais tarde...'} trigger={errorPopUp} setTrigger={setErrorPopUp}></PopUp>
       <PopUp title={'Successo!'} content={'O lembrete foi agendado.'} trigger={successPopUp} setTrigger={setSuccessPopUp}></PopUp>
       <PopUp title={'Algo deu errado'} content={'O seu limite mensal de lembretes foi ultrapassado, portanto, não será possível agendar mais lembretes até dia primeiro do próximo mês.'} trigger={outOfRemindersPopUp} setTrigger={setOutOfRemindersPopUp}></PopUp>
+      <PopUp title={'Algo deu errado'} content={'Parece que você não adquiriu lembretes ainda, por favor entre em contato para adquirir lembretes!'} trigger={noneRemindersPopUp} setTrigger={setNoneRemindersPopUp}></PopUp>
     </FormContainer> : <FormContainer title="Você não pode agendar um lembrete antes de entrar em sua conta."><div></div></FormContainer>}
     </>
   );

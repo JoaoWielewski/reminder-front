@@ -19,7 +19,7 @@ function InputSelectPronoun(props: InputSelectType) {
   };
 
   return (
-    <>
+    <div className='input-select-div'>
     <div className='input-select-title-pronoun'>Sexo</div>
       <nav>
         <input type="radio" className='radio-input' id="x1" name="x" value="M" onChange={handleChange}/>
@@ -28,8 +28,8 @@ function InputSelectPronoun(props: InputSelectType) {
         <input type="radio" className='radio-input' id="x2" name="x" value="F" onChange={handleChange}/>
         <label htmlFor="x2">Feminino</label>
       </nav>
-      <p className="error-p-select">{props.error}</p>
-    </>
+      <p className="error-p-select-pronoun">{props.error}</p>
+    </div>
   );
 }
 

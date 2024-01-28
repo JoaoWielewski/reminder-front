@@ -1,0 +1,30 @@
+.form-btn-create {
+  width: 20rem;
+  height: 4.5rem;
+  margin-left: 23.5rem;
+  margin-top: 3rem;
+  background-color: var(--primary);
+  border-radius: 1.2rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.form-btn-create:hover {
+  background: var(--primary_hover);
+}
+
+.form-btn-create:disabled {
+  background-color: gray;
+  cursor: default;
+}
+
+@media (max-width: 410px) {
+
+  .form-btn-create {
+    margin-left: 10.5rem;
+  }
+
+}

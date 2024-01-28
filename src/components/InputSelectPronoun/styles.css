@@ -23,7 +23,7 @@
   font-weight: 400;
   color: #2D3748;
   margin-left: 14.5rem;
-  bottom: 30.2rem;
+  margin-top: -2rem;
 }
 
 nav{
@@ -59,7 +59,7 @@ nav input:checked + label{
   color: white
 }
 
-.error-p-select {
+.error-p-select-pronoun {
   position: absolute;
   color: rgb(197, 4, 4);
   font-size: 1.3rem;

@@ -11,7 +11,7 @@ html {
   --white: #ECE9EA;
   --lighter_blue: #2626ae;
   --lighter_yellow: #cda429;
-  --primary_hover: #5656dd;
+  --primary_hover: rgb(44, 121, 184);
   --light_gray: rgb(248, 249, 250)
   --gray: rgb(160, 174, 192)
   --green: rgb(104, 211, 145)
