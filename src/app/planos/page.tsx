@@ -25,7 +25,7 @@ function Plans() {
             <div className='plans-topic-name'>• <a className='plans-topic-info'>Clique no botão abaixo para entrar em contato</a></div>
           </div>
         <a href='https://wa.link/xv58nm/' target="_blank" rel="noreferrer" className='plans-btn'>Entrar em contato</a>
-        <Image src={'/images/zap.png'} alt={''} width={200} height={200} className='qr-code'/>
+        <Image src={'/images/whatsapp.png'} alt={''} width={200} height={200} className='qr-code'/>
       </div>
     </>
   );

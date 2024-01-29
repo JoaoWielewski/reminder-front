@@ -1,10 +1,10 @@
 'use client';
 
-import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { faHouse, faUser, faCirclePlus, faFileLines } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faFileLines, faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import Link from 'next/link';
 import './styles.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type SideBarType = {
   active: string
@@ -14,7 +14,7 @@ function SideBar(props: SideBarType) {
   return (
     <div>
       <div>
-        <FontAwesomeIcon icon={faCalendar} className="clock-icon" />
+        <Image src={'/images/lembra+.png'} alt={''} width={70} height={70} className='lembra'/>
         <Link href="/" className="sidebar-header">
           LEMBRA+
         </Link>
