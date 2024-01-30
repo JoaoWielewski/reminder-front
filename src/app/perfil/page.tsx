@@ -5,10 +5,10 @@ import { useSession } from 'next-auth/react';
 import './styles.css';
 
 import LogIn from '@/components/LogIn/LogIn';
-import SideBar from '@/components/SideBar/SideBar';
+import SideBar2 from '@/components/SideBar2/SideBar2';
 import { UserType } from '@/types/types';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const fetchUser = async (jwt: String) => {
   try {
@@ -54,7 +54,7 @@ function Profile() {
 
   return (
     <>
-      <SideBar active='profile'></SideBar>
+      <SideBar2 active='profile'></SideBar2>
       <LogIn></LogIn>
       <div className='profile-name'>Meu perfil</div>
       <div className='data-div'>

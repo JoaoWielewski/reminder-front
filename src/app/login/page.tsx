@@ -14,6 +14,8 @@ import Input from '@/components/Input/Input';
 import FormButton from '@/components/FormButton/FormButton';
 import { useState } from 'react';
 import FormLoading from '@/components/FormLoading/FormLoading';
+import SideBarSmall from '@/components/SideBarSmall/SideBarSmall';
+import LoginContainer from '@/components/LoginContainer/LoginContainer';
 
 type UserLoginType = {
   email: string,
@@ -113,11 +115,12 @@ function Login() {
 
   return (
     <>
+    <SideBarSmall></SideBarSmall>
     {!session ?
-    <FormContainer title="Entrar na conta">
+    <LoginContainer title="Entrar na conta">
       <form onSubmit={onSubmit}>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
-        <Input type="password" title="Password" error={errors.password?.message?.toString()} disabled={loading} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
+        <Input type="password" title="Senha" error={errors.password?.message?.toString()} disabled={loading} register={register('password')} onChangeFunction={resetPasswordError} optionalErrorReference="password"></Input>
         {!loading ?
          <FormButton title="ENTRAR" disabled={loading}></FormButton> :
          <FormLoading></FormLoading>
@@ -126,7 +129,7 @@ function Login() {
           Não tem uma conta? <Link href="/criar-conta" className="create-account-link">Criar uma conta</Link>
         </p>
       </form>
-    </FormContainer> : <div></div>}
+    </LoginContainer> : <div></div>}
     </>
   );
 }

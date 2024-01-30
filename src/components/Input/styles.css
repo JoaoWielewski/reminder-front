@@ -68,3 +68,11 @@
   }
 
 }
+
+@media (max-width: 1500px) {
+
+  .input {
+    width: 27.5rem;
+  }
+
+}

@@ -3,3 +3,9 @@
   top: 8.1rem;
   left: 37rem;
 }
+
+@media (max-width: 1500px) {
+  .create-div-input {
+    top: 7.1rem;
+  }
+}

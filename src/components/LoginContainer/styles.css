@@ -1,11 +1,11 @@
-.create-flex {
+.login-flex-login {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
-.create-container {
+.login-container-login {
   background: white;
   padding: 3rem;
   position: relative;
@@ -13,11 +13,10 @@
   box-shadow: 0px 7px 23px 0px #0000000D;
   border-radius: 1.5rem;
   position: relative;
-  max-height: 85%;
-  width: 73rem;
+  max-height: 80%;
 }
 
-.register-h1 {
+.register-h1-login {
   font-size: 1.8rem;
   color: #2D3748;
   text-align: center;
@@ -25,11 +24,9 @@
 }
 
 @media (max-width: 1500px) {
-  .create-container {
-    padding: 2rem;
-    width: 69rem;
+  .login-container-login {
+    padding: 2.5rem;
   }
 }
-
 
 

@@ -2,11 +2,11 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import './styles.css';
 import Image from 'next/image';
+import './styles.css';
 
 import LogIn from '@/components/LogIn/LogIn';
-import SideBar from '@/components/SideBar/SideBar';
+import SideBar2 from '@/components/SideBar2/SideBar2';
 
 function Plans() {
   const { data: session, status} = useSession();
@@ -14,7 +14,7 @@ function Plans() {
 
   return (
     <>
-      <SideBar active='plans'></SideBar>
+      <SideBar2 active='plans'></SideBar2>
       <LogIn></LogIn>
       <div className='plans-name'>Adquirir lembretes</div>
       <div className='plans-div'>

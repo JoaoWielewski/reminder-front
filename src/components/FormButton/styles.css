@@ -21,10 +21,10 @@
   cursor: default;
 }
 
-@media (max-width: 410px) {
+@media (max-width: 1500px) {
 
   .form-btn {
-    margin-left: 10.5rem;
+    margin-left: 5.5rem;
   }
 
 }

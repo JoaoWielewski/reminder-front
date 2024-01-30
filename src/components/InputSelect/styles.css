@@ -66,10 +66,10 @@ nav input:checked + label{
   margin-left: 7.5rem;
 }
 
-@media (max-width: 410px) {
+@media (max-width: 1500px) {
 
-  .input {
-    width: 26.5rem;
+  .input-select-title {
+    bottom: 20.7rem;
   }
 
 }

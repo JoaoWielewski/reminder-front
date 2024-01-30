@@ -16,6 +16,8 @@ import Input from '@/components/Input/Input';
 import InputSelectPronoun from '@/components/InputSelectPronoun/InputSelect';
 import PopUp from '@/components/PopUp/PopUp';
 import FormButtonCreate from '@/components/FormButtonCreate/FormButtonCreate';
+import SideBar from '@/components/SideBar/SideBar';
+import SideBarSmall from '@/components/SideBarSmall/SideBarSmall';
 
 type UserRegistrationType = {
   name: string;
@@ -154,6 +156,7 @@ function Signup() {
 
   return (
     <>
+    <SideBarSmall></SideBarSmall>
     {!session ?
     <CreateContainer title="Criar conta">
       <form onSubmit={onSubmit}>
