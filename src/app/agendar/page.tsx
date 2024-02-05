@@ -22,16 +22,15 @@ type ReminderCreationType = {
   name: string;
   quantity: string;
   phone: string;
-  unit: string
 };
 
-async function createReminder(data: ReminderCreationType, jwt: string) {
+async function createReminder(data: ReminderCreationType, unit: string, jwt: string) {
 
   const params = {
     pacientName: data.name,
     periodQuantity: parseInt(data.quantity),
-    periodType: data.unit,
-    pacientPhone: data.phone,
+    periodType: unit,
+    pacientPhone: data.phone.toString(),
   };
 
   const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/reminder', {
@@ -71,9 +70,15 @@ function Register() {
     }
   }, [noneRemindersPopUp]);
 
-
   const schema = yup.object().shape({
     name: yup.string().max(100, 'Nome muito longo').required('Insira o nome, por favor.'),
+    phone: yup.number()
+    .typeError('Insira o celular somente em números')
+    .test('is-number', 'Insira o celular somente em números', (value) => {
+      return value !== undefined && !isNaN(value);
+    })
+    .integer('Insira o celular somente em números')
+    .required('Insira o celular somente em números'),
     quantity: yup.string()
     .test('is-number', 'Insira a quantidade', (value) => {
       if (value === undefined) {
@@ -83,7 +88,6 @@ function Register() {
       return !isNaN(floatValue);
     })
     .required('Insira a quantidade da unidade, por favor.'),
-    phone: yup.string().max(100, 'Número muito longo').required('Insira o número, por favor.'),
   });
 
   const { register, handleSubmit, formState: { errors }, setValue} = useForm<ReminderCreationType>({
@@ -103,12 +107,13 @@ function Register() {
 
     const radioInputs =document.querySelectorAll('.radio-input') as unknown as HTMLInputElement[];
 
+    let unit: string = '';
     if (radioInputs[0].checked) {
-      setValue('unit', 'day');
+      unit = 'day';
     } else if (radioInputs[1].checked) {
-      setValue('unit', 'month');
+      unit = 'month';
     } else if (radioInputs[2].checked) {
-      setValue('unit', 'year');
+      unit = 'year';
     }
 
     radioInputs[0].checked = false;
@@ -125,7 +130,7 @@ function Register() {
       input.value = '';
     });
 
-    const createReminderResponse = await createReminder(data, session?.jwt!);
+    const createReminderResponse = await createReminder(data, unit, session?.jwt!);
     if (createReminderResponse.status === 201) {
       setSuccessPopUp(true);
       setExecuted(true);
@@ -144,7 +149,6 @@ function Register() {
     setValue('name', '');
     setValue('quantity', '');
     setValue('phone', '');
-    setValue('unit', '');
     setLoading(false);
   });
 
@@ -168,7 +172,7 @@ function Register() {
       <form onSubmit={onSubmit}>
         <Input type="text" title="Nome do paciente" error={errors.name?.message?.toString()} disabled={loading} register={register('name')} ></Input>
         <Input type="text" title="Celular do paciente" error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')} ></Input>
-        <InputSelect title="a" error={errors.unit?.message?.toString()} disabled={loading} register={register('unit')} onChangeFunction={getUnit}></InputSelect>
+        <InputSelect title="a" disabled={loading} onChangeFunction={getUnit} error={undefined} register={undefined}></InputSelect>
         <Input type="text" title={unitTitle} error={errors.quantity?.message?.toString()} disabled={loading || selectDisabled} register={register('quantity')}></Input>
         {!loading ?
          <FormButton title={'AGENDAR'} disabled={loading}></FormButton> :

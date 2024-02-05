@@ -9,14 +9,12 @@ import * as yup from 'yup';
 import './styles.css';
 
 import CreateContainer from '@/components/CreateContainer/CreateContainer';
-import FormButton from '@/components/FormButton/FormButton';
+import FormButtonCreate from '@/components/FormButtonCreate/FormButtonCreate';
 import FormContainer from '@/components/FormContainer/FormContainer';
 import FormLoading from '@/components/FormLoading/FormLoading';
 import Input from '@/components/Input/Input';
 import InputSelectPronoun from '@/components/InputSelectPronoun/InputSelect';
 import PopUp from '@/components/PopUp/PopUp';
-import FormButtonCreate from '@/components/FormButtonCreate/FormButtonCreate';
-import SideBar from '@/components/SideBar/SideBar';
 import SideBarSmall from '@/components/SideBarSmall/SideBarSmall';
 
 type UserRegistrationType = {
@@ -38,10 +36,10 @@ async function createUser(data: UserRegistrationType) {
     password: data.password,
     name: data.name,
     specialty: data.specialty,
-    phone: data.phone,
+    phone: data.phone.toString(),
     pronoun: data.pronoun,
     daysToSchedule: data.daysToSchedule,
-    schedulePhone: data.schedulePhone,
+    schedulePhone: data.schedulePhone.toString(),
   };
 
   const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/doctor', {
@@ -81,10 +79,28 @@ function Signup() {
 
   const schema = yup.object().shape({
     name: yup.string().required('Insira seu nome, por favor'),
-    phone: yup.string().required('Insira seu número de celular, por favor'),
+    phone: yup.number()
+    .typeError('Insira seu número de celular em números')
+    .test('is-number', 'Insira seu número de celular em números', (value) => {
+      return value !== undefined && !isNaN(value);
+    })
+    .integer('Insira seu número de celular em números')
+    .required('Insira seu número de celular em números'),
     specialty: yup.string().required('Insira sua especialidade, por favor'),
-    schedulePhone: yup.string().required('Insira o número de celular para agendamento'),
-    daysToSchedule: yup.string().required('Insira a quantidade de dias, por favor'),
+    schedulePhone: yup.number()
+    .typeError('Insira o celular para agendamento em números')
+    .test('is-number', 'Insira o celular para agendamento em números', (value) => {
+      return value !== undefined && !isNaN(value);
+    })
+    .integer('Insira o celular para agendamento em números')
+    .required('Insira o celular para agendamento em números'),
+    daysToSchedule: yup.number()
+    .typeError('Insira a quantidade de dias em números')
+    .test('is-number', 'Insira a quantidade de dias em números', (value) => {
+      return value !== undefined && !isNaN(value);
+    })
+    .integer('Insira a quantidade de dias em números')
+    .required('Insira a quantidade de dias em números'),
     email: yup.string().email('Insira um email válido, por favor').max(100, 'O seu email está muito longo').required('Insira um email, por favor'),
     password: yup.string().required('Insira uma senha, por favor'),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não estão iguais").required('Insira a senha novamente, por favor'),

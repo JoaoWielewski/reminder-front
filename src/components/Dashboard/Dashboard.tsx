@@ -127,7 +127,7 @@ function Dashboard() {
       setJustDeleted(false);
       setLoading(false);
     })();
-  }, [jwt, session, searched, justSearched, justDeleted, page]);
+  }, [searched, justSearched, justDeleted, page]);
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {

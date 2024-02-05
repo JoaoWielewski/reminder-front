@@ -1,0 +1,25 @@
+.sidebar-header-big {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #2D3748;
+  position: absolute;
+  top: 4rem;
+  left: 11.5rem;
+}
+
+.lembra-big {
+  margin-top: 0.7rem;
+  margin-left: 2.6rem;
+  position: relative;
+}
+
+.logo-div {
+  top: 0rem;
+  position: absolute;
+  left: 12%
+}
+
+body {
+background-color: white;
+}
