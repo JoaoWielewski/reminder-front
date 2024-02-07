@@ -1,9 +1,20 @@
+'use client';
+
 import SideBarBig from '@/components/SideBarBig/SideBarBig';
 import Link from 'next/link';
 import './styles.css';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 function Home() {
+  const {data: session, status} = useSession();
+  const router = useRouter();
+
+  if (session) {
+    router.push('/painel');
+  }
+
   return (
     <>
       <SideBarBig></SideBarBig>
@@ -31,7 +42,7 @@ serem enviados aos seus pacientes os lembrando de agendar consultas.</div>
         <div className='doubt-title'>Alguma dúvida?</div>
         <div className='doubt-content'>Para tirar qualquer dúvida clique no botão abaixo ou escaneie o QR Code!</div>
         <a href='https://wa.link/xv58nm/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
-        <Image src={'/images/whatsapp2.png'} alt={''} width={200} height={200} className='qr-code-doubt'/>
+        <Image src={'/images/whatsapp.png'} alt={''} width={200} height={200} className='qr-code-doubt'/>
         <span className="absolute-top-left">
           <svg
             width="495"

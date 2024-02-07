@@ -11,7 +11,7 @@ function Painel() {
   const {data: session, status} = useSession();
 
   if (!session && status !== 'loading') {
-    return frontEndRedirect('/');
+    return frontEndRedirect('/painel');
   }
 
   if (typeof window !== 'undefined' && status === 'loading') return null;

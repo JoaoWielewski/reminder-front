@@ -1,12 +1,11 @@
 'use client';
 
+import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import Link from 'next/link';
 import { useState } from 'react';
 import ConfirmationPopUp from '../ConfirmationPopUp/ConfirmationPopUp';
-import { faUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function LogIn() {
   const { data: session } = useSession();

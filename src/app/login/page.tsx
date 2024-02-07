@@ -88,7 +88,7 @@ function Login() {
         });
 
         const searchParams = new URLSearchParams(document.location.search);
-        const redirect = searchParams.get('redirect') || '/';
+        const redirect = searchParams.get('redirect') || '/painel';
         router.push(redirect as string);
       } else {
         const passwordErrorP = document.querySelector('.password-error') as HTMLElement;

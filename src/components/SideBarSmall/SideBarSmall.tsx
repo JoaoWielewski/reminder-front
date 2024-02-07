@@ -10,7 +10,7 @@ function SideBarSmall() {
     <div>
       <div>
         <Image src={'/images/lembra+.png'} alt={''} width={70} height={70} className='lembra'/>
-        <Link href="/" className="sidebar-header">
+        <Link href="/painel" className="sidebar-header">
           LEMBRA+
         </Link>
       </div>

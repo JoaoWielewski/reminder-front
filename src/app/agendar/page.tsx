@@ -52,6 +52,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [selectDisabled, setSelectDisabled] = useState(true);
   const [unitTitle, setUnitTitle] = useState('');
+  const [unitDescription, setUnitDescription] = useState('');
   const [outOfRemindersPopUp, setOutOfRemindersPopUp] = useState(false);
   const [noneRemindersPopUp, setNoneRemindersPopUp] = useState(false);
   const [noneWarning, setNoneWarning] = useState(false);
@@ -60,7 +61,7 @@ function Register() {
 
   useEffect(() => {
     if (!successPopUp && executed && !noneWarning) {
-      router.push('/');
+      router.push('/painel');
     }
   }, [executed, router, successPopUp]);
 
@@ -154,11 +155,12 @@ function Register() {
 
   function getUnit(unit: string) {
     if (unit === 'day') {
-      setUnitTitle('Quantidade de dias');
+      setUnitTitle('Em quantos dias o paciente deve voltar?');
+      setUnitDescription('Exemplo: 5');
     } else if (unit === 'month') {
-      setUnitTitle('Quantidade de meses');
+      setUnitTitle('Em quantos meses o paciente deve voltar?');
     } else if (unit === 'year') {
-      setUnitTitle('Quantidade de anos');
+      setUnitTitle('Em quantos anos o paciente deve voltar?');
     }
     setSelectDisabled(false);
   }
@@ -173,7 +175,7 @@ function Register() {
         <Input type="text" title="Nome do paciente" error={errors.name?.message?.toString()} disabled={loading} register={register('name')} ></Input>
         <Input type="text" title="Celular do paciente" error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')} ></Input>
         <InputSelect title="a" disabled={loading} onChangeFunction={getUnit} error={undefined} register={undefined}></InputSelect>
-        <Input type="text" title={unitTitle} error={errors.quantity?.message?.toString()} disabled={loading || selectDisabled} register={register('quantity')}></Input>
+        <Input type="text" title={unitTitle} description={unitDescription} error={errors.quantity?.message?.toString()} disabled={loading || selectDisabled} register={register('quantity')}></Input>
         {!loading ?
          <FormButton title={'AGENDAR'} disabled={loading}></FormButton> :
          <FormLoading></FormLoading>

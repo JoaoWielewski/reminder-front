@@ -22,7 +22,7 @@ function Header() {
 
   const isSure = (sure: boolean) => {
     if (sure) {
-      signOut({ callbackUrl: '/', redirect: true });
+      signOut({ callbackUrl: '/painel', redirect: true });
     }
   };
 
@@ -42,7 +42,7 @@ function Header() {
         <FontAwesomeIcon icon={faBars} className="bars-icon" />
       </label>
       <label onClick={handleClick}>
-        <Link href="/" className="header-logo">
+        <Link href="/painel" className="header-logo">
           Lembretes
         </Link>
       </label>
