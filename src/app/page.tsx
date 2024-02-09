@@ -43,37 +43,6 @@ serem enviados aos seus pacientes os lembrando de agendar consultas.</div>
         <div className='doubt-content'>Para tirar qualquer dúvida clique no botão abaixo ou escaneie o QR Code!</div>
         <a href='https://wa.link/xv58nm/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
         <Image src={'/images/whatsapp.png'} alt={''} width={200} height={200} className='qr-code-doubt'/>
-        <span className="absolute-top-left">
-          <svg
-            width="495"
-            height="470"
-            viewBox="0 0 495 470"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="55"
-              cy="442"
-              r="138"
-              stroke="white"
-              stroke-opacity="0.04"
-              stroke-width="50"
-            />
-            <circle
-              cx="446"
-              r="39"
-              stroke="white"
-              stroke-opacity="0.04"
-              stroke-width="20"
-            />
-            <path
-              d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z"
-              stroke="white"
-              stroke-opacity="0.08"
-              stroke-width="12"
-            />
-          </svg>
-        </span>
         <span className="absolute-bottom-right">
           <svg
             width="493"

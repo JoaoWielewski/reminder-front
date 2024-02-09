@@ -23,3 +23,16 @@
 body {
 background-color: white;
 }
+
+@media (max-width: 950px) {
+  .logo-div {
+    top: 0rem;
+    position: absolute;
+    left: -5%
+  }
+
+  .sidebar-header-big {
+    font-size: 1.6rem;
+    left: 11rem;
+  }
+}

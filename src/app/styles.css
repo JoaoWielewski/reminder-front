@@ -34,7 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 18vh;
+  margin-top: 17rem;
   flex-direction: column;
 }
 
@@ -62,16 +62,32 @@
   background-color: rgb(249 250 251);
   width: 100%;
   margin-top: 8rem;
-  height: 75vh;
+  height: 75rem;
 }
 
 .works-text {
   margin-left: 16%;
-  margin-top: 18rem;
-  max-width: 28%;
+  margin-top: 14rem;
+  max-width: 40rem;
   font-size: 1.6rem;
   line-height: 2.6rem;
-  height: 39vh;
+  height: 45rem;
+}
+
+@media (max-width: 1270px) {
+  .works {
+    background-color: rgb(249 250 251);
+    width: 100%;
+    margin-top: 8rem;
+    height: 75rem;
+  }
+
+  .works-text {
+    font-size: 1.6rem;
+    height: 50rem;
+    margin-top: 10rem;
+    max-width: 30rem;
+  }
 }
 
 .works-content {
@@ -81,6 +97,7 @@
 .works-title {
   font-size: 4rem;
   font-weight: 700;
+  line-height: 3.5rem;
 }
 
 .works-content {
@@ -109,7 +126,7 @@
   align-items: center;
   background-color: var(--primary);
   width: 100%;
-  height: 50vh;
+  height: 48rem;
   position: relative;
   flex-direction: column;
 }
@@ -128,13 +145,13 @@
 
 .doubt-title {
   color: white;
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
 
 .doubt-content {
   color: white;
   font-size: 1.6rem;
-  max-width: 27%;
+  max-width: 20rem;
   text-align: center;
   margin-top: 2rem;
 }
@@ -144,18 +161,54 @@
   font-size: 1.8rem;
   color: var(--primary);
   background-color: white;
-  padding: 1.5rem;
-  padding-left: 2.7rem;
-  padding-right: 2.7rem;
+  padding: 1.3rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
   border-radius: 0.6rem;
   margin-top: 2rem;
 }
 
 .doubt-btn:hover {
-  opacity: 80%;
+  opacity: 95%;
 }
 
 .qr-code-doubt {
   margin-top: 2rem;
   border-radius: 1rem;
+}
+
+@media (max-width: 950px) {
+  .login-signup {
+    position: absolute;
+    top: 4rem;
+    right: 5%
+  }
+
+  .login-landing {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: black;
+    margin-right: 1rem;
+  }
+
+  .signup-landing {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: white;
+    background-color: var(--primary);
+    padding: 1rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    border-radius: 0.6rem;
+  }
+
+  .we-do-title {
+    font-size: 3rem;
+  }
+
+  .we-do-content {
+    font-size: 1.6rem;
+    width: 30rem;
+    text-align: center;
+  }
 }
