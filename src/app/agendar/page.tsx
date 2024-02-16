@@ -159,8 +159,10 @@ function Register() {
       setUnitDescription('Exemplo: 5');
     } else if (unit === 'month') {
       setUnitTitle('Em quantos meses o paciente deve voltar?');
+      setUnitDescription('Exemplo: 5');
     } else if (unit === 'year') {
       setUnitTitle('Em quantos anos o paciente deve voltar?');
+      setUnitDescription('Exemplo: 5');
     }
     setSelectDisabled(false);
   }
