@@ -65,7 +65,6 @@ function Profile() {
           <div className='data-topic-name'>Email: <a className='data-topic-info'>{user?.email}</a></div>
           <div className='data-topic-name'>Celular: <a className='data-topic-info'>{user?.phone}</a></div>
           <div className='data-topic-name'>Especialidade: <a className='data-topic-info'>{user?.specialty}</a></div>
-          <div className='data-topic-name'>Dias para agendar: <a className='data-topic-info'>{user?.daysToSchedule}</a></div>
           <div className='data-topic-name'>Celular para agendamento: <a className='data-topic-info'>{user?.schedulePhone}</a></div>
           <div className='data-topic-name'>Conta criada em: <a className='data-topic-info'>{formatDate(user?.createdAt!)}</a></div>
         </div>

@@ -23,7 +23,6 @@ type UserRegistrationType = {
   specialty: string;
   email: string;
   pronoun: string;
-  daysToSchedule: number;
   schedulePhone: string;
   password: string;
   confirmPassword: string;
@@ -94,17 +93,17 @@ function Signup() {
     })
     .integer('Insira o celular para agendamento em números')
     .required('Insira o celular para agendamento em números'),
-    daysToSchedule: yup.number()
-    .typeError('Insira a quantidade de dias em números')
-    .test('is-number', 'Insira a quantidade de dias em números', (value) => {
-      return value !== undefined && !isNaN(value);
-    })
-    .integer('Insira a quantidade de dias em números')
-    .required('Insira a quantidade de dias em números'),
     email: yup.string().email('Insira um email válido, por favor').max(100, 'O seu email está muito longo').required('Insira um email, por favor'),
     password: yup.string().required('Insira uma senha, por favor'),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não estão iguais").required('Insira a senha novamente, por favor'),
     pronoun: yup.string().required('Insira o seu sexo, por favor'),
+    // daysToSchedule: yup.number()
+    // .typeError('Insira a quantidade de dias em números')
+    // .test('is-number', 'Insira a quantidade de dias em números', (value) => {
+    //   return value !== undefined && !isNaN(value);
+    // })
+    // .integer('Insira a quantidade de dias em números')
+    // .required('Insira a quantidade de dias em números'),
   });
 
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<UserRegistrationType>({
@@ -183,7 +182,6 @@ function Signup() {
         <InputSelectPronoun title="a" error={errors.pronoun?.message?.toString()} disabled={loading} register={register('pronoun')} onChangeFunction={setPronoun}></InputSelectPronoun>
         <div className='create-div-input'>
         <Input type="text" title="Celular para realizar o agendamento" description='exemplo: 41997549270' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
-          <Input type="text" title="Quantidade de dias para agendar com você" description='média de dias para marcar um horário' error={errors.daysToSchedule?.message?.toString()} disabled={loading} register={register('daysToSchedule')}></Input>
           <Input type="password" title="Senha" error={errors.password?.message?.toString()} disabled={loading} register={register('password')}></Input>
           <Input type="password" title="Confirmar senha" error={errors.confirmPassword?.message?.toString()} disabled={loading} register={register('confirmPassword')}></Input>
         </div>

@@ -22,7 +22,6 @@ type UserRegistrationType = {
   email: string;
   specialty: string;
   schedulePhone: string;
-  daysToSchedule: number;
 }
 
 export type UserType = {
@@ -30,7 +29,6 @@ export type UserType = {
   name: string
   phone: string
   specialty: string
-  daysToSchedule: number
   email: string
   pronoun: string
   monthlyReminders: number
@@ -46,7 +44,6 @@ async function updateUser(data: UserRegistrationType, jwt: string) {
     email: data.email,
     specialty: data.specialty,
     schedulePhone: data.schedulePhone,
-    daysToSchedule: data.daysToSchedule
   };
 
   const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL! + '/doctor', {
@@ -95,16 +92,16 @@ function Dados() {
     phone: yup.string().required('Insira o seu número de celular, por favor'),
     email: yup.string().email('Este email não é válido').required('Insira o seu email, por favor'),
     specialty: yup.string().required('Insira a sua especialidade, por favor'),
-    daysToSchedule: yup.string()
-    .test('is-number', 'A quantidade de dias precisa ser um número', (value) => {
-      if (value === undefined) {
-        return false;
-      }
-      const integerValue = parseInt(value);
-      return !isNaN(integerValue);
-    })
-    .required('Insira a quantidade de dias, por favor'),
     schedulePhone: yup.string().required('Insira o número de celular de agendamento, por favor'),
+    // daysToSchedule: yup.string()
+    // .test('is-number', 'A quantidade de dias precisa ser um número', (value) => {
+    //   if (value === undefined) {
+    //     return false;
+    //   }
+    //   const integerValue = parseInt(value);
+    //   return !isNaN(integerValue);
+    // })
+    // .required('Insira a quantidade de dias, por favor'),
   });
 
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<UserRegistrationType>({
@@ -147,7 +144,6 @@ function Dados() {
         setValue('email', user.email);
         setValue('specialty', user.specialty);
         setValue('schedulePhone', user.schedulePhone);
-        setValue('daysToSchedule', user.daysToSchedule);
       }
 
     }
@@ -174,7 +170,6 @@ function Dados() {
           <Input type="email" title="Meu email" defaultValue={user?.email} error={errors.email?.message?.toString()} disabled={loading} register={register('email')}></Input>
           <Input type="specialty" title="Minha especialidade" defaultValue={user?.specialty} error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
           <Input type="schedulePhone" title="Número de celular para agendamento" defaultValue={user?.schedulePhone} error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
-          <Input type="daysToSchedule" title="Média de dias para consulta" defaultValue={user?.daysToSchedule} error={errors.daysToSchedule?.message?.toString()} disabled={loading} register={register('daysToSchedule')}></Input>
           {!loading ?
            <FormButton title="EDITAR" disabled={loading}></FormButton> :
            <FormLoading></FormLoading>
