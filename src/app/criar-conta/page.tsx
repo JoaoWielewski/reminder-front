@@ -37,7 +37,6 @@ async function createUser(data: UserRegistrationType) {
     specialty: data.specialty,
     phone: data.phone.toString(),
     pronoun: data.pronoun,
-    daysToSchedule: data.daysToSchedule,
     schedulePhone: data.schedulePhone.toString(),
   };
 
@@ -76,14 +75,13 @@ function Signup() {
   const { data: session } = useSession();
   const router = useRouter();
 
+  const cleanPhoneNumber = (value: string) => value.replace(/[^\d]/g, '');
+
   const schema = yup.object().shape({
     name: yup.string().required('Insira seu nome, por favor'),
-    phone: yup.number()
-    .typeError('Insira seu número de celular em números')
-    .test('is-number', 'Insira seu número de celular em números', (value) => {
-      return value !== undefined && !isNaN(value);
-    })
-    .integer('Insira seu número de celular em números')
+    phone: yup.string()
+    .transform(value => cleanPhoneNumber(value))
+    .matches(/^\d+$/, 'Insira seu número de celular em números')
     .required('Insira seu número de celular em números'),
     specialty: yup.string().required('Insira sua especialidade, por favor'),
     schedulePhone: yup.number()
@@ -177,11 +175,11 @@ function Signup() {
       <form onSubmit={onSubmit}>
         <Input type="text" title="Nome completo" error={errors.name?.message?.toString()} disabled={loading} register={register('name')}></Input>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
-        <Input type="text" title="Celular" description='exemplo: 41997549270' error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')}></Input>
+        <Input type="text" title="Celular" description='Seu celular com DDD' disabled={loading} mask='(99) 99999-9999' error={errors.phone?.message?.toString()} register={register('phone')}></Input>
         <Input type="text" title="Especialidade" description='exemplo: Oftalmologista' error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
         <InputSelectPronoun title="a" error={errors.pronoun?.message?.toString()} disabled={loading} register={register('pronoun')} onChangeFunction={setPronoun}></InputSelectPronoun>
         <div className='create-div-input'>
-        <Input type="text" title="Celular para realizar o agendamento" description='exemplo: 41997549270' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
+        <Input type="text" title="Celular para realizar o agendamento" description='Celular do agendamento com DDD' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
           <Input type="password" title="Senha" error={errors.password?.message?.toString()} disabled={loading} register={register('password')}></Input>
           <Input type="password" title="Confirmar senha" error={errors.confirmPassword?.message?.toString()} disabled={loading} register={register('confirmPassword')}></Input>
         </div>
