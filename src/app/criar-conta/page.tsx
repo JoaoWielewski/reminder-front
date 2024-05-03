@@ -16,6 +16,7 @@ import Input from '@/components/Input/Input';
 import InputSelectPronoun from '@/components/InputSelectPronoun/InputSelect';
 import PopUp from '@/components/PopUp/PopUp';
 import SideBarSmall from '@/components/SideBarSmall/SideBarSmall';
+import SideBarSmallLogin from '@/components/SideBarSmallLogin/SideBarSmall';
 
 type UserRegistrationType = {
   name: string;
@@ -84,13 +85,10 @@ function Signup() {
     .matches(/^\d+$/, 'Insira seu número de celular em números')
     .required('Insira seu número de celular em números'),
     specialty: yup.string().required('Insira sua especialidade, por favor'),
-    schedulePhone: yup.number()
-    .typeError('Insira o celular para agendamento em números')
-    .test('is-number', 'Insira o celular para agendamento em números', (value) => {
-      return value !== undefined && !isNaN(value);
-    })
-    .integer('Insira o celular para agendamento em números')
-    .required('Insira o celular para agendamento em números'),
+    schedulePhone: yup.string()
+    .transform(value => cleanPhoneNumber(value))
+    .matches(/^\d+$/, 'Insira seu número de celular em números')
+    .required('Insira seu número de celular em números'),
     email: yup.string().email('Insira um email válido, por favor').max(100, 'O seu email está muito longo').required('Insira um email, por favor'),
     password: yup.string().required('Insira uma senha, por favor'),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não estão iguais").required('Insira a senha novamente, por favor'),
@@ -169,17 +167,17 @@ function Signup() {
 
   return (
     <>
-    <SideBarSmall></SideBarSmall>
+    <SideBarSmallLogin></SideBarSmallLogin>
     {!session ?
     <CreateContainer title="Criar conta">
       <form onSubmit={onSubmit}>
         <Input type="text" title="Nome completo" error={errors.name?.message?.toString()} disabled={loading} register={register('name')}></Input>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
-        <Input type="text" title="Celular" description='Seu celular com DDD' disabled={loading} mask='(99) 99999-9999' error={errors.phone?.message?.toString()} register={register('phone')}></Input>
+        <Input type="text" title="Celular" description='Seu número com DDD' disabled={loading} mask='(99) 99999-9999' error={errors.phone?.message?.toString()} register={register('phone')}></Input>
         <Input type="text" title="Especialidade" description='exemplo: Oftalmologista' error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
         <InputSelectPronoun title="a" error={errors.pronoun?.message?.toString()} disabled={loading} register={register('pronoun')} onChangeFunction={setPronoun}></InputSelectPronoun>
         <div className='create-div-input'>
-        <Input type="text" title="Celular para realizar o agendamento" description='Celular do agendamento com DDD' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
+        <Input type="text" title="Celular para realizar o agendamento" description='Número do agendamento com DDD' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')} mask='(99) 99999-9999'></Input>
           <Input type="password" title="Senha" error={errors.password?.message?.toString()} disabled={loading} register={register('password')}></Input>
           <Input type="password" title="Confirmar senha" error={errors.confirmPassword?.message?.toString()} disabled={loading} register={register('confirmPassword')}></Input>
         </div>

@@ -88,11 +88,18 @@ function Dados() {
   const router = useRouter();
   const {data: session, status} = useSession();
 
+  const cleanPhoneNumber = (value: string) => value.replace(/[^\d]/g, '');
   const schema = yup.object().shape({
-    phone: yup.string().required('Insira o seu número de celular, por favor'),
+    phone: yup.string()
+    .transform(value => cleanPhoneNumber(value))
+    .matches(/^\d+$/, 'Insira seu número de celular em números')
+    .required('Insira seu número de celular em números'),
     email: yup.string().email('Este email não é válido').required('Insira o seu email, por favor'),
     specialty: yup.string().required('Insira a sua especialidade, por favor'),
-    schedulePhone: yup.string().required('Insira o número de celular de agendamento, por favor'),
+    schedulePhone: yup.string()
+    .transform(value => cleanPhoneNumber(value))
+    .matches(/^\d+$/, 'Insira seu número de celular em números')
+    .required('Insira seu número de celular em números'),
     // daysToSchedule: yup.string()
     // .test('is-number', 'A quantidade de dias precisa ser um número', (value) => {
     //   if (value === undefined) {
@@ -166,10 +173,10 @@ function Dados() {
       <LogIn></LogIn>
       <FormContainer title="Meus dados">
         <form onSubmit={onSubmit}>
-          <Input type="phone" title="Meu número de celular" defaultValue={user?.phone} error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')}></Input>
+          <Input type="phone" title="Meu número de celular" defaultValue={user?.phone} error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')} mask='(99) 99999-9999'></Input>
           <Input type="email" title="Meu email" defaultValue={user?.email} error={errors.email?.message?.toString()} disabled={loading} register={register('email')}></Input>
           <Input type="specialty" title="Minha especialidade" defaultValue={user?.specialty} error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
-          <Input type="schedulePhone" title="Número de celular para agendamento" defaultValue={user?.schedulePhone} error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')}></Input>
+          <Input type="schedulePhone" title="Número de celular para agendamento" defaultValue={user?.schedulePhone} error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')} mask='(99) 99999-9999'></Input>
           {!loading ?
            <FormButton title="EDITAR" disabled={loading}></FormButton> :
            <FormLoading></FormLoading>

@@ -71,15 +71,14 @@ function Register() {
     }
   }, [noneRemindersPopUp]);
 
+  const cleanPhoneNumber = (value: string) => value.replace(/[^\d]/g, '');
+
   const schema = yup.object().shape({
     name: yup.string().max(100, 'Nome muito longo').required('Insira o nome, por favor.'),
-    phone: yup.number()
-    .typeError('Insira o celular somente em números')
-    .test('is-number', 'Insira o celular somente em números', (value) => {
-      return value !== undefined && !isNaN(value);
-    })
-    .integer('Insira o celular somente em números')
-    .required('Insira o celular somente em números'),
+    phone: yup.string()
+    .transform(value => cleanPhoneNumber(value))
+    .matches(/^\d+$/, 'Insira seu número de celular em números')
+    .required('Insira seu número de celular em números'),
     quantity: yup.string()
     .test('is-number', 'Insira a quantidade', (value) => {
       if (value === undefined) {
@@ -175,7 +174,7 @@ function Register() {
     <FormContainer title={'Agendar lembrete'}>
       <form onSubmit={onSubmit}>
         <Input type="text" title="Nome do paciente" error={errors.name?.message?.toString()} disabled={loading} register={register('name')} ></Input>
-        <Input type="text" title="Celular do paciente" error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')} ></Input>
+        <Input type="text" title="Celular do paciente" error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')} mask='(99) 99999-9999'></Input>
         <InputSelect title="a" disabled={loading} onChangeFunction={getUnit} error={undefined} register={undefined}></InputSelect>
         <Input type="text" title={unitTitle} description={unitDescription} error={errors.quantity?.message?.toString()} disabled={loading || selectDisabled} register={register('quantity')}></Input>
         {!loading ?

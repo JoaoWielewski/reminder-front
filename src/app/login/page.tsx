@@ -16,6 +16,7 @@ import { useState } from 'react';
 import FormLoading from '@/components/FormLoading/FormLoading';
 import SideBarSmall from '@/components/SideBarSmall/SideBarSmall';
 import LoginContainer from '@/components/LoginContainer/LoginContainer';
+import SideBarSmallLogin from '@/components/SideBarSmallLogin/SideBarSmall';
 
 type UserLoginType = {
   email: string,
@@ -115,7 +116,7 @@ function Login() {
 
   return (
     <>
-    <SideBarSmall></SideBarSmall>
+    <SideBarSmallLogin></SideBarSmallLogin>
     {!session ?
     <LoginContainer title="Entrar na conta">
       <form onSubmit={onSubmit}>
@@ -126,7 +127,10 @@ function Login() {
          <FormLoading></FormLoading>
         }
         <p className="create-account">
-          Não tem uma conta? <Link href="/criar-conta" className="create-account-link">Criar uma conta</Link>
+          Ainda não tem uma conta? <Link href="/criar-conta" className="create-account-link">Criar conta</Link>
+        </p>
+        <p className="create-account">
+          Esqueceu sua senha? <a href='https://wa.link/6goeou/' target="_blank" rel="noreferrer" className="create-account-link">Contatar o suporte</a>
         </p>
       </form>
     </LoginContainer> : <div></div>}

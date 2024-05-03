@@ -63,9 +63,9 @@ function Profile() {
           <div className='data-topic-name'>Quantidade de lembretes mensais: <a className='data-topic-info'>{user?.monthlyReminders}</a></div>
           <div className='data-topic-name'>Nome: <a className='data-topic-info'>{user?.name}</a></div>
           <div className='data-topic-name'>Email: <a className='data-topic-info'>{user?.email}</a></div>
-          <div className='data-topic-name'>Celular: <a className='data-topic-info'>{user?.phone}</a></div>
+          <div className='data-topic-name'>Celular: <a className='data-topic-info'>{`(${user?.phone.slice(0, 2)}) ${user?.phone.slice(2, 7)}-${user?.phone.slice(7, 11)}`}</a></div>
           <div className='data-topic-name'>Especialidade: <a className='data-topic-info'>{user?.specialty}</a></div>
-          <div className='data-topic-name'>Celular para agendamento: <a className='data-topic-info'>{user?.schedulePhone}</a></div>
+          <div className='data-topic-name'>Celular para agendamento: <a className='data-topic-info'>{`(${user?.schedulePhone.slice(0, 2)}) ${user?.schedulePhone.slice(2, 7)}-${user?.schedulePhone.slice(7, 11)}`}</a></div>
           <div className='data-topic-name'>Conta criada em: <a className='data-topic-info'>{formatDate(user?.createdAt!)}</a></div>
         </div>
         <Link href="/meus-dados">
