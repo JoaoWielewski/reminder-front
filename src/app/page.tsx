@@ -43,7 +43,7 @@ function Home() {
               <Image src={'/images/dentist.jpg'} alt={''} width={310} height={310} className='we-do-image-1'/>
             </div>
             <div className='image-2'>
-              <Image src={'/images/whatsapp-hand.jpg'} alt={''} width={170} height={170} className='we-do-image-2'/>
+              <Image src={'/images/whatsapp-hand  .jpg'} alt={''} width={170} height={170} className='we-do-image-2'/>
             </div>
           </div>
           <div className='image-3'>
