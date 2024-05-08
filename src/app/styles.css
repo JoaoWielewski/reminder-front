@@ -34,12 +34,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 17rem;
+  margin-top: 14rem;
   flex-direction: column;
 }
 
 .we-do-title {
   font-size: 4rem;
+}
+
+.we-do-title-2 {
+  font-size: 3rem;
+  margin-top: 3rem;
 }
 
 .we-do-content {
@@ -87,6 +92,83 @@
     height: 50rem;
     margin-top: 10rem;
     max-width: 30rem;
+  }
+
+  .works-btn {
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: white;
+    background-color: var(--primary);
+    padding: 1.5rem;
+    padding-left: 2.7rem;
+    padding-right: 2.7rem;
+    border-radius: 0.6rem;
+    margin-left: 16%;
+  }
+
+}
+
+@media (max-width: 1500px) {
+
+  .we-do-image-container {
+    margin-top: -55rem;
+    height: 50rem;
+  }
+
+  .we-do-image-1 {
+    width: 240px;
+    height: 240px;
+  }
+
+  .we-do-image-2 {
+    width: 130px;
+    height: 130px;
+  }
+
+  .we-do-image-3 {
+    width: 240px;
+    height: 240px;
+  }
+
+  .image-2 {
+    margin-top: 11rem !important;
+  }
+
+  .image-3 {
+    margin-left: 11rem;
+  }
+
+}
+
+@media (max-width: 1100px) {
+  .works {
+    height: 125rem;
+  }
+
+  .works-text {
+    font-size: 1.6rem;
+    height: 40rem;
+    margin-top: 10rem;
+    max-width: 50rem;
+  }
+
+  .works-btn {
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: white;
+    background-color: var(--primary);
+    padding: 1.5rem;
+    padding-left: 2.7rem;
+    padding-right: 2.7rem;
+    border-radius: 0.6rem;
+    margin-left: 16%;
+  }
+
+  .we-do-image-container {
+    margin-left: 5% !important;
+    margin-top: 10rem !important;
+    max-width: 0rem !important;
+    height: 50rem;
   }
 }
 
@@ -145,7 +227,7 @@
 
 .doubt-title {
   color: white;
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 
 .doubt-content {
@@ -161,11 +243,11 @@
   font-size: 1.8rem;
   color: var(--primary);
   background-color: white;
-  padding: 1.3rem;
+  padding: 1.1rem;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   border-radius: 0.6rem;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
 .doubt-btn:hover {
@@ -173,7 +255,7 @@
 }
 
 .qr-code-doubt {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   border-radius: 1rem;
 }
 
@@ -210,5 +292,56 @@
     font-size: 1.6rem;
     width: 30rem;
     text-align: center;
+  }
+}
+
+.we-do-image-container {
+  margin-left: 60%;
+  margin-top: -53rem;
+  max-width: 40rem;
+  height: 50rem;
+}
+
+.first-row {
+  display: flex;
+  gap: 4px;
+}
+
+.we-do-image-1 {
+  border-radius: 2rem;
+}
+
+.we-do-image-2 {
+  border-radius: 2rem;
+}
+
+.we-do-image-3 {
+  border-radius: 2rem;
+}
+
+.image-2 {
+  margin-top: 14rem;
+}
+
+.image-3 {
+  margin-left: 11rem;
+}
+
+@media (max-width: 600px) {
+  .works-text {
+    margin-left: 5%;
+  }
+
+  .works-btn {
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 450px) {
+  .works-text {
+    height: 42rem;
+  }
+
+  .works-btn {
   }
 }

@@ -24,8 +24,9 @@ function Home() {
       </div>
       <div className='we-do'>
         <h1 className='we-do-title'>O que fazemos?</h1>
-        <div className='we-do-content'>Possibilitamos que profissionais da saúde agendem lembretes para
-serem enviados aos seus pacientes os lembrando de agendar consultas.</div>
+        <div className='we-do-content'>Aumentamos a quantidade de consultas e faturamento de médicos e dentistas com déficit de consultas e/ou pacientes.</div>
+        <h1 className='we-do-title-2'>Como fazemos?</h1>
+        <div className='we-do-content'>Por meio do envio automático de lembretes para os pacientes, que frequentemente atrasam para voltar, os lembrando de que está na hora de agendarem suas consultas.</div>
       </div>
       <div className='works'>
         <div className='we-do-divider'></div>
@@ -36,6 +37,19 @@ serem enviados aos seus pacientes os lembrando de agendar consultas.</div>
           <div className='works-content'>Dessa forma, os pacientes deixam de atrasar tanto seus retornos, aumentando a quantidade de consultas do profissional da saúde.</div>
         </div>
         <Link href='/criar-conta' className='works-btn'>Começar</Link>
+        <div className='we-do-image-container'>
+          <div className="first-row">
+            <div className='image-1'>
+              <Image src={'/images/dentist.jpg'} alt={''} width={310} height={310} className='we-do-image-1'/>
+            </div>
+            <div className='image-2'>
+              <Image src={'/images/whatsapp-hand.jpg'} alt={''} width={170} height={170} className='we-do-image-2'/>
+            </div>
+          </div>
+          <div className='image-3'>
+            <Image src={'/images/doctor.jpg'} alt={''} width={310} height={310} className='we-do-image-3'/>
+          </div>
+        </div>
         <div className='works-images'></div>
       </div>
       <div className='doubt'>
