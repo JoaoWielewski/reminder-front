@@ -28,11 +28,20 @@ background-color: white;
   .logo-div {
     top: 0rem;
     position: absolute;
-    left: -5%
+    left: -8%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .lembra-big {
+    margin-top: 1.1rem;
+    margin-left: 3rem;
+    width: 100px;
+    height: 100px;
   }
 
   .sidebar-header-big {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     left: 11rem;
   }
 }
