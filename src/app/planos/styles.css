@@ -74,3 +74,19 @@
   margin-top: 10rem;
   margin-left: 70rem;
 }
+
+@media (max-width: 1450px) {
+  .plans-div {
+    height: 40rem;
+    width: 80rem;
+    margin-left: 30rem;
+    margin-top: 3.5rem;
+  }
+
+  .qr-code {
+    margin-top: 12rem;
+    margin-left: 50rem;
+    width: 170px;
+    height: 170px;
+  }
+}

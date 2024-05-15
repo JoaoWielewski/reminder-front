@@ -248,3 +248,22 @@ th {
   padding-left: 0.9rem;
   padding-right: 0.9rem;
 }
+
+@media (max-width: 1450px) {
+  .table-div {
+    top: 15rem;
+    width: 90rem;
+    height: 48rem;
+  }
+
+  .pagination-div {
+    margin-left: 40rem;
+    top: 43.5rem;
+  }
+
+  .dashboard {
+    left: 28rem;
+    top: 4.7rem;
+    z-index: 0;
+  }
+}

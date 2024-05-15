@@ -23,7 +23,7 @@
   font-weight: 400;
   color: #2D3748;
   margin-left: 7rem;
-  bottom: 21.7rem;
+  bottom: 21rem;
 }
 
 nav{
@@ -64,12 +64,4 @@ nav input:checked + label{
   color: rgb(197, 4, 4);
   font-size: 1.3rem;
   margin-left: 7.5rem;
-}
-
-@media (max-width: 1500px) {
-
-  .input-select-title {
-    bottom: 20.7rem;
-  }
-
 }
