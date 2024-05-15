@@ -9,3 +9,11 @@
     top: 7.1rem;
   }
 }
+
+@media (max-width: 750px) {
+  .create-div-input {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}

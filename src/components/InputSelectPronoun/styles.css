@@ -26,6 +26,10 @@
   margin-top: -2rem;
 }
 
+.input-select-div {
+  margin-top: 3.3rem;
+}
+
 nav{
   width: fit-content;
   border: 1px solid #E2E8F0;

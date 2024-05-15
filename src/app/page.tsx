@@ -33,7 +33,7 @@ function Home() {
         <div className='works-text'>
           <div className='works-title'>Como funciona?</div>
           <div className='works-content'>No fim de uma consulta, o profissional da saúde pode facilmente agendar um lembrete informando em quanto tempo deseja que o paciente retorne.</div>
-          <div className='works-content'>Quando estiver próximo à data do retorno esperado o paciente recebe um lembrete via Whatsapp, com um botão que o direciona ao agendamento.</div>
+          <div className='works-content'>Quando estiver próximo a data do retorno esperado o paciente recebe um lembrete via Whatsapp, com um botão que o direciona ao agendamento.</div>
           <div className='works-content'>Dessa forma, os pacientes deixam de atrasar tanto seus retornos, aumentando a quantidade de consultas do profissional da saúde.</div>
         </div>
         <Link href='/criar-conta' className='works-btn'>Começar</Link>
@@ -56,7 +56,7 @@ function Home() {
         <div className='doubt-title'>Alguma dúvida?</div>
         <div className='doubt-content'>Para tirar qualquer dúvida clique no botão abaixo ou escaneie o QR Code!</div>
         <a href='https://wa.link/xv58nm/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
-        <Image src={'/images/whatsapp.png'} alt={''} width={200} height={200} className='qr-code-doubt'/>
+        <Image src={'/images/whatsapp.png'} alt={''} width={170} height={170} className='qr-code-doubt'/>
         <span className="absolute-bottom-right">
           <svg
             width="493"
