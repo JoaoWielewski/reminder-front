@@ -171,7 +171,7 @@ function Signup() {
     {!session ?
     <CreateContainer title="Criar conta">
       <form onSubmit={onSubmit}>
-        <Input type="text" title="Nome completo" error={errors.name?.message?.toString()} disabled={loading} register={register('name')}></Input>
+        <Input type="text" title="Seu nome" description="(da forma que os pacientes verão)" error={errors.name?.message?.toString()} disabled={loading} register={register('name')}></Input>
         <Input type="text" title="Email" error={errors.email?.message?.toString()} disabled={loading} register={register('email')} onChangeFunction={resetEmailError} optionalErrorReference="email"></Input>
         <Input type="text" title="Celular" description='Seu número com DDD' disabled={loading} mask='(99) 99999-9999' error={errors.phone?.message?.toString()} register={register('phone')}></Input>
         <Input type="text" title="Sua profissão/especialidade" description='exemplos: Oftalmologista, Dentista' error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
