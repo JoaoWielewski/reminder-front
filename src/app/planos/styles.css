@@ -90,3 +90,33 @@
     height: 170px;
   }
 }
+
+
+@media (max-width: 850px) {
+  .plans-div {
+    margin-left: 1.5rem;
+    width: 36rem;
+    height: 50rem;
+  }
+
+  .plans-name {
+    margin-top: 5.5rem;
+    margin-left: 8rem
+  }
+
+  .plans-div-name {
+    margin-left: 1.8rem;
+  }
+
+  .plans-btn {
+    top: 32rem;
+    margin-left: 8rem;
+  }
+
+  .qr-code {
+    margin-top: 30rem;
+    margin-left: 10rem;
+    width: 150px;
+    height: 150px;
+  }
+}

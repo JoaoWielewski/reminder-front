@@ -15,7 +15,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-
       <head />
       <body>
       <Head></Head>

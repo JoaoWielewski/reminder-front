@@ -1,6 +1,6 @@
 'use client';
 
-import { faCirclePlus, faFileLines, faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCirclePlus, faFileLines, faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +12,13 @@ type SideBarType = {
 
 function SideBar(props: SideBarType) {
   return (
-    <div>
+    <>
+      <input type="checkbox" id="check" />
+      <label htmlFor="check" className="bars">
+        <FontAwesomeIcon icon={faBars} className="bars-icon" />
+      </label>
+    <div className='sidebar-cover'></div>
+    <div className='sidebar'>
       <div>
         <Image src={'/images/lembra+.png'} alt={''} width={70} height={70} className='lembra'/>
         <Link href="/painel" className="sidebar-header">
@@ -43,11 +49,11 @@ function SideBar(props: SideBarType) {
 
       {props.active === 'plans' ?
       <div className='sidebar-item sidebar-item3 active-item'>
-        <FontAwesomeIcon icon={faFileLines} className="active-icon active-icon-plus" />
+        <FontAwesomeIcon icon={faFileLines} className="active-icon active-icon-file" />
         <div className='active-sidebar-text'>Adquirir lembretes</div>
       </div> :
       <Link href='/planos' className='sidebar-item sidebar-item3 inactive-item'>
-        <FontAwesomeIcon icon={faFileLines} className="inactive-icon inactive-icon-plus" />
+        <FontAwesomeIcon icon={faFileLines} className="inactive-icon inactive-icon-file" />
         <div className='inactive-sidebar-text'>Adquirir lembretes</div>
       </Link>}
 
@@ -62,6 +68,7 @@ function SideBar(props: SideBarType) {
       </Link>}
 
     </div>
+    </>
   );
 }
 

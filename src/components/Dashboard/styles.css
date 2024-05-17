@@ -267,3 +267,15 @@ th {
     z-index: 0;
   }
 }
+
+
+@media (max-width: 850px) {
+  .dashboard {
+    left: 2rem;
+    top: 5.5rem;
+  }
+
+  .dashboard-name {
+    left: 6rem;
+  }
+}
