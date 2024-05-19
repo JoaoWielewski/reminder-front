@@ -173,8 +173,8 @@ function Register() {
     {session ?
     <FormContainer title={'Agendar lembrete'}>
       <form onSubmit={onSubmit}>
-        <Input type="text" title="Nome do paciente" error={errors.name?.message?.toString()} disabled={loading} register={register('name')} ></Input>
-        <Input type="text" title="Celular do paciente" error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')} mask='(99) 99999-9999'></Input>
+        <Input type="text" title="Nome do paciente" description="Incompleto ou completo" error={errors.name?.message?.toString()} disabled={loading} register={register('name')} ></Input>
+        <Input type="text" title="Celular do paciente" description="Número com DDD" error={errors.phone?.message?.toString()} disabled={loading} register={register('phone')} mask='(99) 99999-9999'></Input>
         <InputSelect title="a" disabled={loading} onChangeFunction={getUnit} error={undefined} register={undefined}></InputSelect>
         <Input type="text" title={unitTitle} description={unitDescription} error={errors.quantity?.message?.toString()} disabled={loading || selectDisabled} register={register('quantity')}></Input>
         {!loading ?

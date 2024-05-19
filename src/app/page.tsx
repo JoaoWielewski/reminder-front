@@ -55,7 +55,7 @@ function Home() {
       <div className='doubt'>
         <div className='doubt-title'>Alguma dúvida?</div>
         <div className='doubt-content'>Para tirar qualquer dúvida clique no botão abaixo ou escaneie o QR Code!</div>
-        <a href='https://wa.link/xv58nm/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
+        <a href='https://wa.link/kdpu06/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
         <Image src={'/images/whatsapp.png'} alt={''} width={170} height={170} className='qr-code-doubt'/>
         <span className="absolute-bottom-right">
           <svg

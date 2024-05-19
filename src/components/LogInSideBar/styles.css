@@ -1,0 +1,39 @@
+.login-link-side {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #718096;
+  position: absolute;
+  left: 4.5rem;
+  top: 38rem;
+  cursor: pointer;
+  padding: 0.7rem;
+  padding-left: 3rem;
+  padding-right: 0.9rem;
+  border-radius: 1rem;
+}
+
+.bracket-icon-side {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #718096;
+  position: absolute;
+  left: 5.5rem;
+  top: 38.8rem;
+  cursor: pointer;
+}
+
+.login-link-side:hover {
+  background-color: rgba(201, 201, 201, 0.13);
+}
+
+.z-index-5-side {
+  z-index: 5;
+  display: none;
+}
+
+
+@media (max-width: 850px) {
+  .z-index-5-side {
+    display:inline;
+  }
+}

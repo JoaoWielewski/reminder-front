@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import './styles.css';
+import LogInSideBar from '../LogInSideBar/LogInSideBar';
 
 type SideBarType = {
   active: string
@@ -66,6 +67,8 @@ function SideBar(props: SideBarType) {
         <FontAwesomeIcon icon={faUser} className="inactive-icon inactive-icon-user" />
         <div className='inactive-sidebar-text'>Meu perfil</div>
       </Link>}
+
+      <LogInSideBar></LogInSideBar>
 
     </div>
     </>
