@@ -185,7 +185,7 @@
   align-items: center;
   background-color: var(--primary);
   width: 100%;
-  height: 45rem;
+  height: 40rem;
   position: relative;
   flex-direction: column;
 }

@@ -25,6 +25,7 @@ function Home() {
       <div className='we-do'>
         <h1 className='we-do-title'>O que fazemos?</h1>
         <div className='we-do-content'>Aumentamos a quantidade de consultas e faturamento de médicos e dentistas com déficit de consultas e/ou pacientes.</div>
+        <div className='we-do-content'>Ajudamos os pacientes a darem seguimento em seu acompanhamento com o profissional da saúde, otimizando a agenda de consultas do mesmo.</div>
         <h1 className='we-do-title-2'>Como fazemos?</h1>
         <div className='we-do-content'>Por meio do envio automático de lembretes para os pacientes, que frequentemente atrasam para voltar, os lembrando de que está na hora de agendarem suas consultas.</div>
       </div>
@@ -56,7 +57,7 @@ function Home() {
         <div className='doubt-title'>Alguma dúvida?</div>
         <div className='doubt-content'>Para tirar qualquer dúvida clique no botão abaixo ou escaneie o QR Code!</div>
         <a href='https://wa.link/xv58nm/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
-        <Image src={'/images/whatsapp.png'} alt={''} width={170} height={170} className='qr-code-doubt'/>
+        <Image src={'/images/whatsapp.png'} alt={''} width={150} height={150} className='qr-code-doubt'/>
         <span className="absolute-bottom-right">
           <svg
             width="493"
