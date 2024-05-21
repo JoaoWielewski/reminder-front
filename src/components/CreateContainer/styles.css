@@ -12,7 +12,7 @@
   margin: 0 auto;
   box-shadow: 0px 7px 23px 0px #0000000D;
   border-radius: 1.5rem;
-  max-height: 85%;
+  max-height: 100%;
   width: 73rem;
 }
 
@@ -43,7 +43,7 @@
     position: static;
     max-height: 85rem;
     width: 36rem;
-    margin-top: 30rem;
+    margin-top: 20rem;
   }
 
   .register-h1 {

@@ -7,6 +7,7 @@ import './styles.css';
 
 import LogIn from '@/components/LogIn/LogIn';
 import SideBar2 from '@/components/SideBar2/SideBar2';
+import SideBar from '@/components/SideBar/SideBar';
 
 function Plans() {
   const { data: session, status} = useSession();

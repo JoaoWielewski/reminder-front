@@ -25,7 +25,7 @@ function Home() {
       <div className='we-do'>
         <h1 className='we-do-title'>O que fazemos?</h1>
         <div className='we-do-content'>Aumentamos a quantidade de consultas e faturamento de médicos e dentistas com déficit de consultas e/ou pacientes.</div>
-        <div className='we-do-content'>Ajudamos os pacientes a darem seguimento em seu acompanhamento com o profissional da saúde, otimizando a agenda de consultas do mesmo.</div>
+        <div className='we-do-content'>Ajudamos os pacientes a continuar o acompanhamento com o profissional de saúde, otimizando a agenda de consultas dele.</div>
         <h1 className='we-do-title-2'>Como fazemos?</h1>
         <div className='we-do-content'>Por meio do envio automático de lembretes para os pacientes, que frequentemente atrasam para voltar, os lembrando de que está na hora de agendarem suas consultas.</div>
       </div>

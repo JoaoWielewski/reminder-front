@@ -55,3 +55,16 @@
   margin-left: 2.5rem;
   margin-top: 31rem;
 }
+
+
+
+@media (max-width: 850px) {
+  .data-div {
+    margin-left: 2rem;
+    width: 35rem;
+  }
+
+  .profile-name {
+    margin-left: 8rem;
+  }
+}

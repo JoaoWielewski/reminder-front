@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import './styles.css';
 
 import LogIn from '@/components/LogIn/LogIn';
+import ProfileLoading from '@/components/ProfileLoading/ProfileLoading';
 import SideBar2 from '@/components/SideBar2/SideBar2';
 import { UserType } from '@/types/types';
 import Link from 'next/link';
@@ -59,18 +60,25 @@ function Profile() {
       <div className='profile-name'>Meu perfil</div>
       <div className='data-div'>
         <div className='data-name'>Meus dados</div>
-        <div className='data-topic'>
-          <div className='data-topic-name'>Quantidade de lembretes mensais: <a className='data-topic-info'>{user?.monthlyReminders}</a></div>
-          <div className='data-topic-name'>Nome: <a className='data-topic-info'>{user?.name}</a></div>
-          <div className='data-topic-name'>Email: <a className='data-topic-info'>{user?.email}</a></div>
-          <div className='data-topic-name'>Celular: <a className='data-topic-info'>{`(${user?.phone.slice(0, 2)}) ${user?.phone.slice(2, 7)}-${user?.phone.slice(7, 11)}`}</a></div>
-          <div className='data-topic-name'>Especialidade: <a className='data-topic-info'>{user?.specialty}</a></div>
-          <div className='data-topic-name'>Celular para agendamento: <a className='data-topic-info'>{`(${user?.schedulePhone.slice(0, 2)}) ${user?.schedulePhone.slice(2, 7)}-${user?.schedulePhone.slice(7, 11)}`}</a></div>
-          <div className='data-topic-name'>Conta criada em: <a className='data-topic-info'>{formatDate(user?.createdAt!)}</a></div>
-        </div>
-        <Link href="/meus-dados">
-          <div className='modify-data'>ALTERAR DADOS</div>
-        </Link>
+        {!loading ?
+        <>
+          <div className='data-topic'>
+            <div className='data-topic-name'>Quantidade de lembretes mensais: <a className='data-topic-info'>{user?.monthlyReminders}</a></div>
+            <div className='data-topic-name'>Nome: <a className='data-topic-info'>{user?.name}</a></div>
+            <div className='data-topic-name'>Email: <a className='data-topic-info'>{user?.email}</a></div>
+            <div className='data-topic-name'>Celular: <a className='data-topic-info'>{`(${user?.phone.slice(0, 2)}) ${user?.phone.slice(2, 7)}-${user?.phone.slice(7, 11)}`}</a></div>
+            <div className='data-topic-name'>Especialidade: <a className='data-topic-info'>{user?.specialty}</a></div>
+            <div className='data-topic-name'>Celular para agendamento: <a className='data-topic-info'>{`(${user?.schedulePhone.slice(0, 2)}) ${user?.schedulePhone.slice(2, 7)}-${user?.schedulePhone.slice(7, 11)}`}</a></div>
+            <div className='data-topic-name'>Conta criada em: <a className='data-topic-info'>{formatDate(user?.createdAt!)}</a></div>
+          </div>
+          <Link href="/meus-dados">
+            <div className='modify-data'>ALTERAR DADOS</div>
+          </Link>
+        </>
+       :
+
+         <ProfileLoading></ProfileLoading>
+         }
       </div>
     </>
   );
