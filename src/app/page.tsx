@@ -25,16 +25,14 @@ function Home() {
       <div className='we-do'>
         <h1 className='we-do-title'>O que fazemos?</h1>
         <div className='we-do-content'>Aumentamos a quantidade de consultas e faturamento de médicos e dentistas com déficit de consultas e/ou pacientes.</div>
-        <div className='we-do-content'>Ajudamos os pacientes a continuar o acompanhamento com o profissional de saúde, otimizando a agenda de consultas dele.</div>
-        <h1 className='we-do-title-2'>Como fazemos?</h1>
-        <div className='we-do-content'>Por meio do envio automático de lembretes para os pacientes, que frequentemente atrasam para voltar, os lembrando de que está na hora de agendarem suas consultas.</div>
+        <div className='we-do-content'>Ajudamos os pacientes a continuar o acompanhamento com o profissional de saúde sem atrasos, otimizando a agenda de consultas dele.</div>
       </div>
       <div className='works'>
         <div className='we-do-divider'></div>
         <div className='works-text'>
           <div className='works-title'>Como funciona?</div>
           <div className='works-content'>No fim de uma consulta, o profissional da saúde pode facilmente agendar um lembrete informando em quanto tempo deseja que o paciente retorne.</div>
-          <div className='works-content'>Quando estiver próximo a data do retorno esperado o paciente recebe um lembrete via Whatsapp, com um botão que o direciona ao agendamento.</div>
+          <div className='works-content'>Quando estiver próximo a data do retorno esperado o paciente automaticamente recebe uma mensagem via Whatsapp, o avisando que está na hora de agendar sua consulta e disponibilizando um botão que o direciona para o agendamento instantaneamente.</div>
           <div className='works-content'>Dessa forma, os pacientes deixam de atrasar tanto seus retornos, aumentando a quantidade de consultas do profissional da saúde.</div>
         </div>
         <Link href='/criar-conta' className='works-btn'>Começar</Link>
