@@ -34,7 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 14rem;
+  padding-top: 14rem;
   flex-direction: column;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .works {
-  background-color: rgb(249 250 251);
+  background-color: rgb(243 243 247);
   width: 100%;
   margin-top: 8rem;
   height: 75rem;
@@ -76,7 +76,7 @@
   max-width: 40rem;
   font-size: 1.6rem;
   line-height: 2.6rem;
-  height: 45rem;
+  height: 46rem;
 }
 
 
@@ -91,7 +91,7 @@
 
   .works-text {
     font-size: 1.6rem;
-    height: 50rem;
+    height: 60rem;
     margin-top: 10rem;
     max-width: 30rem;
   }
@@ -136,7 +136,7 @@
 
   .works-text {
     font-size: 1.6rem;
-    height: 40rem;
+    height: 42rem;
     margin-top: 10rem;
     max-width: 50rem;
   }
@@ -188,6 +188,7 @@
   height: 40rem;
   position: relative;
   flex-direction: column;
+  margin-top: 8rem;
 }
 
 .absolute-top-left {
@@ -217,7 +218,7 @@
 
 .doubt-btn {
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: var(--black);
   background-color: white;
   padding: 1.1rem;
@@ -288,6 +289,21 @@
     border-radius: 0.6rem;
     margin-left: 16%;
   }
+
+  .we-do-image-1 {
+    width: 235px;
+    height: 235px;
+  }
+
+  .we-do-image-2 {
+    width: 125px;
+    height: 125px;
+  }
+
+  .we-do-image-3 {
+    width: 235px;
+    height: 235px;
+  }
 }
 
 .we-do-image-container {
@@ -325,6 +341,7 @@
 @media (max-width: 600px) {
   .works-text {
     margin-left: 5%;
+    height: 45rem;
   }
 
   .works-btn {
@@ -334,6 +351,60 @@
 
 @media (max-width: 450px) {
   .works-text {
-    height: 44rem;
+    height: 49rem;
   }
 }
+
+.example {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(243 243 247);
+}
+
+.example-title {
+  margin-top: 6rem;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.example-image {
+  margin-top: 4rem;
+  border-radius: 2rem;
+}
+
+.who {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 8rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.who-title {
+  max-width: 22rem;
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.who-p {
+  font-size: 3.5rem;
+  color: var(--primary)
+}
+
+.who-content {
+  color: rgb(99 115 129);
+  font-size: 1.7rem;
+  max-width: 20rem;
+  background-color: rgb(245, 245, 247);
+  border: solid 0.1rem rgb(230, 230, 235);
+  padding: 2rem;
+  width: 20rem;
+  height: 18.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+

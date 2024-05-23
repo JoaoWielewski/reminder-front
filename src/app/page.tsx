@@ -6,6 +6,8 @@ import './styles.css';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { faChartLine, faFileLines, faNotesMedical } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Home() {
   const {data: session, status} = useSession();
@@ -50,6 +52,17 @@ function Home() {
           </div>
         </div>
         <div className='works-images'></div>
+      </div>
+        <div className='we-do-divider'></div>
+      <div className='who'>
+        <h1 className='who-title'>Para quem é o <span className='who-p'>Lembra+</span>?</h1>
+        <div className='who-content'><FontAwesomeIcon icon={faChartLine} className="chart-icon" />Para você que quer aumentar a sua quantidade de consultas, diminuindo os atrasos dos seus pacientes</div>
+        <div className='who-content'><FontAwesomeIcon icon={faNotesMedical} className="medical-icon" />Para você que quer ajudar os seus pacientes a manterem sua saúde em dia sem atrasos.</div>
+      </div>
+      <div className='example'>
+        <div className='we-do-divider'></div>
+        <h1 className='example-title'>Exemplo de mensagem que o paciente recebe:</h1>
+        <Image src={'/images/doctor.jpg'} alt={''} width={310} height={310} className='example-image'/>
       </div>
       <div className='doubt'>
         <div className='doubt-title'>Alguma dúvida?</div>
