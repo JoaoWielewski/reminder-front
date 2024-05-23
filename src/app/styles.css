@@ -188,7 +188,6 @@
   height: 40rem;
   position: relative;
   flex-direction: column;
-  margin-top: 8rem;
 }
 
 .absolute-top-left {
@@ -372,6 +371,7 @@
 .example-image {
   margin-top: 4rem;
   border-radius: 2rem;
+  margin-bottom: 8rem;
 }
 
 .who {
@@ -403,8 +403,26 @@
   border: solid 0.1rem rgb(230, 230, 235);
   padding: 2rem;
   width: 20rem;
-  height: 18.5rem;
+  height: 23rem;
   border-radius: 1rem;
   text-align: center;
+  padding-top: 7rem;
+  position: relative;
+}
+
+.chart-icon {
+  position: absolute;
+  font-size: 4rem;
+  color: var(--primary);
+  top: 2rem;
+  left: 8rem;
+}
+
+.medical-icon {
+  position: absolute;
+  font-size: 4rem;
+  color: var(--primary);
+  top: 2rem;
+  left: 8rem;
 }
 

@@ -62,7 +62,7 @@ function Home() {
       <div className='example'>
         <div className='we-do-divider'></div>
         <h1 className='example-title'>Exemplo de mensagem que o paciente recebe:</h1>
-        <Image src={'/images/doctor.jpg'} alt={''} width={310} height={310} className='example-image'/>
+        <Image src={'/images/mensagem.png'} alt={''} width={388} height={424} className='example-image'/>
       </div>
       <div className='doubt'>
         <div className='doubt-title'>Alguma dúvida?</div>
