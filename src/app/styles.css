@@ -303,6 +303,10 @@
     width: 235px;
     height: 235px;
   }
+
+  .who {
+    flex-direction: column !important;
+  }
 }
 
 .we-do-image-container {
