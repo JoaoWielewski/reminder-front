@@ -26,7 +26,7 @@ function Home() {
       </div>
       <div className='we-do'>
         <h1 className='we-do-title'>O que fazemos?</h1>
-        <div className='we-do-content'>Aumentamos a quantidade de consultas e faturamento de médicos e dentistas com déficit de consultas e/ou pacientes.</div>
+        <div className='we-do-content'>Aumentamos a quantidade de consultas de médicos e dentistas com déficit de consultas.</div>
         <div className='we-do-content'>Ajudamos os pacientes a continuar o acompanhamento com o profissional de saúde sem atrasos, otimizando a agenda de consultas dele.</div>
       </div>
       <div className='works'>
@@ -67,8 +67,8 @@ function Home() {
       <div className='doubt'>
         <div className='doubt-title'>Alguma dúvida?</div>
         <div className='doubt-content'>Para tirar qualquer dúvida clique no botão abaixo ou escaneie o QR Code!</div>
-        <a href='https://wa.link/xv58nm/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
-        <Image src={'/images/whatsapp.png'} alt={''} width={150} height={150} className='qr-code-doubt'/>
+        <a href='https://wa.link/t6bn3j/' target="_blank" rel="noreferrer" className='doubt-btn'>Entrar em contato</a>
+        <Image src={'/images/whatsapp2.png'} alt={''} width={150} height={150} className='qr-code-doubt'/>
         <span className="absolute-bottom-right">
           <svg
             width="493"
