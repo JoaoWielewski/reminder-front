@@ -27,7 +27,7 @@ function Home() {
       <div className='we-do'>
         <h1 className='we-do-title'>O que fazemos?</h1>
         <div className='we-do-content'>Aumentamos a quantidade de consultas de médicos e dentistas com déficit de consultas.</div>
-        <div className='we-do-content'>Ajudamos os pacientes a continuar o acompanhamento com o profissional de saúde sem atrasos, otimizando a agenda de consultas dele.</div>
+        <div className='we-do-content'>Ajudamos os pacientes a manter o acompanhamento com o profissional de saúde pontualmente, otimizando a agenda de consultas.</div>
       </div>
       <div className='works'>
         <div className='we-do-divider'></div>
@@ -56,8 +56,8 @@ function Home() {
         <div className='we-do-divider'></div>
       <div className='who'>
         <h1 className='who-title'>Para quem é o <span className='who-p'>Lembra+</span>?</h1>
-        <div className='who-content'><FontAwesomeIcon icon={faChartLine} className="chart-icon" />Para você que quer aumentar a sua quantidade de consultas, diminuindo os atrasos dos seus pacientes</div>
-        <div className='who-content'><FontAwesomeIcon icon={faNotesMedical} className="medical-icon" />Para você que quer ajudar os seus pacientes a manterem sua saúde em dia sem atrasos.</div>
+        <div className='who-content'><FontAwesomeIcon icon={faChartLine} className="chart-icon" />Para você que deseja aumentar a sua quantidade de consultas, ajudando seus pacientes a evitar atrasos no retorno.</div>
+        <div className='who-content'><FontAwesomeIcon icon={faNotesMedical} className="medical-icon" />Para você que deseja ajudar seus pacientes a manterem a saúde em dia, sem atrasos.</div>
       </div>
       <div className='example'>
         <div className='we-do-divider'></div>
