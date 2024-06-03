@@ -350,6 +350,11 @@
   .works-btn {
     margin-left: 37%;
   }
+
+  .example-image {
+    width: 349px;
+    height: 381px;
+  }
 }
 
 @media (max-width: 450px) {
