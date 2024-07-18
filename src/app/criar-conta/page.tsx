@@ -176,7 +176,7 @@ function Signup() {
         <Input type="text" title="Celular" description='Seu número com DDD' disabled={loading} mask='(99) 99999-9999' error={errors.phone?.message?.toString()} register={register('phone')}></Input>
         <Input type="text" title="Sua profissão/especialidade" description='Exemplos: Oftalmologista, Dentista' error={errors.specialty?.message?.toString()} disabled={loading} register={register('specialty')}></Input>
         <div className='create-div-input'>
-          <Input type="text" title="Celular para realizar o agendamento" description='Número para agendamento com DDD' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')} mask='(99) 99999-9999'></Input>
+          <Input type="text" title="Celular que o paciente usa para agendar" description='Número para agendamento' error={errors.schedulePhone?.message?.toString()} disabled={loading} register={register('schedulePhone')} mask='(99) 99999-9999'></Input>
           <Input type="password" title="Senha" error={errors.password?.message?.toString()} disabled={loading} register={register('password')}></Input>
           <Input type="password" title="Confirmar senha" error={errors.confirmPassword?.message?.toString()} disabled={loading} register={register('confirmPassword')}></Input>
           <InputSelectPronoun title="a" error={errors.pronoun?.message?.toString()} disabled={loading} register={register('pronoun')} onChangeFunction={setPronoun}></InputSelectPronoun>
